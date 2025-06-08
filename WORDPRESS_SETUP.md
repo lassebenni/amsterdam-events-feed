@@ -22,7 +22,7 @@
 2. Click **Add Feed**
 3. Paste this URL:
    ```
-   https://raw.githubusercontent.com/lassebenninga/amsterdam-events-feed/main/events.xml
+   https://raw.githubusercontent.com/lassebenni/amsterdam-events-feed/master/events.xml
    ```
 4. Click **Add Feed**
 

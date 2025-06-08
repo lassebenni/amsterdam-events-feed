@@ -11,13 +11,13 @@
 
 ### Step 2: Add Events Feed
 1. **Feedzy** → **Import Feeds** → **Add Feed**
-2. Paste URL: `https://raw.githubusercontent.com/lassebenninga/amsterdam-events-feed/main/events.xml`
+2. Paste URL: `https://raw.githubusercontent.com/lassebenni/amsterdam-events-feed/master/events.xml`
 3. **Add Feed**
 
 ### Step 3: Display Events
 Add this shortcode to any page/post:
 ```
-[feedzy-rss feeds="https://raw.githubusercontent.com/lassebenninga/amsterdam-events-feed/main/events.xml" max="10" feed_title="no"]
+[feedzy-rss feeds="https://raw.githubusercontent.com/lassebenni/amsterdam-events-feed/master/events.xml" max="10" feed_title="no"]
 ```
 
 **Done!** Events update automatically every day at 6 AM.
@@ -28,7 +28,7 @@ Add this shortcode to any page/post:
 
 ### Test Locally
 ```bash
-git clone https://github.com/lassebenninga/amsterdam-events-feed.git
+git clone https://github.com/lassebenni/amsterdam-events-feed.git
 cd amsterdam-events-feed
 pip install -r requirements.txt
 python3 scrape_amsterdam_events.py
@@ -59,7 +59,7 @@ python3 scrape_amsterdam_events.py
 
 ## RSS Feed URL
 ```
-https://raw.githubusercontent.com/lassebenninga/amsterdam-events-feed/main/events.xml
+https://raw.githubusercontent.com/lassebenni/amsterdam-events-feed/master/events.xml
 ```
 
 ## Support

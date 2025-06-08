@@ -231,7 +231,7 @@ class AmsterdamEventsScraper:
         
         fg = FeedGenerator()
         fg.title('Amsterdam Events Feed')
-        fg.link(href='https://raw.githubusercontent.com/lassebenninga/amsterdam-events-feed/main/events.xml')
+        fg.link(href='https://raw.githubusercontent.com/lassebenni/amsterdam-events-feed/master/events.xml')
         fg.description('Curated upcoming events and activities in Amsterdam')
         fg.language('en')
         fg.lastBuildDate(datetime.now(timezone.utc))

@@ -22,7 +22,7 @@
 
 2. **Add the feed:**
    - In WordPress admin: **Feedzy → Import Feeds → Add Feed**
-   - Paste this URL: `https://raw.githubusercontent.com/lassebenninga/amsterdam-events-feed/main/events.xml`
+   - Paste this URL: `https://raw.githubusercontent.com/lassebenni/amsterdam-events-feed/master/events.xml`
    - Click "Add Feed"
 
 3. **Display events on your site:**
@@ -102,7 +102,7 @@ Amsterdam Websites → Python Scraper → RSS Feed → WordPress Plugin → Your
 
 ## 📅 RSS Feed Details
 
-- **URL:** `https://raw.githubusercontent.com/lassebenninga/amsterdam-events-feed/main/events.xml`
+- **URL:** `https://raw.githubusercontent.com/lassebenni/amsterdam-events-feed/master/events.xml`
 - **Format:** RSS 2.0
 - **Update Schedule:** Daily at 6 AM Amsterdam time
 - **Content:** Event title, description, source, and original link
