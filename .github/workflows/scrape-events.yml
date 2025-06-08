@@ -1,0 +1,90 @@
+name: Scrape Amsterdam Events
+
+on:
+  schedule:
+    # Run daily at 6:00 AM Amsterdam time (4:00 UTC in winter, 5:00 UTC in summer)
+    - cron: '0 5 * * *'
+  workflow_dispatch:  # Allow manual triggering
+  push:
+    branches: [ main ]
+    paths: [ 'scrape_amsterdam_events.py' ]  # Run when scraper is updated
+
+jobs:
+  scrape-and-update:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Cache pip dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+          
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        
+    - name: Run events scraper
+      run: |
+        python scrape_amsterdam_events.py
+        
+    - name: Check if feed was generated
+      run: |
+        if [ ! -f events.xml ]; then
+          echo "❌ events.xml not generated"
+          exit 1
+        fi
+        echo "✅ events.xml generated successfully"
+        
+    - name: Commit and push if changed
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+        # Add the generated files
+        git add events.xml events.json
+        
+        # Check if there are changes to commit
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          # Create commit with timestamp
+          git commit -m "🤖 Auto-update Amsterdam events feed - $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git push
+          echo "✅ Feed updated and pushed"
+        fi
+        
+    - name: Summary
+      run: |
+        echo "## 📊 Scraper Summary" >> $GITHUB_STEP_SUMMARY
+        echo "- **Timestamp**: $(date -u '+%Y-%m-%d %H:%M UTC')" >> $GITHUB_STEP_SUMMARY
+        echo "- **Events file**: events.xml" >> $GITHUB_STEP_SUMMARY
+        echo "- **JSON debug file**: events.json" >> $GITHUB_STEP_SUMMARY
+        
+        if [ -f events.xml ]; then
+          echo "- **Feed status**: ✅ Generated successfully" >> $GITHUB_STEP_SUMMARY
+          
+          # Count events in the feed
+          if command -v xmllint &> /dev/null; then
+            event_count=$(xmllint --xpath "count(//item)" events.xml 2>/dev/null || echo "Unknown")
+            echo "- **Events count**: $event_count" >> $GITHUB_STEP_SUMMARY
+          fi
+        else
+          echo "- **Feed status**: ❌ Failed to generate" >> $GITHUB_STEP_SUMMARY
+        fi
+        
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### 🔗 WordPress Integration" >> $GITHUB_STEP_SUMMARY
+        echo "Use this RSS feed URL in WordPress:" >> $GITHUB_STEP_SUMMARY
+        echo "\`https://raw.githubusercontent.com/${{ github.repository }}/main/events.xml\`" >> $GITHUB_STEP_SUMMARY 
