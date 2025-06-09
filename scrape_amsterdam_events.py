@@ -566,7 +566,7 @@ class AmsterdamEventsScraper:
     def generate_rss_feed(self, output_file="events.xml"):
         """Generate RSS feed from collected events"""
         logger.info(f"Generating RSS feed with {len(self.events)} events...")
-
+        
         fg = FeedGenerator()
         fg.title("Amsterdam Events Feed")
         fg.link(
@@ -577,74 +577,93 @@ class AmsterdamEventsScraper:
         )
         fg.language("en")
         fg.lastBuildDate(datetime.now(timezone.utc))
-        fg.generator("Amsterdam Events Scraper v2.0")
-
+        fg.generator("Amsterdam Events Scraper v3.0")
+        
         # Add each event as a feed entry
         for event in self.events:
             fe = fg.add_entry()
             fe.title(event["title"])
             fe.link(href=event["link"])
-
-            # Create much cleaner and more readable HTML description
+            
+            # Create clean bullet-point based description for WordPress
             description_html = f"""
-            <div style="max-width: 600px; margin: 20px 0; font-family: Arial, sans-serif; line-height: 1.6;">
+            <div style="max-width: 700px; margin: 20px auto; padding: 25px; background: #ffffff; border-radius: 15px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); font-family: 'Helvetica Neue', Arial, sans-serif;">
                 
-                {f'<img src="{event["image"]}" alt="{event["title"]}" style="width: 100%; max-width: 500px; height: 250px; object-fit: cover; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />' if event.get('image') else ''}
+                {f'<div style="text-align: center; margin-bottom: 25px;"><img src="{event["image"]}" alt="{event["title"]}" style="width: 100%; max-width: 600px; height: 280px; object-fit: cover; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);" /></div>' if event.get('image') else ''}
                 
-                <h2 style="color: #E31E24; font-size: 1.8em; margin: 0 0 15px 0; font-weight: bold; line-height: 1.3;">
-                    {event['title']}
+                <h2 style="color: #E31E24; font-size: 2em; margin: 0 0 20px 0; font-weight: 700; line-height: 1.2; text-align: center; border-bottom: 3px solid #E31E24; padding-bottom: 15px;">
+                    {event['title'][:80]}{'...' if len(event['title']) > 80 else ''}
                 </h2>
                 
-                {f'''<div style="margin: 15px 0;">
-                    {" ".join([f'<span style="background: #E31E24; color: white; padding: 5px 12px; border-radius: 20px; font-size: 0.85em; margin-right: 8px; margin-bottom: 5px; display: inline-block; font-weight: 500;">{tag}</span>' for tag in event.get("tags", [])])}
+                {f'''<div style="text-align: center; margin: 20px 0;">
+                    {" ".join([f'<span style="background: linear-gradient(135deg, #E31E24, #c41e3a); color: white; padding: 8px 16px; border-radius: 25px; font-size: 0.9em; margin: 5px; display: inline-block; font-weight: 600; box-shadow: 0 2px 8px rgba(227, 30, 36, 0.3);">{tag}</span>' for tag in event.get("tags", [])])}
                 </div>''' if event.get('tags') else ''}
                 
-                <div style="background: #f8f9fa; padding: 20px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #E31E24;">
-                    <div style="margin-bottom: 12px; font-size: 1.1em;">
-                        <strong style="color: #E31E24;">📅 Date:</strong> 
-                        <span style="color: #333;">{event.get('date', 'Check website for details')}</span>
-                    </div>
-                    <div style="margin-bottom: 12px; font-size: 1.1em;">
-                        <strong style="color: #E31E24;">📍 Location:</strong> 
-                        <span style="color: #333;">{event.get('location', 'Amsterdam')}</span>
-                    </div>
-                    <div style="font-size: 1.1em;">
-                        <strong style="color: #E31E24;">🏛️ Source:</strong> 
-                        <span style="color: #333;">Official I amsterdam</span>
-                    </div>
+                <div style="background: linear-gradient(135deg, #f8f9fa, #e9ecef); padding: 25px; border-radius: 12px; margin: 25px 0; border-left: 5px solid #E31E24;">
+                    <h3 style="color: #E31E24; font-size: 1.3em; margin: 0 0 15px 0; font-weight: 600;">📋 Event Details</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0; font-size: 1.1em; line-height: 1.8;">
+                        <li style="margin-bottom: 12px; padding: 8px 0; border-bottom: 1px solid #dee2e6;">
+                            <strong style="color: #E31E24; display: inline-block; width: 100px;">📅 Date:</strong> 
+                            <span style="color: #495057;">{event.get('date', 'Check website for details')}</span>
+                        </li>
+                        <li style="margin-bottom: 12px; padding: 8px 0; border-bottom: 1px solid #dee2e6;">
+                            <strong style="color: #E31E24; display: inline-block; width: 100px;">📍 Location:</strong> 
+                            <span style="color: #495057;">{event.get('location', 'Amsterdam')}</span>
+                        </li>
+                        <li style="margin-bottom: 12px; padding: 8px 0; border-bottom: 1px solid #dee2e6;">
+                            <strong style="color: #E31E24; display: inline-block; width: 100px;">🏛️ Source:</strong> 
+                            <span style="color: #495057;">Official I amsterdam</span>
+                        </li>
+                        <li style="padding: 8px 0;">
+                            <strong style="color: #E31E24; display: inline-block; width: 100px;">🎯 Type:</strong> 
+                            <span style="color: #495057;">Amsterdam Official Event</span>
+                        </li>
+                    </ul>
                 </div>
                 
-                <div style="margin: 20px 0; font-size: 1.05em; color: #555; line-height: 1.7;">
-                    <p style="margin: 0;">{event['description'][:250]}{'...' if len(event['description']) > 250 else ''}</p>
+                <div style="background: #ffffff; padding: 20px; border-radius: 10px; margin: 25px 0; border: 2px solid #f1f3f4;">
+                    <h3 style="color: #495057; font-size: 1.2em; margin: 0 0 15px 0; font-weight: 600;">ℹ️ About This Event</h3>
+                    <ul style="color: #6c757d; font-size: 1.05em; line-height: 1.7; margin: 0; padding-left: 20px;">
+                        <li style="margin-bottom: 8px;">Part of the official Amsterdam events calendar</li>
+                        <li style="margin-bottom: 8px;">Curated by I amsterdam for authentic experiences</li>
+                        <li style="margin-bottom: 8px;">Updated daily from official sources</li>
+                        <li>Click below for complete event information</li>
+                    </ul>
                 </div>
                 
-                <div style="margin-top: 25px; padding-top: 20px; border-top: 2px solid #f0f0f0; text-align: center;">
+                <div style="text-align: center; margin: 30px 0;">
                     <a href="{event['link']}" target="_blank" style="
-                        background: linear-gradient(135deg, #E31E24, #c41e3a); 
+                        background: linear-gradient(135deg, #E31E24, #c41e3a, #E31E24); 
                         color: white; 
-                        padding: 12px 30px; 
+                        padding: 15px 40px; 
                         text-decoration: none; 
-                        border-radius: 25px; 
-                        font-weight: bold; 
-                        font-size: 1.1em;
+                        border-radius: 50px; 
+                        font-weight: 700; 
+                        font-size: 1.15em;
                         display: inline-block;
                         transition: all 0.3s ease;
-                        box-shadow: 0 3px 6px rgba(227, 30, 36, 0.3);
+                        box-shadow: 0 4px 15px rgba(227, 30, 36, 0.4);
+                        border: 2px solid transparent;
+                        text-transform: uppercase;
+                        letter-spacing: 1px;
                     ">
-                        View Full Details on I amsterdam →
+                        🌟 View Full Details on I amsterdam →
                     </a>
                 </div>
                 
-                <div style="margin-top: 20px; text-align: center; font-size: 0.9em; color: #888; font-style: italic;">
-                    Official Amsterdam event • Updated {datetime.now().strftime('%B %d, %Y')}
+                <div style="text-align: center; padding: 15px; background: #f8f9fa; border-radius: 8px; margin-top: 25px;">
+                    <p style="margin: 0; font-size: 0.9em; color: #6c757d; font-style: italic;">
+                        <strong>Official Amsterdam Event</strong> • Updated {datetime.now().strftime('%B %d, %Y')} • 
+                        <span style="color: #E31E24;">I amsterdam</span> Official Calendar
+                    </p>
                 </div>
                 
             </div>
             """
-
+            
             fe.description(description_html)
             fe.pubDate(event["pub_date"])
-
+            
             # Add image as enclosure if available
             if event.get("image"):
                 try:
@@ -652,12 +671,12 @@ class AmsterdamEventsScraper:
                     fe.enclosure(event["image"], 0, "image/jpeg")
                 except Exception as e:
                     logger.warning(f"Could not add image enclosure: {e}")
-
+        
         # Generate and save the RSS XML
         rss_str = fg.rss_str(pretty=True)
         with open(output_file, "wb") as f:
             f.write(rss_str)
-
+        
         logger.info(f"RSS feed saved to {output_file}")
         return output_file
 
