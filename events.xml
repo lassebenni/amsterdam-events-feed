@@ -1,10 +1,97 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Amsterdam Events Feed</title><link>https://raw.githubusercontent.com/lassebenni/amsterdam-events-feed/master/events.xml</link><description>Curated upcoming events and activities in Amsterdam</description><docs>http://www.rssboard.org/rss-specification</docs><generator>Amsterdam Events Scraper v1.0</generator><language>en</language><lastBuildDate>Sun, 08 Jun 2025 21:51:48 +0000</lastBuildDate><item><title>Eventbrite: HeartFire presents:: Ajeet - Live in Amsterdam 3 October 2025</title><link>https://www.eventbrite.nl/e/heartfire-presents-ajeet-live-in-amsterdam-3-october-2025-tickets-1237437180919?aff=ebdssbcitybrowsenightlife</link><description>Source: Eventbrite Amsterdam
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Amsterdam Events Feed</title><link>https://raw.githubusercontent.com/lassebenni/amsterdam-events-feed/master/events.xml</link><description>Curated upcoming events and activities in Amsterdam</description><docs>http://www.rssboard.org/rss-specification</docs><generator>Amsterdam Events Scraper v1.0</generator><language>en</language><lastBuildDate>Mon, 09 Jun 2025 06:47:43 +0000</lastBuildDate><item><title>04jun '25-24jun '25BioBlitz Amsterdamse Bos 202506:00 - 21:30Het Amsterdamse BosTickets beschikbaar</title><link>https://www.iamsterdam.com/uit/agenda/attracties-en-bezienswaardigheden/tours/bioblitz-amsterdamse-bos-2025</link><description>Source: I Amsterdam Official
 
-Find this event on Eventbrite: HeartFire presents:: Ajeet - Live in Amsterdam 3 October 2025</description><guid isPermaLink="false">https://www.eventbrite.nl/e/heartfire-presents-ajeet-live-in-amsterdam-3-october-2025-tickets-1237437180919?aff=ebdssbcitybrowsenightlife</guid><pubDate>Sun, 08 Jun 2025 21:51:48 +0000</pubDate></item><item><title>Eventbrite: Shaun Hughes and Friends ... LIVE at Pekky!</title><link>https://www.eventbrite.nl/e/shaun-hughes-and-friends-live-at-pekky-tickets-1302928607539?aff=ebdssbcitybrowsenightlife</link><description>Source: Eventbrite Amsterdam
+Official Amsterdam event from I amsterdam agenda.
 
-Find this event on Eventbrite: Shaun Hughes and Friends ... LIVE at Pekky!</description><guid isPermaLink="false">https://www.eventbrite.nl/e/shaun-hughes-and-friends-live-at-pekky-tickets-1302928607539?aff=ebdssbcitybrowsenightlife</guid><pubDate>Sun, 08 Jun 2025 21:51:47 +0000</pubDate></item><item><title>Eventbrite: SPOTLIGHT SESSIONS by stadtklang w/ MIKOLAJ X ALBERTO</title><link>https://www.eventbrite.de/e/spotlight-sessions-by-stadtklang-w-mikolaj-x-alberto-tickets-1311554437629?aff=ebdssbcitybrowsenightlife</link><description>Source: Eventbrite Amsterdam
+Date: 04 June 2025
+Location: Museum
 
-Find this event on Eventbrite: SPOTLIGHT SESSIONS by stadtklang w/ MIKOLAJ X ALBERTO</description><guid isPermaLink="false">https://www.eventbrite.de/e/spotlight-sessions-by-stadtklang-w-mikolaj-x-alberto-tickets-1311554437629?aff=ebdssbcitybrowsenightlife</guid><pubDate>Sun, 08 Jun 2025 21:51:47 +0000</pubDate></item><item><title>Eventbrite: Вечірка разом з ALYONA ALYONA в Амстердамі !</title><link>https://www.eventbrite.com/e/alyona-alyona-tickets-1312866592319?aff=ebdssbcitybrowsenightlife</link><description>Source: Eventbrite Amsterdam
+Source: I amsterdam (https://www.iamsterdam.com/uit/agenda)</description><guid isPermaLink="false">https://www.iamsterdam.com/uit/agenda/attracties-en-bezienswaardigheden/tours/bioblitz-amsterdamse-bos-2025</guid><pubDate>Mon, 09 Jun 2025 06:47:43 +0000</pubDate></item><item><title>04jun '25-30dec '25Ontdek Oosterdok: interactieve wandelroute in AmsterdamAmsterdam 750 events00:00 - 23:59Diverse locaties / Various locationsGratis entree</title><link>https://www.iamsterdam.com/uit/agenda/attracties-en-bezienswaardigheden/tours/ontdek-oosterdok-interactieve-wandelroute-in-amsterdam</link><description>Source: I Amsterdam Official
 
-Find this event on Eventbrite: Вечірка разом з ALYONA ALYONA в Амстердамі !</description><guid isPermaLink="false">https://www.eventbrite.com/e/alyona-alyona-tickets-1312866592319?aff=ebdssbcitybrowsenightlife</guid><pubDate>Sun, 08 Jun 2025 21:51:46 +0000</pubDate></item></channel></rss>
+Official Amsterdam event from I amsterdam agenda.
+
+Date: 04 June 2025
+Location: Museum
+
+Source: I amsterdam (https://www.iamsterdam.com/uit/agenda)</description><guid isPermaLink="false">https://www.iamsterdam.com/uit/agenda/attracties-en-bezienswaardigheden/tours/ontdek-oosterdok-interactieve-wandelroute-in-amsterdam</guid><pubDate>Mon, 09 Jun 2025 06:47:43 +0000</pubDate></item><item><title>04jun '25-27okt '25DijkreisAmsterdam 750 events00:00 - 00:00NieuwendammerdijkGratis entree</title><link>https://www.iamsterdam.com/uit/agenda/tentoonstellingen/alle-tentoonstellingen/dijkreis</link><description>Source: I Amsterdam Official
+
+Official Amsterdam event from I amsterdam agenda.
+
+Date: 04 June 2025
+Location: Museum
+
+Source: I amsterdam (https://www.iamsterdam.com/uit/agenda)</description><guid isPermaLink="false">https://www.iamsterdam.com/uit/agenda/tentoonstellingen/alle-tentoonstellingen/dijkreis</guid><pubDate>Mon, 09 Jun 2025 06:47:43 +0000</pubDate></item><item><title>04jun '25-29jun '25Openluchttentoonstelling - Elephant Parade Amsterdam Tour 2025Amsterdam 750 events00:00 - 00:00BeurspleinGratis entree</title><link>https://www.iamsterdam.com/uit/agenda/festivals/events/openluchttentoonstelling-elephant-parade-amsterdam-tour-2025</link><description>Source: I Amsterdam Official
+
+Official Amsterdam event from I amsterdam agenda.
+
+Date: 04 June 2025
+Location: Museum
+
+Source: I amsterdam (https://www.iamsterdam.com/uit/agenda)</description><guid isPermaLink="false">https://www.iamsterdam.com/uit/agenda/festivals/events/openluchttentoonstelling-elephant-parade-amsterdam-tour-2025</guid><pubDate>Mon, 09 Jun 2025 06:47:42 +0000</pubDate></item><item><title>04jun '25-20mrt '26Verhaalpaal NoordAmsterdam 750 events00:00 - 00:00Diverse Locaties / Various locationsGratis entree</title><link>https://www.iamsterdam.com/uit/agenda/tentoonstellingen/alle-tentoonstellingen/verhaalpaal-noord</link><description>Source: I Amsterdam Official
+
+Official Amsterdam event from I amsterdam agenda.
+
+Date: 04 June 2025
+Location: Museum
+
+Source: I amsterdam (https://www.iamsterdam.com/uit/agenda)</description><guid isPermaLink="false">https://www.iamsterdam.com/uit/agenda/tentoonstellingen/alle-tentoonstellingen/verhaalpaal-noord</guid><pubDate>Mon, 09 Jun 2025 06:47:42 +0000</pubDate></item><item><title>Winkelen en markten</title><link>https://www.iamsterdam.com/uit/agenda/winkelen</link><description>Source: I Amsterdam Official
+
+Official Amsterdam event from I amsterdam agenda.
+
+Date: Check website for dates and times
+
+Source: I amsterdam (https://www.iamsterdam.com/uit/agenda)</description><guid isPermaLink="false">https://www.iamsterdam.com/uit/agenda/winkelen</guid><pubDate>Mon, 09 Jun 2025 06:47:42 +0000</pubDate></item><item><title>Voorstellingen</title><link>https://www.iamsterdam.com/uit/agenda/voorstellingen</link><description>Source: I Amsterdam Official
+
+Official Amsterdam event from I amsterdam agenda.
+
+Date: Check website for dates and times
+
+Source: I amsterdam (https://www.iamsterdam.com/uit/agenda)</description><guid isPermaLink="false">https://www.iamsterdam.com/uit/agenda/voorstellingen</guid><pubDate>Mon, 09 Jun 2025 06:47:42 +0000</pubDate></item><item><title>Tentoonstellingen</title><link>https://www.iamsterdam.com/uit/agenda/tentoonstellingen</link><description>Source: I Amsterdam Official
+
+Official Amsterdam event from I amsterdam agenda.
+
+Date: Check website for dates and times
+
+Source: I amsterdam (https://www.iamsterdam.com/uit/agenda)</description><guid isPermaLink="false">https://www.iamsterdam.com/uit/agenda/tentoonstellingen</guid><pubDate>Mon, 09 Jun 2025 06:47:42 +0000</pubDate></item><item><title>Overnachten</title><link>https://www.iamsterdam.com/uit/agenda/overnachten</link><description>Source: I Amsterdam Official
+
+Official Amsterdam event from I amsterdam agenda.
+
+Date: Check website for dates and times
+
+Source: I amsterdam (https://www.iamsterdam.com/uit/agenda)</description><guid isPermaLink="false">https://www.iamsterdam.com/uit/agenda/overnachten</guid><pubDate>Mon, 09 Jun 2025 06:47:42 +0000</pubDate></item><item><title>Nachtleven</title><link>https://www.iamsterdam.com/uit/agenda/nachtleven</link><description>Source: I Amsterdam Official
+
+Official Amsterdam event from I amsterdam agenda.
+
+Date: Check website for dates and times
+
+Source: I amsterdam (https://www.iamsterdam.com/uit/agenda)</description><guid isPermaLink="false">https://www.iamsterdam.com/uit/agenda/nachtleven</guid><pubDate>Mon, 09 Jun 2025 06:47:42 +0000</pubDate></item><item><title>Musea en galeries</title><link>https://www.iamsterdam.com/uit/agenda/musea-en-galeries</link><description>Source: I Amsterdam Official
+
+Official Amsterdam event from I amsterdam agenda.
+
+Date: Check website for dates and times
+
+Source: I amsterdam (https://www.iamsterdam.com/uit/agenda)</description><guid isPermaLink="false">https://www.iamsterdam.com/uit/agenda/musea-en-galeries</guid><pubDate>Mon, 09 Jun 2025 06:47:42 +0000</pubDate></item><item><title>Festivals en events</title><link>https://www.iamsterdam.com/uit/agenda/festivals</link><description>Source: I Amsterdam Official
+
+Official Amsterdam event from I amsterdam agenda.
+
+Date: Check website for dates and times
+
+Source: I amsterdam (https://www.iamsterdam.com/uit/agenda)</description><guid isPermaLink="false">https://www.iamsterdam.com/uit/agenda/festivals</guid><pubDate>Mon, 09 Jun 2025 06:47:42 +0000</pubDate></item><item><title>Eten en drinken</title><link>https://www.iamsterdam.com/uit/agenda/eten-en-drinken</link><description>Source: I Amsterdam Official
+
+Official Amsterdam event from I amsterdam agenda.
+
+Date: Check website for dates and times
+
+Source: I amsterdam (https://www.iamsterdam.com/uit/agenda)</description><guid isPermaLink="false">https://www.iamsterdam.com/uit/agenda/eten-en-drinken</guid><pubDate>Mon, 09 Jun 2025 06:47:42 +0000</pubDate></item><item><title>Concerten en muziek</title><link>https://www.iamsterdam.com/uit/agenda/concerten-en-muziek</link><description>Source: I Amsterdam Official
+
+Official Amsterdam event from I amsterdam agenda.
+
+Date: Check website for dates and times
+
+Source: I amsterdam (https://www.iamsterdam.com/uit/agenda)</description><guid isPermaLink="false">https://www.iamsterdam.com/uit/agenda/concerten-en-muziek</guid><pubDate>Mon, 09 Jun 2025 06:47:41 +0000</pubDate></item><item><title>Attracties en bezienswaardigheden</title><link>https://www.iamsterdam.com/uit/agenda/attracties-en-bezienswaardigheden</link><description>Source: I Amsterdam Official
+
+Official Amsterdam event from I amsterdam agenda.
+
+Date: Check website for dates and times
+
+Source: I amsterdam (https://www.iamsterdam.com/uit/agenda)</description><guid isPermaLink="false">https://www.iamsterdam.com/uit/agenda/attracties-en-bezienswaardigheden</guid><pubDate>Mon, 09 Jun 2025 06:47:41 +0000</pubDate></item></channel></rss>

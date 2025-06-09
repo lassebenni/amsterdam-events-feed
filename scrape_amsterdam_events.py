@@ -27,76 +27,169 @@ class AmsterdamEventsScraper:
         self.events = []
         
     def scrape_iamsterdam(self):
-        """Scrape events from I Amsterdam website"""
-        logger.info("Scraping I Amsterdam events...")
+        """Scrape events from I Amsterdam website - official Amsterdam events agenda"""
+        logger.info("Scraping I Amsterdam events agenda...")
         
         try:
-            url = "https://www.iamsterdam.com/en/whats-on"
-            response = self.session.get(url, timeout=30)
+            url = "https://www.iamsterdam.com/uit/agenda"
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+            }
+            response = self.session.get(url, headers=headers, timeout=30)
             response.raise_for_status()
             
             soup = BeautifulSoup(response.text, 'html.parser')
             events_found = 0
             
-            # Look for actual event content, avoiding navigation
-            event_cards = soup.find_all(['article', 'div'], class_=re.compile(r'event|listing|teaser'))
+            logger.info("Looking for Amsterdam events in page content...")
             
-            # Also try to find links that look like events
+            # Strategy 1: Look for links that contain event keywords and seem to be events
             all_links = soup.find_all('a', href=True)
             
-            for link in all_links[:30]:  # Check more links for events
+            for link in all_links:
                 try:
                     href = link.get('href', '')
                     title = link.get_text(strip=True)
                     
-                    # Skip navigation links and look for event-like content
-                    if (len(title) > 10 and 
-                        not any(skip in href.lower() for skip in ['/en/', '/de/', '/fr/', '/es/', '/it/', '/pt/', '/uit', 'language']) and
-                        not any(skip in title.lower() for skip in ['english', 'dutch', 'german', 'french', 'spanish', 'italian', 'português']) and
-                        any(keyword in href.lower() or keyword in title.lower() 
-                            for keyword in ['event', 'exhibition', 'festival', 'concert', 'show', 'museum', 'tour', 'market', 'art', 'music', 'theatre', 'comedy'])):
-                        
+                    # Skip navigation and empty links
+                    if not title or len(title) < 10 or not href:
+                        continue
+                    
+                    # Look for event-related keywords in title
+                    event_keywords = [
+                        'amsterdam 750', 'tentoonstelling', 'concert', 'festival', 
+                        'museum', 'expositie', 'show', 'wandeling', 'tour', 'kunst', 
+                        'theater', 'muziek', 'evenement', 'activiteit', 'bezienswaardigheid'
+                    ]
+                    
+                    # Skip common navigation terms
+                    skip_terms = [
+                        'nederlands', 'english', 'deutsch', 'français', 'español',
+                        'cookies', 'privacy', 'contact', 'volg ons', 'over ons',
+                        'taal', 'language', 'filter', 'sorteren', 'ontdek amsterdam',
+                        'i amsterdam store', 'city card'
+                    ]
+                    
+                    if any(skip in title.lower() for skip in skip_terms):
+                        continue
+                    
+                    # Check if this looks like an event
+                    is_event = any(keyword in title.lower() for keyword in event_keywords)
+                    
+                    # Also check if href looks event-related
+                    if not is_event and href:
+                        is_event = any(keyword in href.lower() for keyword in 
+                                     ['event', 'agenda', 'activit', 'museum', 'festival', 'concert'])
+                    
+                    if is_event:
                         full_link = urljoin(url, href)
                         
-                        # Try to find parent container for more context
-                        parent = link.find_parent(['article', 'div', 'section'])
-                        date_text = "Check website for dates"
-                        description = f"Amsterdam event: {title}"
+                        # Try to find additional context from parent elements
+                        parent = link.find_parent(['div', 'article', 'section', 'li'])
+                        description = f"Discover this Amsterdam event: {title}"
+                        date_info = "Check website for dates and times"
+                        location = ""
                         
                         if parent:
-                            # Look for date in parent
-                            date_elem = parent.find(['time', 'span', 'div'], class_=re.compile(r'date|time'))
-                            if date_elem:
-                                date_text = date_elem.get_text(strip=True)
+                            parent_text = parent.get_text()
                             
-                            # Look for description in parent
-                            desc_elem = parent.find(['p', 'div'], class_=re.compile(r'description|summary|excerpt'))
-                            if desc_elem and len(desc_elem.get_text(strip=True)) > 20:
-                                description = desc_elem.get_text(strip=True)[:200] + "..."
+                            # Look for date patterns in parent context
+                            # Pattern for dates like "04 jun '25" or "4 juni 2025"
+                            date_patterns = [
+                                r'(\d{1,2})\s*(jan|feb|mar|apr|mei|jun|jul|aug|sep|okt|nov|dec)[a-z]*\s*\W?(\d{2,4})',
+                                r'(\d{1,2})-(\d{1,2})-(\d{4})',
+                                r'(\d{4})-(\d{1,2})-(\d{1,2})'
+                            ]
+                            
+                            for pattern in date_patterns:
+                                date_matches = re.findall(pattern, parent_text.lower())
+                                if date_matches:
+                                    match = date_matches[0]
+                                    if len(match) >= 3:
+                                        try:
+                                            day, month, year = match
+                                            # Convert Dutch months
+                                            month_map = {
+                                                'jan': 'January', 'feb': 'February', 'mar': 'March', 'mrt': 'March',
+                                                'apr': 'April', 'mei': 'May', 'jun': 'June',
+                                                'jul': 'July', 'aug': 'August', 'sep': 'September',
+                                                'okt': 'October', 'nov': 'November', 'dec': 'December'
+                                            }
+                                            if month in month_map:
+                                                date_info = f"{day} {month_map[month]} {year if len(year) == 4 else '20' + year}"
+                                                break
+                                        except:
+                                            continue
+                            
+                            # Look for location indicators
+                            location_indicators = ['amsterdam', 'museum', 'theater', 'concertgebouw', 'vondelpark', 'centrum']
+                            for indicator in location_indicators:
+                                if indicator in parent_text.lower() and indicator not in title.lower():
+                                    location = indicator.title()
+                                    break
+                        
+                        description = f"Official Amsterdam event from I amsterdam agenda.\n\nDate: {date_info}"
+                        if location:
+                            description += f"\nLocation: {location}"
+                        description += f"\n\nSource: I amsterdam ({url})"
                         
                         self.events.append({
                             'title': title,
                             'link': full_link,
-                            'description': f"{date_text}\n\n{description}",
-                            'source': 'I Amsterdam',
-                            'date_text': date_text,
+                            'description': description,
+                            'source': 'I Amsterdam Official',
+                            'date_text': date_info,
                             'pub_date': datetime.now(timezone.utc)
                         })
                         events_found += 1
                         
-                        if events_found >= 15:  # Limit results
+                        if events_found >= 15:  # Reasonable limit
                             break
-                        
+                            
                 except Exception as e:
                     logger.warning(f"Error processing I Amsterdam link: {e}")
                     continue
                 
                 time.sleep(0.1)  # Be respectful
+            
+            # Strategy 2: If we didn't find many events, look for any structured content with keywords
+            if events_found < 5:
+                logger.info("Trying alternative content extraction...")
                 
-            logger.info(f"Found {events_found} events from I Amsterdam")
+                # Look for text that contains Amsterdam 750 events (current special events)
+                amsterdam_750_content = soup.find_all(text=re.compile(r'amsterdam\s*750', re.I))
+                
+                for content in amsterdam_750_content[:10]:
+                    try:
+                        parent = content.parent if hasattr(content, 'parent') else None
+                        if parent:
+                            # Try to find the full event text
+                            event_text = parent.get_text(strip=True)
+                            if len(event_text) > 20 and len(event_text) < 200:
+                                # Look for associated link
+                                link_elem = parent.find('a', href=True)
+                                event_link = urljoin(url, link_elem['href']) if link_elem else url
+                                
+                                self.events.append({
+                                    'title': f"Amsterdam 750: {event_text[:100]}",
+                                    'link': event_link,
+                                    'description': f"Special Amsterdam 750 anniversary event.\n\n{event_text}\n\nSource: I amsterdam ({url})",
+                                    'source': 'I Amsterdam Official',
+                                    'date_text': 'Part of Amsterdam 750 celebrations',
+                                    'pub_date': datetime.now(timezone.utc)
+                                })
+                                events_found += 1
+                                
+                                if events_found >= 10:
+                                    break
+                    except Exception as e:
+                        logger.warning(f"Error processing Amsterdam 750 content: {e}")
+                        continue
+                
+            logger.info(f"Found {events_found} events from I Amsterdam agenda")
             
         except Exception as e:
-            logger.error(f"Error scraping I Amsterdam: {e}")
+            logger.error(f"Error scraping I Amsterdam agenda: {e}")
     
     def scrape_timeout_amsterdam(self):
         """Scrape events from Time Out Amsterdam"""
@@ -310,14 +403,18 @@ class AmsterdamEventsScraper:
             logger.error(f"Error scraping Eventbrite Amsterdam: {e}")
     
     def scrape_all(self):
-        """Run all scrapers"""
+        """Run all scrapers - prioritizing official I amsterdam source for current month events"""
         logger.info("Starting Amsterdam events scraping...")
         
-        # Run all scrapers
+        # Prioritize official I amsterdam agenda for current month events
         self.scrape_iamsterdam()
-        self.scrape_timeout_amsterdam()
-        self.scrape_amsterdam_nl()
-        self.scrape_eventbrite_amsterdam()
+        
+        # Only scrape additional sources if we don't have enough events from official source
+        if len(self.events) < 10:
+            logger.info("Adding events from additional sources...")
+            self.scrape_eventbrite_amsterdam()
+            self.scrape_timeout_amsterdam()
+            self.scrape_amsterdam_nl()
         
         # Clean up the data
         self.deduplicate_events()
