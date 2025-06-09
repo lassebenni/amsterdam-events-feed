@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   wordpress:
     image: wordpress:latest
@@ -16,6 +14,7 @@ services:
       - wordpress_data:/var/www/html
       - ./wp-content-custom:/var/www/html/wp-content/themes/custom
       - ./wp-config-local.php:/var/www/html/wp-config-local.php
+      - ./php.ini:/usr/local/etc/php/conf.d/uploads.ini
     depends_on:
       - db
     restart: unless-stopped
