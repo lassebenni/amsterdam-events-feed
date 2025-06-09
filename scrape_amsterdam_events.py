@@ -456,29 +456,60 @@ class AmsterdamEventsScraper:
             fe.title(event['title'])
             fe.link(href=event['link'])
             
-            # Create cleaner HTML description for WordPress
+            # Create much cleaner and more readable HTML description
             description_html = f"""
-            <div class="amsterdam-event">
-                {f'<img src="{event["image"]}" alt="{event["title"]}" style="max-width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 15px;" />' if event.get('image') else ''}
+            <div style="max-width: 600px; margin: 20px 0; font-family: Arial, sans-serif; line-height: 1.6;">
                 
-                <div class="event-header">
-                    <h3 style="color: #E31E24; margin: 0 0 10px 0; font-size: 1.2em;">{event['title']}</h3>
-                    {f'<div class="event-tags" style="margin-bottom: 10px;">{" ".join([f"<span style=\"background: #E31E24; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.8em; margin-right: 5px;\">{tag}</span>" for tag in event.get("tags", [])])}</div>' if event.get('tags') else ''}
+                {f'<img src="{event["image"]}" alt="{event["title"]}" style="width: 100%; max-width: 500px; height: 250px; object-fit: cover; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />' if event.get('image') else ''}
+                
+                <h2 style="color: #E31E24; font-size: 1.8em; margin: 0 0 15px 0; font-weight: bold; line-height: 1.3;">
+                    {event['title']}
+                </h2>
+                
+                {f'''<div style="margin: 15px 0;">
+                    {" ".join([f'<span style="background: #E31E24; color: white; padding: 5px 12px; border-radius: 20px; font-size: 0.85em; margin-right: 8px; margin-bottom: 5px; display: inline-block; font-weight: 500;">{tag}</span>' for tag in event.get("tags", [])])}
+                </div>''' if event.get('tags') else ''}
+                
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #E31E24;">
+                    <div style="margin-bottom: 12px; font-size: 1.1em;">
+                        <strong style="color: #E31E24;">📅 Date:</strong> 
+                        <span style="color: #333;">{event.get('date', 'Check website for details')}</span>
+                    </div>
+                    <div style="margin-bottom: 12px; font-size: 1.1em;">
+                        <strong style="color: #E31E24;">📍 Location:</strong> 
+                        <span style="color: #333;">{event.get('location', 'Amsterdam')}</span>
+                    </div>
+                    <div style="font-size: 1.1em;">
+                        <strong style="color: #E31E24;">🏛️ Source:</strong> 
+                        <span style="color: #333;">Official I amsterdam</span>
+                    </div>
                 </div>
                 
-                <div class="event-details" style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 10px 0;">
-                    <div style="margin-bottom: 8px;"><strong>📅 Date:</strong> {event.get('date', 'Check website for details')}</div>
-                    <div style="margin-bottom: 8px;"><strong>📍 Location:</strong> {event.get('location', 'Amsterdam')}</div>
-                    <div style="margin-bottom: 8px;"><strong>🏛️ Source:</strong> Official I amsterdam event</div>
+                <div style="margin: 20px 0; font-size: 1.05em; color: #555; line-height: 1.7;">
+                    <p style="margin: 0;">{event['description'][:250]}{'...' if len(event['description']) > 250 else ''}</p>
                 </div>
                 
-                <div class="event-description" style="margin: 15px 0;">
-                    <p>{event['description'][:200]}{'...' if len(event['description']) > 200 else ''}</p>
+                <div style="margin-top: 25px; padding-top: 20px; border-top: 2px solid #f0f0f0; text-align: center;">
+                    <a href="{event['link']}" target="_blank" style="
+                        background: linear-gradient(135deg, #E31E24, #c41e3a); 
+                        color: white; 
+                        padding: 12px 30px; 
+                        text-decoration: none; 
+                        border-radius: 25px; 
+                        font-weight: bold; 
+                        font-size: 1.1em;
+                        display: inline-block;
+                        transition: all 0.3s ease;
+                        box-shadow: 0 3px 6px rgba(227, 30, 36, 0.3);
+                    ">
+                        View Full Details on I amsterdam →
+                    </a>
                 </div>
                 
-                <div class="event-footer" style="border-top: 1px solid #e0e0e0; padding-top: 10px; margin-top: 15px;">
-                    <a href="{event['link']}" target="_blank" style="color: #E31E24; text-decoration: none; font-weight: bold;">View full details on I amsterdam →</a>
+                <div style="margin-top: 20px; text-align: center; font-size: 0.9em; color: #888; font-style: italic;">
+                    Official Amsterdam event • Updated {datetime.now().strftime('%B %d, %Y')}
                 </div>
+                
             </div>
             """
             
