@@ -563,121 +563,88 @@ class AmsterdamEventsScraper:
         self.events = unique_events
         logger.info(f"Removed {original_count - len(self.events)} duplicate events")
 
-    def generate_rss_feed(self, output_file="events.xml"):
+    def generate_rss_feed(self, output_file='events.xml'):
         """Generate RSS feed from collected events"""
         logger.info(f"Generating RSS feed with {len(self.events)} events...")
         
         fg = FeedGenerator()
-        fg.title("Amsterdam Events Feed")
-        fg.link(
-            href="https://raw.githubusercontent.com/lassebenni/amsterdam-events-feed/master/events.xml"
-        )
-        fg.description(
-            "Curated upcoming events and activities in Amsterdam from I amsterdam official agenda"
-        )
-        fg.language("en")
+        fg.title('Amsterdam Events Feed')
+        fg.link(href='https://raw.githubusercontent.com/lassebenni/amsterdam-events-feed/master/events.xml')
+        fg.description('Curated upcoming events and activities in Amsterdam from I amsterdam official agenda')
+        fg.language('en')
         fg.lastBuildDate(datetime.now(timezone.utc))
-        fg.generator("Amsterdam Events Scraper v3.0")
+        fg.generator('Amsterdam Events Scraper v4.0')
         
         # Add each event as a feed entry
         for event in self.events:
             fe = fg.add_entry()
-            fe.title(event["title"])
-            fe.link(href=event["link"])
+            fe.title(event['title'])
+            fe.link(href=event['link'])
             
-            # Create clean bullet-point based description for WordPress
-            description_html = f"""
-            <div style="max-width: 700px; margin: 20px auto; padding: 25px; background: #ffffff; border-radius: 15px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); font-family: 'Helvetica Neue', Arial, sans-serif;">
-                
-                {f'<div style="text-align: center; margin-bottom: 25px;"><img src="{event["image"]}" alt="{event["title"]}" style="width: 100%; max-width: 600px; height: 280px; object-fit: cover; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);" /></div>' if event.get('image') else ''}
-                
-                <h2 style="color: #E31E24; font-size: 2em; margin: 0 0 20px 0; font-weight: 700; line-height: 1.2; text-align: center; border-bottom: 3px solid #E31E24; padding-bottom: 15px;">
-                    {event['title'][:80]}{'...' if len(event['title']) > 80 else ''}
-                </h2>
-                
-                {f'''<div style="text-align: center; margin: 20px 0;">
-                    {" ".join([f'<span style="background: linear-gradient(135deg, #E31E24, #c41e3a); color: white; padding: 8px 16px; border-radius: 25px; font-size: 0.9em; margin: 5px; display: inline-block; font-weight: 600; box-shadow: 0 2px 8px rgba(227, 30, 36, 0.3);">{tag}</span>' for tag in event.get("tags", [])])}
-                </div>''' if event.get('tags') else ''}
-                
-                <div style="background: linear-gradient(135deg, #f8f9fa, #e9ecef); padding: 25px; border-radius: 12px; margin: 25px 0; border-left: 5px solid #E31E24;">
-                    <h3 style="color: #E31E24; font-size: 1.3em; margin: 0 0 15px 0; font-weight: 600;">📋 Event Details</h3>
-                    <ul style="list-style: none; padding: 0; margin: 0; font-size: 1.1em; line-height: 1.8;">
-                        <li style="margin-bottom: 12px; padding: 8px 0; border-bottom: 1px solid #dee2e6;">
-                            <strong style="color: #E31E24; display: inline-block; width: 100px;">📅 Date:</strong> 
-                            <span style="color: #495057;">{event.get('date', 'Check website for details')}</span>
-                        </li>
-                        <li style="margin-bottom: 12px; padding: 8px 0; border-bottom: 1px solid #dee2e6;">
-                            <strong style="color: #E31E24; display: inline-block; width: 100px;">📍 Location:</strong> 
-                            <span style="color: #495057;">{event.get('location', 'Amsterdam')}</span>
-                        </li>
-                        <li style="margin-bottom: 12px; padding: 8px 0; border-bottom: 1px solid #dee2e6;">
-                            <strong style="color: #E31E24; display: inline-block; width: 100px;">🏛️ Source:</strong> 
-                            <span style="color: #495057;">Official I amsterdam</span>
-                        </li>
-                        <li style="padding: 8px 0;">
-                            <strong style="color: #E31E24; display: inline-block; width: 100px;">🎯 Type:</strong> 
-                            <span style="color: #495057;">Amsterdam Official Event</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div style="background: #ffffff; padding: 20px; border-radius: 10px; margin: 25px 0; border: 2px solid #f1f3f4;">
-                    <h3 style="color: #495057; font-size: 1.2em; margin: 0 0 15px 0; font-weight: 600;">ℹ️ About This Event</h3>
-                    <ul style="color: #6c757d; font-size: 1.05em; line-height: 1.7; margin: 0; padding-left: 20px;">
-                        <li style="margin-bottom: 8px;">Part of the official Amsterdam events calendar</li>
-                        <li style="margin-bottom: 8px;">Curated by I amsterdam for authentic experiences</li>
-                        <li style="margin-bottom: 8px;">Updated daily from official sources</li>
-                        <li>Click below for complete event information</li>
-                    </ul>
-                </div>
-                
-                <div style="text-align: center; margin: 30px 0;">
-                    <a href="{event['link']}" target="_blank" style="
-                        background: linear-gradient(135deg, #E31E24, #c41e3a, #E31E24); 
-                        color: white; 
-                        padding: 15px 40px; 
-                        text-decoration: none; 
-                        border-radius: 50px; 
-                        font-weight: 700; 
-                        font-size: 1.15em;
-                        display: inline-block;
-                        transition: all 0.3s ease;
-                        box-shadow: 0 4px 15px rgba(227, 30, 36, 0.4);
-                        border: 2px solid transparent;
-                        text-transform: uppercase;
-                        letter-spacing: 1px;
-                    ">
-                        🌟 View Full Details on I amsterdam →
-                    </a>
-                </div>
-                
-                <div style="text-align: center; padding: 15px; background: #f8f9fa; border-radius: 8px; margin-top: 25px;">
-                    <p style="margin: 0; font-size: 0.9em; color: #6c757d; font-style: italic;">
-                        <strong>Official Amsterdam Event</strong> • Updated {datetime.now().strftime('%B %d, %Y')} • 
-                        <span style="color: #E31E24;">I amsterdam</span> Official Calendar
-                    </p>
-                </div>
-                
-            </div>
-            """
+            # Create simple, readable description with plain text formatting
+            description_parts = []
             
-            fe.description(description_html)
-            fe.pubDate(event["pub_date"])
+            # Add main title with visual separation
+            description_parts.append(f"🎭 {event['title']}")
+            description_parts.append("=" * 50)
             
-            # Add image as enclosure if available
-            if event.get("image"):
-                try:
-                    # Estimate image size (WordPress expects this)
-                    fe.enclosure(event["image"], 0, "image/jpeg")
-                except Exception as e:
-                    logger.warning(f"Could not add image enclosure: {e}")
+            # Add tags if available
+            if event.get('tags'):
+                tags_text = " • ".join(event['tags'])
+                description_parts.append(f"🏷️ {tags_text}")
+                description_parts.append("")
+            
+            # Add event details in readable format
+            description_parts.append("📋 EVENT INFORMATION:")
+            description_parts.append("-" * 25)
+            
+            if event.get('date'):
+                description_parts.append(f"📅 Date: {event['date']}")
+            
+            if event.get('time'):
+                description_parts.append(f"🕐 Time: {event['time']}")
+            
+            if event.get('location'):
+                description_parts.append(f"📍 Location: {event['location']}")
+            
+            if event.get('price'):
+                description_parts.append(f"💰 Price: {event['price']}")
+            
+            description_parts.append(f"🏛️ Source: Official I amsterdam")
+            description_parts.append("")
+            
+            # Add description if available
+            if event.get('description') and event['description'].strip():
+                description_parts.append("ℹ️ ABOUT THIS EVENT:")
+                description_parts.append("-" * 20)
+                description_parts.append(event['description'])
+                description_parts.append("")
+            
+            # Add footer
+            description_parts.append("🌟 LEARN MORE:")
+            description_parts.append("-" * 15)
+            description_parts.append("Click the link above for complete details, tickets, and more information on the official I amsterdam website.")
+            description_parts.append("")
+            description_parts.append("✨ Official Amsterdam Event • Updated Daily • I amsterdam Calendar")
+            
+            # Join all parts with line breaks
+            final_description = "\n".join(description_parts)
+            
+            fe.description(final_description)
+            fe.pubDate(event['pub_date'])
+            
+            # Add image if available
+            if event.get('image_url'):
+                fe.enclosure(event['image_url'], 0, 'image/jpeg')
         
-        # Generate and save the RSS XML
-        rss_str = fg.rss_str(pretty=True)
-        with open(output_file, "wb") as f:
-            f.write(rss_str)
+        # Generate and save RSS feed
+        rss_content = fg.rss_str(pretty=True)
+        with open(output_file, 'wb') as f:
+            f.write(rss_content)
+            
+        logger.info(f"RSS feed generated successfully: {output_file}")
+        logger.info(f"Feed contains {len(self.events)} events")
         
-        logger.info(f"RSS feed saved to {output_file}")
         return output_file
 
     def save_events_json(self, output_file="events.json"):
