@@ -439,128 +439,67 @@ class AmsterdamEventsScraper:
         logger.info(f"Removed {original_count - len(self.events)} duplicate events")
     
     def generate_rss_feed(self, output_file='events.xml'):
-        """Generate RSS feed from collected events with images and enhanced styling"""
+        """Generate RSS feed from collected events"""
         logger.info(f"Generating RSS feed with {len(self.events)} events...")
         
         fg = FeedGenerator()
-        fg.title('Amsterdam Events Feed - I amsterdam Official')
+        fg.title('Amsterdam Events Feed')
         fg.link(href='https://raw.githubusercontent.com/lassebenni/amsterdam-events-feed/master/events.xml')
-        fg.description('Official Amsterdam events from I amsterdam - featuring Amsterdam 750 celebrations, exhibitions, festivals, and cultural activities')
+        fg.description('Curated upcoming events and activities in Amsterdam from I amsterdam official agenda')
         fg.language('en')
         fg.lastBuildDate(datetime.now(timezone.utc))
-        fg.generator('Amsterdam Events Scraper v2.0 - Enhanced with Images')
-        fg.image(url='https://www.iamsterdam.com/favicon.ico', title='I amsterdam', link='https://www.iamsterdam.com')
+        fg.generator('Amsterdam Events Scraper v2.0')
         
-        # Add each event as a feed entry with enhanced content
+        # Add each event as a feed entry
         for event in self.events:
             fe = fg.add_entry()
             fe.title(event['title'])
             fe.link(href=event['link'])
             
-            # Enhanced description with CSS styling for WordPress
-            enhanced_description = f"""
-            <style>
-            .iamsterdam-event {{
-                font-family: 'Helvetica Neue', Arial, sans-serif;
-                max-width: 600px;
-                margin: 20px 0;
-                padding: 20px;
-                border: 1px solid #e0e0e0;
-                border-radius: 8px;
-                background-color: #ffffff;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            }}
-            .event-title {{
-                color: #2c3e50;
-                font-size: 1.4em;
-                margin-bottom: 10px;
-                font-weight: 600;
-            }}
-            .event-tags {{
-                margin: 10px 0;
-            }}
-            .event-tag {{
-                display: inline-block;
-                background-color: #e74c3c;
-                color: white;
-                padding: 4px 8px;
-                border-radius: 4px;
-                font-size: 0.8em;
-                margin-right: 5px;
-                margin-bottom: 5px;
-            }}
-            .event-details {{
-                margin: 15px 0;
-                color: #555;
-            }}
-            .event-details p {{
-                margin: 5px 0;
-                font-size: 0.95em;
-            }}
-            .event-date {{
-                font-weight: 500;
-                color: #2980b9;
-            }}
-            .event-location {{
-                color: #27ae60;
-            }}
-            .event-source {{
-                color: #8e44ad;
-            }}
-            .event-link {{
-                margin-top: 15px;
-                text-align: center;
-            }}
-            .event-link a {{
-                background-color: #e74c3c;
-                color: white;
-                padding: 10px 20px;
-                text-decoration: none;
-                border-radius: 4px;
-                font-weight: 500;
-            }}
-            .event-link a:hover {{
-                background-color: #c0392b;
-            }}
-            .event-image {{
-                width: 100%;
-                max-width: 400px;
-                height: auto;
-                border-radius: 8px;
-                margin: 10px 0;
-            }}
-            </style>
-            """
-            
-            # Add event image if available
-            if event.get('image'):
-                enhanced_description += f'<img src="{event["image"]}" alt="{event["title"]}" class="event-image" />'
-            
-            # Add the event content
-            enhanced_description += event['description']
-            
-            # Add source information
-            enhanced_description += f"""
-            <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee; font-size: 0.9em; color: #777;">
-                <p><strong>Source:</strong> {event['source']}</p>
-                <p><strong>Date:</strong> {event['date_text']}</p>
-                {f"<p><strong>Location:</strong> {event.get('location', 'See event details')}</p>" if event.get('location') else ''}
-                <p><em>This event is part of the official Amsterdam agenda from I amsterdam.</em></p>
+            # Create cleaner HTML description for WordPress
+            description_html = f"""
+            <div class="amsterdam-event">
+                {f'<img src="{event["image"]}" alt="{event["title"]}" style="max-width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 15px;" />' if event.get('image') else ''}
+                
+                <div class="event-header">
+                    <h3 style="color: #E31E24; margin: 0 0 10px 0; font-size: 1.2em;">{event['title']}</h3>
+                    {f'<div class="event-tags" style="margin-bottom: 10px;">{" ".join([f"<span style=\"background: #E31E24; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.8em; margin-right: 5px;\">{tag}</span>" for tag in event.get("tags", [])])}</div>' if event.get('tags') else ''}
+                </div>
+                
+                <div class="event-details" style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                    <div style="margin-bottom: 8px;"><strong>📅 Date:</strong> {event.get('date', 'Check website for details')}</div>
+                    <div style="margin-bottom: 8px;"><strong>📍 Location:</strong> {event.get('location', 'Amsterdam')}</div>
+                    <div style="margin-bottom: 8px;"><strong>🏛️ Source:</strong> Official I amsterdam event</div>
+                </div>
+                
+                <div class="event-description" style="margin: 15px 0;">
+                    <p>{event['description'][:200]}{'...' if len(event['description']) > 200 else ''}</p>
+                </div>
+                
+                <div class="event-footer" style="border-top: 1px solid #e0e0e0; padding-top: 10px; margin-top: 15px;">
+                    <a href="{event['link']}" target="_blank" style="color: #E31E24; text-decoration: none; font-weight: bold;">View full details on I amsterdam →</a>
+                </div>
             </div>
             """
             
-            fe.description(enhanced_description)
+            fe.description(description_html)
             fe.pubDate(event['pub_date'])
-            fe.guid(event['link'])
             
-            # Add categories/tags
-            if event.get('tags'):
-                for tag in event['tags']:
-                    fe.category(term=tag)
+            # Add image as enclosure if available
+            if event.get('image'):
+                try:
+                    # Estimate image size (WordPress expects this)
+                    fe.enclosure(event['image'], 0, 'image/jpeg')
+                except Exception as e:
+                    logger.warning(f"Could not add image enclosure: {e}")
         
-        # Generate the RSS XML
-        fg.rss_file(output_file)
-        logger.info(f"Enhanced RSS feed with images saved to {output_file}")
+        # Generate and save the RSS XML
+        rss_str = fg.rss_str(pretty=True)
+        with open(output_file, 'wb') as f:
+            f.write(rss_str)
+        
+        logger.info(f"RSS feed saved to {output_file}")
+        return output_file
     
     def save_events_json(self, output_file='events.json'):
         """Save events as JSON for debugging/alternative use"""
