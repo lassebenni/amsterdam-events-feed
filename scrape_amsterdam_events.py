@@ -22,13 +22,60 @@ class AmsterdamEventsScraper:
     def __init__(self):
         self.session = requests.Session()
         self.session.headers.update({
-            'User-Agent': 'AmsterdamEventsBot/1.0 (Educational Purpose)'
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
         })
         self.events = []
         
+    def extract_event_image(self, event_url):
+        """Extract the main image from an individual event page"""
+        try:
+            logger.info(f"Extracting image from: {event_url}")
+            response = self.session.get(event_url, timeout=15)
+            response.raise_for_status()
+            
+            soup = BeautifulSoup(response.text, 'html.parser')
+            
+            # Look for main event image - I amsterdam uses specific patterns
+            image_selectors = [
+                'img[alt*="Amsterdam"]',  # Images with Amsterdam in alt text
+                'img[alt*="Elephant"]',   # Specific event images
+                'img[alt*="Tentoonstelling"]',  # Exhibition images
+                'img[alt*="Festival"]',   # Festival images
+                'main img',               # Main content images
+                '.hero img',              # Hero section images
+                '[class*="image"] img',   # Any image container
+                'article img:first-of-type'  # First image in article
+            ]
+            
+            for selector in image_selectors:
+                img_elem = soup.select_one(selector)
+                if img_elem and img_elem.get('src'):
+                    src = img_elem.get('src')
+                    # Convert relative URLs to absolute
+                    if src.startswith('/'):
+                        src = urljoin(event_url, src)
+                    # Skip very small images (likely icons)
+                    if any(skip in src.lower() for skip in ['icon', 'logo', 'favicon', 'social']):
+                        continue
+                    logger.info(f"Found image: {src}")
+                    return src
+            
+            # Fallback: look for any reasonable sized image
+            for img in soup.find_all('img'):
+                src = img.get('src', '')
+                if src and not any(skip in src.lower() for skip in ['icon', 'logo', 'favicon', 'social', 'arrow']):
+                    if src.startswith('/'):
+                        src = urljoin(event_url, src)
+                    return src
+                    
+        except Exception as e:
+            logger.warning(f"Error extracting image from {event_url}: {e}")
+        
+        return None
+
     def scrape_iamsterdam(self):
-        """Scrape events from I Amsterdam website - official Amsterdam events agenda"""
-        logger.info("Scraping I Amsterdam events agenda...")
+        """Scrape events from I Amsterdam website - official Amsterdam events agenda with images"""
+        logger.info("Scraping I Amsterdam events agenda with images...")
         
         try:
             url = "https://www.iamsterdam.com/uit/agenda"
@@ -59,7 +106,8 @@ class AmsterdamEventsScraper:
                     event_keywords = [
                         'amsterdam 750', 'tentoonstelling', 'concert', 'festival', 
                         'museum', 'expositie', 'show', 'wandeling', 'tour', 'kunst', 
-                        'theater', 'muziek', 'evenement', 'activiteit', 'bezienswaardigheid'
+                        'theater', 'muziek', 'evenement', 'activiteit', 'bezienswaardigheid',
+                        'elephant parade', 'grachtenfestival', 'sail', 'canal parade'
                     ]
                     
                     # Skip common navigation terms
@@ -67,7 +115,7 @@ class AmsterdamEventsScraper:
                         'nederlands', 'english', 'deutsch', 'français', 'español',
                         'cookies', 'privacy', 'contact', 'volg ons', 'over ons',
                         'taal', 'language', 'filter', 'sorteren', 'ontdek amsterdam',
-                        'i amsterdam store', 'city card'
+                        'i amsterdam store', 'city card', 'volgende', 'meer data'
                     ]
                     
                     if any(skip in title.lower() for skip in skip_terms):
@@ -79,19 +127,35 @@ class AmsterdamEventsScraper:
                     # Also check if href looks event-related
                     if not is_event and href:
                         is_event = any(keyword in href.lower() for keyword in 
-                                     ['event', 'agenda', 'activit', 'museum', 'festival', 'concert'])
+                                     ['event', 'agenda', 'activit', 'museum', 'festival', 'concert', 'tentoonstelling'])
                     
                     if is_event:
                         full_link = urljoin(url, href)
+                        
+                        # Extract image from individual event page
+                        event_image = self.extract_event_image(full_link)
                         
                         # Try to find additional context from parent elements
                         parent = link.find_parent(['div', 'article', 'section', 'li'])
                         description = f"Discover this Amsterdam event: {title}"
                         date_info = "Check website for dates and times"
                         location = ""
+                        tags = []
                         
                         if parent:
                             parent_text = parent.get_text()
+                            
+                            # Look for Amsterdam 750 tag
+                            if 'amsterdam 750' in parent_text.lower():
+                                tags.append('Amsterdam 750 events')
+                            
+                            # Look for gratis/free tag
+                            if any(term in parent_text.lower() for term in ['gratis', 'free']):
+                                tags.append('Gratis entree')
+                                
+                            # Look for ToekomstTiendaagse tag
+                            if 'toekomsttiendaagse' in parent_text.lower():
+                                tags.append('ToekomstTiendaagse')
                             
                             # Look for date patterns in parent context
                             # Pattern for dates like "04 jun '25" or "4 juni 2025"
@@ -122,25 +186,57 @@ class AmsterdamEventsScraper:
                                             continue
                             
                             # Look for location indicators
-                            location_indicators = ['amsterdam', 'museum', 'theater', 'concertgebouw', 'vondelpark', 'centrum']
+                            location_indicators = ['amsterdam', 'museum', 'theater', 'concertgebouw', 'vondelpark', 'centrum', 'beursplein']
                             for indicator in location_indicators:
                                 if indicator in parent_text.lower() and indicator not in title.lower():
                                     location = indicator.title()
                                     break
                         
-                        description = f"Official Amsterdam event from I amsterdam agenda.\n\nDate: {date_info}"
-                        if location:
-                            description += f"\nLocation: {location}"
-                        description += f"\n\nSource: I amsterdam ({url})"
+                        # Create enhanced description with styling
+                        description_parts = [
+                            f"<div class='iamsterdam-event'>",
+                            f"<h3 class='event-title'>{title}</h3>"
+                        ]
                         
-                        self.events.append({
+                        if tags:
+                            description_parts.append(f"<div class='event-tags'>")
+                            for tag in tags:
+                                description_parts.append(f"<span class='event-tag'>{tag}</span>")
+                            description_parts.append(f"</div>")
+                        
+                        description_parts.extend([
+                            f"<div class='event-details'>",
+                            f"<p class='event-date'>📅 {date_info}</p>"
+                        ])
+                        
+                        if location:
+                            description_parts.append(f"<p class='event-location'>📍 {location}</p>")
+                            
+                        description_parts.extend([
+                            f"<p class='event-source'>🏛️ Official I amsterdam event</p>",
+                            f"</div>",
+                            f"<div class='event-link'><a href='{full_link}' target='_blank'>View full details on I amsterdam</a></div>",
+                            f"</div>"
+                        ])
+                        
+                        description = '\n'.join(description_parts)
+                        
+                        event_data = {
                             'title': title,
                             'link': full_link,
                             'description': description,
                             'source': 'I Amsterdam Official',
                             'date_text': date_info,
-                            'pub_date': datetime.now(timezone.utc)
-                        })
+                            'pub_date': datetime.now(timezone.utc),
+                            'tags': tags,
+                            'location': location
+                        }
+                        
+                        # Add image if found
+                        if event_image:
+                            event_data['image'] = event_image
+                        
+                        self.events.append(event_data)
                         events_found += 1
                         
                         if events_found >= 15:  # Reasonable limit
@@ -150,7 +246,7 @@ class AmsterdamEventsScraper:
                     logger.warning(f"Error processing I Amsterdam link: {e}")
                     continue
                 
-                time.sleep(0.1)  # Be respectful
+                time.sleep(0.2)  # Be respectful with rate limiting
             
             # Strategy 2: If we didn't find many events, look for any structured content with keywords
             if events_found < 5:
@@ -159,7 +255,7 @@ class AmsterdamEventsScraper:
                 # Look for text that contains Amsterdam 750 events (current special events)
                 amsterdam_750_content = soup.find_all(text=re.compile(r'amsterdam\s*750', re.I))
                 
-                for content in amsterdam_750_content[:10]:
+                for content in amsterdam_750_content[:5]:
                     try:
                         parent = content.parent if hasattr(content, 'parent') else None
                         if parent:
@@ -170,14 +266,38 @@ class AmsterdamEventsScraper:
                                 link_elem = parent.find('a', href=True)
                                 event_link = urljoin(url, link_elem['href']) if link_elem else url
                                 
-                                self.events.append({
+                                # Try to extract image
+                                event_image = self.extract_event_image(event_link) if link_elem else None
+                                
+                                description = f"""
+                                <div class='iamsterdam-event'>
+                                    <h3 class='event-title'>Amsterdam 750: {event_text[:100]}</h3>
+                                    <div class='event-tags'>
+                                        <span class='event-tag'>Amsterdam 750 events</span>
+                                    </div>
+                                    <div class='event-details'>
+                                        <p class='event-date'>📅 Part of Amsterdam 750 celebrations</p>
+                                        <p class='event-source'>🏛️ Official I amsterdam event</p>
+                                    </div>
+                                    <div class='event-description'>{event_text}</div>
+                                    <div class='event-link'><a href='{event_link}' target='_blank'>View on I amsterdam</a></div>
+                                </div>
+                                """
+                                
+                                event_data = {
                                     'title': f"Amsterdam 750: {event_text[:100]}",
                                     'link': event_link,
-                                    'description': f"Special Amsterdam 750 anniversary event.\n\n{event_text}\n\nSource: I amsterdam ({url})",
+                                    'description': description,
                                     'source': 'I Amsterdam Official',
                                     'date_text': 'Part of Amsterdam 750 celebrations',
-                                    'pub_date': datetime.now(timezone.utc)
-                                })
+                                    'pub_date': datetime.now(timezone.utc),
+                                    'tags': ['Amsterdam 750 events']
+                                }
+                                
+                                if event_image:
+                                    event_data['image'] = event_image
+                                
+                                self.events.append(event_data)
                                 events_found += 1
                                 
                                 if events_found >= 10:
@@ -319,29 +439,128 @@ class AmsterdamEventsScraper:
         logger.info(f"Removed {original_count - len(self.events)} duplicate events")
     
     def generate_rss_feed(self, output_file='events.xml'):
-        """Generate RSS feed from collected events"""
+        """Generate RSS feed from collected events with images and enhanced styling"""
         logger.info(f"Generating RSS feed with {len(self.events)} events...")
         
         fg = FeedGenerator()
-        fg.title('Amsterdam Events Feed')
+        fg.title('Amsterdam Events Feed - I amsterdam Official')
         fg.link(href='https://raw.githubusercontent.com/lassebenni/amsterdam-events-feed/master/events.xml')
-        fg.description('Curated upcoming events and activities in Amsterdam')
+        fg.description('Official Amsterdam events from I amsterdam - featuring Amsterdam 750 celebrations, exhibitions, festivals, and cultural activities')
         fg.language('en')
         fg.lastBuildDate(datetime.now(timezone.utc))
-        fg.generator('Amsterdam Events Scraper v1.0')
+        fg.generator('Amsterdam Events Scraper v2.0 - Enhanced with Images')
+        fg.image(url='https://www.iamsterdam.com/favicon.ico', title='I amsterdam', link='https://www.iamsterdam.com')
         
-        # Add each event as a feed entry
+        # Add each event as a feed entry with enhanced content
         for event in self.events:
             fe = fg.add_entry()
             fe.title(event['title'])
             fe.link(href=event['link'])
-            fe.description(f"Source: {event['source']}\n\n{event['description']}")
+            
+            # Enhanced description with CSS styling for WordPress
+            enhanced_description = f"""
+            <style>
+            .iamsterdam-event {{
+                font-family: 'Helvetica Neue', Arial, sans-serif;
+                max-width: 600px;
+                margin: 20px 0;
+                padding: 20px;
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+                background-color: #ffffff;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }}
+            .event-title {{
+                color: #2c3e50;
+                font-size: 1.4em;
+                margin-bottom: 10px;
+                font-weight: 600;
+            }}
+            .event-tags {{
+                margin: 10px 0;
+            }}
+            .event-tag {{
+                display: inline-block;
+                background-color: #e74c3c;
+                color: white;
+                padding: 4px 8px;
+                border-radius: 4px;
+                font-size: 0.8em;
+                margin-right: 5px;
+                margin-bottom: 5px;
+            }}
+            .event-details {{
+                margin: 15px 0;
+                color: #555;
+            }}
+            .event-details p {{
+                margin: 5px 0;
+                font-size: 0.95em;
+            }}
+            .event-date {{
+                font-weight: 500;
+                color: #2980b9;
+            }}
+            .event-location {{
+                color: #27ae60;
+            }}
+            .event-source {{
+                color: #8e44ad;
+            }}
+            .event-link {{
+                margin-top: 15px;
+                text-align: center;
+            }}
+            .event-link a {{
+                background-color: #e74c3c;
+                color: white;
+                padding: 10px 20px;
+                text-decoration: none;
+                border-radius: 4px;
+                font-weight: 500;
+            }}
+            .event-link a:hover {{
+                background-color: #c0392b;
+            }}
+            .event-image {{
+                width: 100%;
+                max-width: 400px;
+                height: auto;
+                border-radius: 8px;
+                margin: 10px 0;
+            }}
+            </style>
+            """
+            
+            # Add event image if available
+            if event.get('image'):
+                enhanced_description += f'<img src="{event["image"]}" alt="{event["title"]}" class="event-image" />'
+            
+            # Add the event content
+            enhanced_description += event['description']
+            
+            # Add source information
+            enhanced_description += f"""
+            <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee; font-size: 0.9em; color: #777;">
+                <p><strong>Source:</strong> {event['source']}</p>
+                <p><strong>Date:</strong> {event['date_text']}</p>
+                {f"<p><strong>Location:</strong> {event.get('location', 'See event details')}</p>" if event.get('location') else ''}
+                <p><em>This event is part of the official Amsterdam agenda from I amsterdam.</em></p>
+            </div>
+            """
+            
+            fe.description(enhanced_description)
             fe.pubDate(event['pub_date'])
             fe.guid(event['link'])
+            
+            # Add categories/tags
+            if event.get('tags'):
+                for tag in event['tags']:
+                    fe.category(term=tag)
         
         # Generate the RSS XML
         fg.rss_file(output_file)
-        logger.info(f"RSS feed saved to {output_file}")
+        logger.info(f"Enhanced RSS feed with images saved to {output_file}")
     
     def save_events_json(self, output_file='events.json'):
         """Save events as JSON for debugging/alternative use"""
