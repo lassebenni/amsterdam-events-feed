@@ -573,7 +573,7 @@ class AmsterdamEventsScraper:
         fg.description('Curated upcoming events and activities in Amsterdam from I amsterdam official agenda')
         fg.language('en')
         fg.lastBuildDate(datetime.now(timezone.utc))
-        fg.generator('Amsterdam Events Scraper v5.0')
+        fg.generator('Amsterdam Events Scraper v6.0')
         
         # Add each event as a feed entry
         for event in self.events:
@@ -581,64 +581,74 @@ class AmsterdamEventsScraper:
             fe.title(event['title'])
             fe.link(href=event['link'])
             
-            # Create properly formatted HTML description that WordPress will render
-            description_html = f"""
-            <div style="font-family: Arial, sans-serif; line-height: 1.6; max-width: 600px;">
-                
-                {f'<div style="text-align: center; margin-bottom: 20px;"><img src="{event["image_url"]}" alt="{event["title"]}" style="width: 100%; max-width: 400px; height: 200px; object-fit: cover; border-radius: 8px;" /></div>' if event.get('image_url') else ''}
-                
-                <h3 style="color: #E31E24; margin-bottom: 15px; font-size: 1.4em;">🎭 {event['title'][:60]}{'...' if len(event['title']) > 60 else ''}</h3>
-                
-                {f'''<div style="margin-bottom: 15px;">
-                    {" ".join([f'<span style="background: #E31E24; color: white; padding: 4px 8px; border-radius: 12px; font-size: 0.85em; margin-right: 5px;">{tag}</span>' for tag in event.get("tags", [])])}
-                </div>''' if event.get('tags') else ''}
-                
-                <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #E31E24;">
-                    <h4 style="color: #E31E24; margin: 0 0 10px 0; font-size: 1.1em;">📋 Event Information</h4>
-                    <ul style="list-style: none; padding: 0; margin: 0;">
-                        {f'<li style="margin-bottom: 8px;"><strong>📅 Date:</strong> {event.get("date", "Check website for details")}</li>' if event.get('date') else '<li style="margin-bottom: 8px;"><strong>📅 Date:</strong> Check website for details</li>'}
-                        {f'<li style="margin-bottom: 8px;"><strong>🕐 Time:</strong> {event["time"]}</li>' if event.get('time') else ''}
-                        {f'<li style="margin-bottom: 8px;"><strong>📍 Location:</strong> {event.get("location", "Amsterdam")}</li>' if event.get('location') else '<li style="margin-bottom: 8px;"><strong>📍 Location:</strong> Amsterdam</li>'}
-                        {f'<li style="margin-bottom: 8px;"><strong>💰 Price:</strong> {event["price"]}</li>' if event.get('price') else ''}
-                        <li style="margin-bottom: 8px;"><strong>🏛️ Source:</strong> Official I amsterdam</li>
-                    </ul>
-                </div>
-                
-                {f'''<div style="background: white; padding: 15px; border-radius: 8px; margin: 15px 0; border: 1px solid #dee2e6;">
-                    <h4 style="color: #495057; margin: 0 0 10px 0; font-size: 1.1em;">ℹ️ About This Event</h4>
-                    <p style="margin: 0; color: #6c757d; line-height: 1.5;">{event["description"][:200]}{'...' if len(event.get("description", "")) > 200 else ''}</p>
-                </div>''' if event.get('description') and event['description'].strip() else ''}
-                
-                <div style="text-align: center; margin: 20px 0;">
-                    <a href="{event['link']}" target="_blank" style="
-                        background: linear-gradient(135deg, #E31E24, #c41e3a); 
-                        color: white; 
-                        padding: 12px 24px; 
-                        text-decoration: none; 
-                        border-radius: 25px; 
-                        font-weight: bold; 
-                        display: inline-block;
-                        font-size: 1.1em;
-                    ">
-                        🌟 View Full Details on I amsterdam →
-                    </a>
-                </div>
-                
-                <div style="text-align: center; padding: 10px; background: #f8f9fa; border-radius: 6px; margin-top: 15px;">
-                    <small style="color: #6c757d;">
-                        ✨ <strong>Official Amsterdam Event</strong> • Updated {datetime.now().strftime('%B %d, %Y')} • I amsterdam Calendar
-                    </small>
-                </div>
-                
-            </div>
-            """
+            # Create WordPress-friendly description with embedded images
+            description_parts = []
             
-            fe.description(description_html)
+            # Add image at the top if available
+            if event.get('image'):
+                description_parts.append(f'<img src="{event["image"]}" alt="{event["title"]}" width="300" height="200" style="display: block; margin: 0 auto 15px auto; border-radius: 8px;" />')
+            
+            # Add title and tags
+            description_parts.append(f'<h3 style="color: #E31E24; text-align: center;">🎭 {event["title"]}</h3>')
+            
+            if event.get('tags'):
+                tags_html = ' • '.join([f'<strong>{tag}</strong>' for tag in event['tags']])
+                description_parts.append(f'<p style="text-align: center; color: #666;"><em>{tags_html}</em></p>')
+            
+            # Add structured event information
+            description_parts.append('<hr style="border: 1px solid #E31E24; margin: 15px 0;" />')
+            description_parts.append('<h4 style="color: #E31E24;">📋 Event Information</h4>')
+            description_parts.append('<ul style="list-style-type: none; padding-left: 0;">')
+            
+            if event.get('date'):
+                description_parts.append(f'<li style="margin-bottom: 8px;"><strong>📅 Date:</strong> {event["date"]}</li>')
+            else:
+                description_parts.append('<li style="margin-bottom: 8px;"><strong>📅 Date:</strong> Check website for details</li>')
+            
+            if event.get('time'):
+                description_parts.append(f'<li style="margin-bottom: 8px;"><strong>🕐 Time:</strong> {event["time"]}</li>')
+            
+            if event.get('location'):
+                description_parts.append(f'<li style="margin-bottom: 8px;"><strong>📍 Location:</strong> {event["location"]}</li>')
+            else:
+                description_parts.append('<li style="margin-bottom: 8px;"><strong>📍 Location:</strong> Amsterdam</li>')
+            
+            if event.get('price'):
+                description_parts.append(f'<li style="margin-bottom: 8px;"><strong>💰 Price:</strong> {event["price"]}</li>')
+            
+            description_parts.append('<li style="margin-bottom: 8px;"><strong>🏛️ Source:</strong> Official I amsterdam</li>')
+            description_parts.append('</ul>')
+            
+            # Add description if available
+            if event.get('description') and event['description'].strip():
+                # Clean up the description to remove HTML tags and take only plain text
+                clean_description = event['description']
+                if '<div class=' in clean_description:
+                    # Extract just the meaningful text, not the HTML structure
+                    import re
+                    clean_description = re.sub(r'<[^>]+>', ' ', clean_description)
+                    clean_description = re.sub(r'\s+', ' ', clean_description).strip()
+                
+                description_parts.append('<hr style="border: 1px solid #ddd; margin: 15px 0;" />')
+                description_parts.append('<h4 style="color: #495057;">ℹ️ About This Event</h4>')
+                description_parts.append(f'<p style="color: #6c757d; line-height: 1.5;">{clean_description[:300]}{"..." if len(clean_description) > 300 else ""}</p>')
+            
+            # Add call-to-action
+            description_parts.append('<hr style="border: 1px solid #ddd; margin: 15px 0;" />')
+            description_parts.append(f'<p style="text-align: center;"><a href="{event["link"]}" target="_blank" style="background: #E31E24; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">🌟 View Full Details on I amsterdam →</a></p>')
+            
+            # Add footer
+            description_parts.append(f'<p style="text-align: center; color: #999; font-size: 0.9em; margin-top: 15px;"><em>✨ Official Amsterdam Event • Updated {datetime.now().strftime("%B %d, %Y")} • I amsterdam Calendar</em></p>')
+            
+            # Join all parts
+            final_description = '\n'.join(description_parts)
+            
+            fe.description(final_description)
             fe.pubDate(event['pub_date'])
             
-            # Add image as enclosure if available
-            if event.get('image_url'):
-                fe.enclosure(event['image_url'], 0, 'image/jpeg')
+            # Add image as enclosure if available (backup method)
+            if event.get('image'):
+                fe.enclosure(event['image'], 0, 'image/jpeg')
         
         # Generate and save RSS feed
         rss_content = fg.rss_str(pretty=True)
