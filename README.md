@@ -51,6 +51,20 @@
 
 ### 3. Test the Scraper Locally
 
+**Using the Makefile (Recommended):**
+```bash
+# See all available commands
+make help
+
+# Quick setup: install dependencies and run scraper
+make install
+make scrape
+
+# Complete development setup (install, scrape, start WordPress)
+make dev
+```
+
+**Manual Commands:**
 ```bash
 # Install dependencies
 pip install -r requirements.txt
@@ -91,7 +105,19 @@ Amsterdam Websites → Python Scraper → RSS Feed → WordPress Plugin → Your
 - `scrape_amsterdam_events.py` - Main scraper script
 - `events.xml` - Generated RSS feed (auto-updated)
 - `events.json` - Debug data (optional)
+- `Makefile` - Convenient commands for all operations
 - `.github/workflows/scrape-events.yml` - Automation workflow
+
+### Quick Commands
+
+```bash
+make help              # Show all available commands
+make scrape            # Run scraper and generate feed
+make wordpress-start   # Start local WordPress site
+make wordpress-stop    # Stop WordPress site
+make status            # Show current project status
+make dev               # Complete development setup
+```
 
 ### Dependencies
 

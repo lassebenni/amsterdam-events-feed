@@ -45,4 +45,8 @@ Thumbs.db
 # Don't ignore the generated feed files - we want them in the repo
 !events.xml
 !events.json 
+
+# Makefile backup files
+*.backup
+
 .env
