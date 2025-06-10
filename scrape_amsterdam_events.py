@@ -32,57 +32,75 @@ class AmsterdamEventsScraper:
         self.events = []
 
     def extract_event_image(self, event_url):
-        """Extract the main image from an individual event page"""
+        """Extract the main image from an event page"""
         try:
             logger.info(f"Extracting image from: {event_url}")
-            response = self.session.get(event_url, timeout=15)
+            response = requests.get(event_url, headers=self.session.headers, timeout=10)
             response.raise_for_status()
-
-            soup = BeautifulSoup(response.text, "html.parser")
-
-            # Look for main event image - I amsterdam uses specific patterns
+            
+            soup = BeautifulSoup(response.content, 'html.parser')
+            
+            # Try multiple selectors for finding images
             image_selectors = [
-                'img[alt*="Amsterdam"]',  # Images with Amsterdam in alt text
-                'img[alt*="Elephant"]',  # Specific event images
-                'img[alt*="Tentoonstelling"]',  # Exhibition images
-                'img[alt*="Festival"]',  # Festival images
-                "main img",  # Main content images
-                ".hero img",  # Hero section images
-                '[class*="image"] img',  # Any image container
-                "article img:first-of-type",  # First image in article
+                'img[src*="thefeedfactory"]',  # I amsterdam images
+                'meta[property="og:image"]',   # Open Graph image
+                'img[alt*="Amsterdam"]',       # Amsterdam related images
+                'img[src*="_next/image"]',     # Next.js optimized images
+                '.hero-image img',             # Hero section images
+                'article img',                 # Article images
+                'main img'                     # Main content images
             ]
-
+            
             for selector in image_selectors:
-                img_elem = soup.select_one(selector)
-                if img_elem and img_elem.get("src"):
-                    src = img_elem.get("src")
-                    # Convert relative URLs to absolute
-                    if src.startswith("/"):
-                        src = urljoin(event_url, src)
-                    # Skip very small images (likely icons)
-                    if any(
-                        skip in src.lower()
-                        for skip in ["icon", "logo", "favicon", "social"]
-                    ):
-                        continue
-                    logger.info(f"Found image: {src}")
-                    return src
-
-            # Fallback: look for any reasonable sized image
-            for img in soup.find_all("img"):
-                src = img.get("src", "")
-                if src and not any(
-                    skip in src.lower()
-                    for skip in ["icon", "logo", "favicon", "social", "arrow"]
-                ):
-                    if src.startswith("/"):
-                        src = urljoin(event_url, src)
-                    return src
-
+                if selector.startswith('meta'):
+                    # For meta tags, get the content attribute
+                    img_element = soup.select_one(selector)
+                    if img_element and img_element.get('content'):
+                        image_url = img_element.get('content')
+                        # Try to get a simpler version of the URL
+                        if 'thefeedfactory' in image_url:
+                            # Extract the original image URL from the Next.js wrapper
+                            if '?url=' in image_url:
+                                import urllib.parse
+                                parsed_url = urllib.parse.urlparse(image_url)
+                                query_params = urllib.parse.parse_qs(parsed_url.query)
+                                if 'url' in query_params:
+                                    original_url = urllib.parse.unquote(query_params['url'][0])
+                                    logger.info(f"Found original image URL: {original_url}")
+                                    return original_url
+                        logger.info(f"Found image: {image_url}")
+                        return image_url
+                else:
+                    # For img tags, get the src attribute
+                    img_element = soup.select_one(selector)
+                    if img_element and img_element.get('src'):
+                        image_url = img_element.get('src')
+                        
+                        # Convert relative URLs to absolute
+                        if image_url.startswith('/'):
+                            image_url = f"https://www.iamsterdam.com{image_url}"
+                        
+                        # Try to get a simpler version of the URL
+                        if 'thefeedfactory' in image_url:
+                            # Extract the original image URL from the Next.js wrapper
+                            if '?url=' in image_url:
+                                import urllib.parse
+                                parsed_url = urllib.parse.urlparse(image_url)
+                                query_params = urllib.parse.parse_qs(parsed_url.query)
+                                if 'url' in query_params:
+                                    original_url = urllib.parse.unquote(query_params['url'][0])
+                                    logger.info(f"Found original image URL: {original_url}")
+                                    return original_url
+                        
+                        logger.info(f"Found image: {image_url}")
+                        return image_url
+            
+            logger.warning(f"No suitable image found for {event_url}")
+            return None
+            
         except Exception as e:
             logger.warning(f"Error extracting image from {event_url}: {e}")
-
-        return None
+            return None
 
     def scrape_iamsterdam(self):
         """Scrape events from I Amsterdam website - official Amsterdam events agenda with images"""
@@ -588,11 +606,13 @@ class AmsterdamEventsScraper:
             
             # Add image at the very beginning if available - in multiple formats to increase compatibility
             if event.get('image'):
-                # Method 1: Simple image tag at start
-                content_parts.append(f'<img src="{event["image"]}" alt="{event["title"]}" style="max-width: 300px; height: auto; display: block; margin: 10px auto;" />')
+                # Use the original image URL without encoding issues
+                image_url = event['image']
+                # Method 1: Simple image tag at start with proper escaping
+                content_parts.append(f'<img src="{image_url}" alt="{event["title"]}" style="max-width: 300px; height: auto; display: block; margin: 10px auto;" />')
                 # Also try setting it as media content (alternative approach)
                 try:
-                    fe.enclosure(url=event['image'], type='image/jpeg', length='0')
+                    fe.enclosure(url=image_url, type='image/jpeg', length='0')
                 except:
                     pass
             
@@ -631,7 +651,7 @@ class AmsterdamEventsScraper:
             # Also add image as enclosure for RSS readers that support it
             if event.get('image'):
                 try:
-                    fe.enclosure(url=event['image'], type='image/jpeg', length='0')
+                    fe.enclosure(url=image_url, type='image/jpeg', length='0')
                 except Exception as e:
                     logger.warning(f"Could not add enclosure for {event['title']}: {e}")
         
