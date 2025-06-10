@@ -56,12 +56,11 @@
 # See all available commands
 make help
 
-# Quick setup: install dependencies and run scraper
-make install
+# Get new events
 make scrape
 
-# Complete development setup (install, scrape, start WordPress)
-make dev
+# Start WordPress for testing
+make wordpress-start
 ```
 
 **Manual Commands:**
@@ -111,12 +110,11 @@ Amsterdam Websites → Python Scraper → RSS Feed → WordPress Plugin → Your
 ### Quick Commands
 
 ```bash
-make help              # Show all available commands
-make scrape            # Run scraper and generate feed
-make wordpress-start   # Start local WordPress site
+make help              # Show available commands
+make scrape            # Get new events and generate RSS feed
+make wordpress-start   # Start WordPress site
 make wordpress-stop    # Stop WordPress site
-make status            # Show current project status
-make dev               # Complete development setup
+make status            # Show current status
 ```
 
 ### Dependencies
