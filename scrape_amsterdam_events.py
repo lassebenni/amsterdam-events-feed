@@ -216,6 +216,9 @@ class AmsterdamEventsScraper:
                         if parent:
                             parent_text = parent.get_text()
 
+                            # Clean parent_text from raw image URLs to prevent them from appearing in the description
+                            parent_text = re.sub(r'https?://\S+\.(jpg|jpeg|png|gif|webp)', '', parent_text, flags=re.IGNORECASE)
+
                             # Look for Amsterdam 750 tag
                             if "amsterdam 750" in parent_text.lower():
                                 tags.append("Amsterdam 750 events")
