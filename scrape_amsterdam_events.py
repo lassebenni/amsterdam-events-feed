@@ -214,10 +214,11 @@ class AmsterdamEventsScraper:
                         tags = []
 
                         if parent:
-                            parent_text = parent.get_text()
+                            parent_text = parent.get_text(separator=' ', strip=True)
+                            parent_text = re.sub(r'https?://\\S+\\.(jpg|jpeg|png|gif|webp)', '', parent_text, flags=re.IGNORECASE)
 
-                            # Clean parent_text from raw image URLs to prevent them from appearing in the description
-                            parent_text = re.sub(r'https?://\S+\.(jpg|jpeg|png|gif|webp)', '', parent_text, flags=re.IGNORECASE)
+                            if len(parent_text) > 50:
+                                description = parent_text
 
                             # Look for Amsterdam 750 tag
                             if "amsterdam 750" in parent_text.lower():
@@ -237,9 +238,9 @@ class AmsterdamEventsScraper:
                             # Look for date patterns in parent context
                             # Pattern for dates like "04 jun '25" or "4 juni 2025"
                             date_patterns = [
-                                r"(\d{1,2})\s*(jan|feb|mar|apr|mei|jun|jul|aug|sep|okt|nov|dec)[a-z]*\s*\W?(\d{2,4})",
-                                r"(\d{1,2})-(\d{1,2})-(\d{4})",
-                                r"(\d{4})-(\d{1,2})-(\d{1,2})",
+                                r"(\\d{1,2})\\s*(jan|feb|mar|apr|mei|jun|jul|aug|sep|okt|nov|dec)[a-z]*\\s*\\W?(\\d{2,4})",
+                                r"(\\d{1,2})-(\\d{1,2})-(\\d{4})",
+                                r"(\\d{4})-(\\d{1,2})-(\\d{1,2})",
                             ]
 
                             for pattern in date_patterns:
@@ -288,43 +289,6 @@ class AmsterdamEventsScraper:
                                 ):
                                     location = indicator.title()
                                     break
-
-                        # Create enhanced description with styling
-                        description_parts = [
-                            f"<div class='iamsterdam-event'>",
-                            f"<h3 class='event-title'>{title}</h3>",
-                        ]
-
-                        if tags:
-                            description_parts.append(f"<div class='event-tags'>")
-                            for tag in tags:
-                                description_parts.append(
-                                    f"<span class='event-tag'>{tag}</span>"
-                                )
-                            description_parts.append(f"</div>")
-
-                        description_parts.extend(
-                            [
-                                f"<div class='event-details'>",
-                                f"<p class='event-date'>📅 {date_info}</p>",
-                            ]
-                        )
-
-                        if location:
-                            description_parts.append(
-                                f"<p class='event-location'>📍 {location}</p>"
-                            )
-
-                        description_parts.extend(
-                            [
-                                f"<p class='event-source'>🏛️ Official I amsterdam event</p>",
-                                f"</div>",
-                                f"<div class='event-link'><a href='{full_link}' target='_blank'>View full details on I amsterdam</a></div>",
-                                f"</div>",
-                            ]
-                        )
-
-                        description = "\n".join(description_parts)
 
                         event_data = {
                             "title": title,
@@ -617,7 +581,7 @@ class AmsterdamEventsScraper:
             content_parts.append('<div class="event-info-line">')
             content_parts.append('<span class="event-icon">📅</span>')
             content_parts.append('<span class="event-label">Date:</span>')
-            content_parts.append('<span class="event-value">Check website for specific dates and times</span>')
+            content_parts.append(f'<span class="event-value">{event.get("date_text", "Check website for specific dates and times")}</span>')
             content_parts.append('</div>')
             
             # Location information
@@ -632,7 +596,7 @@ class AmsterdamEventsScraper:
             content_parts.append('<div class="event-info-line">')
             content_parts.append('<span class="event-icon">🏛️</span>')
             content_parts.append('<span class="event-label">Source:</span>')
-            content_parts.append('<span class="event-value">Official I amsterdam</span>')
+            content_parts.append(f'<span class="event-value">{event.get("source", "Official I amsterdam")}</span>')
             content_parts.append('</div>')
             
             # Tags if available
@@ -649,19 +613,14 @@ class AmsterdamEventsScraper:
             
             # Description section
             description = event.get('description', event['title'])
-            # Strip any HTML tags from description
-            import re
-            clean_desc = re.sub('<[^<]+?>', '', description)
-            if len(clean_desc) > 300:
-                clean_desc = clean_desc[:297] + '...'
             
-            if clean_desc and clean_desc != event['title']:
+            if description and description != event['title']:
                 content_parts.append('<div class="event-description">')
                 content_parts.append('<div class="event-info-line">')
                 content_parts.append('<span class="event-icon">ℹ️</span>')
                 content_parts.append('<span class="event-label">Description:</span>')
                 content_parts.append('</div>')
-                content_parts.append(f'<p class="event-description-text">{clean_desc}</p>')
+                content_parts.append(f'<p class="event-description-text">{description}</p>')
                 content_parts.append('</div>')
             
             # Action section with clickable link
