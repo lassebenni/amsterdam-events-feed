@@ -591,7 +591,7 @@ class AmsterdamEventsScraper:
         fg.description('Curated upcoming events and activities in Amsterdam from I amsterdam official agenda')
         fg.language('en')
         fg.lastBuildDate(datetime.now(timezone.utc))
-        fg.generator('Amsterdam Events Scraper v9.0')
+        fg.generator('Amsterdam Events Scraper v10.0')
         
         # Add each event as a feed entry
         for event in self.events:
@@ -601,48 +601,153 @@ class AmsterdamEventsScraper:
             fe.link(href=event['link'])
             fe.pubDate(datetime.now(timezone.utc))
             
-            # Method 1: Create minimal text content without HTML that most plugins accept
+            # Create well-structured HTML content for better WordPress display
             content_parts = []
             
-            # Simple title
-            content_parts.append(f"🎭 {event['title']}")
-            content_parts.append("")
+            # Event header with structured information
+            content_parts.append('<div class="amsterdam-event-card">')
             
+            # Event details section with clean structure
+            content_parts.append('<div class="event-details">')
+            
+            # Date information
+            content_parts.append('<div class="event-info-line">')
+            content_parts.append('<span class="event-icon">📅</span>')
+            content_parts.append('<span class="event-label">Date:</span>')
+            content_parts.append('<span class="event-value">Check website for specific dates and times</span>')
+            content_parts.append('</div>')
+            
+            # Location information
+            location = event.get('location', 'Amsterdam')
+            content_parts.append('<div class="event-info-line">')
+            content_parts.append('<span class="event-icon">📍</span>')
+            content_parts.append('<span class="event-label">Location:</span>')
+            content_parts.append(f'<span class="event-value">{location}</span>')
+            content_parts.append('</div>')
+            
+            # Source information
+            content_parts.append('<div class="event-info-line">')
+            content_parts.append('<span class="event-icon">🏛️</span>')
+            content_parts.append('<span class="event-label">Source:</span>')
+            content_parts.append('<span class="event-value">Official I amsterdam</span>')
+            content_parts.append('</div>')
+            
+            # Tags if available
             if event.get('tags'):
-                tags_text = ' • '.join(event['tags'])
-                content_parts.append(f"🏷️ {tags_text}")
-                content_parts.append("")
+                content_parts.append('<div class="event-info-line">')
+                content_parts.append('<span class="event-icon">🏷️</span>')
+                content_parts.append('<span class="event-label">Tags:</span>')
+                content_parts.append('<span class="event-value">')
+                content_parts.append(' • '.join(event['tags']))
+                content_parts.append('</span>')
+                content_parts.append('</div>')
             
-            content_parts.append("📅 Date: Check website for details")
-            content_parts.append(f"📍 Location: {event.get('location', 'Amsterdam')}")
-            content_parts.append("🏛️ Source: Official I amsterdam")
-            content_parts.append("")
+            content_parts.append('</div>')  # Close event-details
             
-            # Description without HTML
+            # Description section
             description = event.get('description', event['title'])
             # Strip any HTML tags from description
             import re
             clean_desc = re.sub('<[^<]+?>', '', description)
-            if len(clean_desc) > 200:
-                clean_desc = clean_desc[:197] + '...'
-            content_parts.append(f"ℹ️ {clean_desc}")
-            content_parts.append("")
+            if len(clean_desc) > 300:
+                clean_desc = clean_desc[:297] + '...'
             
-            content_parts.append(f"🌟 View Details: {event['link']}")
+            if clean_desc and clean_desc != event['title']:
+                content_parts.append('<div class="event-description">')
+                content_parts.append('<div class="event-info-line">')
+                content_parts.append('<span class="event-icon">ℹ️</span>')
+                content_parts.append('<span class="event-label">Description:</span>')
+                content_parts.append('</div>')
+                content_parts.append(f'<p class="event-description-text">{clean_desc}</p>')
+                content_parts.append('</div>')
             
-            # Add image URL at the end in plain text 
-            if event.get('image'):
-                content_parts.append("")
-                content_parts.append(f"🖼️ Event Image: {event['image']}")
+            # Action section with clickable link
+            content_parts.append('<div class="event-actions">')
+            content_parts.append('<div class="event-info-line">')
+            content_parts.append('<span class="event-icon">🌟</span>')
+            content_parts.append('<span class="event-label">More Info:</span>')
+            content_parts.append(f'<a href="{event["link"]}" target="_blank" rel="noopener" class="event-link">View Event Details on I amsterdam</a>')
+            content_parts.append('</div>')
+            content_parts.append('</div>')
             
-            # Join content as plain text
-            full_content = '\n'.join(content_parts)
+            content_parts.append('</div>')  # Close amsterdam-event-card
+            
+            # Add CSS for better styling
+            css_styles = '''
+            <style>
+            .amsterdam-event-card {
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+                padding: 20px;
+                margin: 15px 0;
+                background: #fafafa;
+                font-family: Arial, sans-serif;
+            }
+            .event-details {
+                margin-bottom: 15px;
+            }
+            .event-info-line {
+                display: flex;
+                align-items: center;
+                margin: 8px 0;
+                line-height: 1.5;
+            }
+            .event-icon {
+                font-size: 16px;
+                margin-right: 8px;
+                min-width: 24px;
+            }
+            .event-label {
+                font-weight: bold;
+                margin-right: 8px;
+                color: #333;
+                min-width: 80px;
+            }
+            .event-value {
+                color: #555;
+                flex: 1;
+            }
+            .event-description {
+                margin: 15px 0;
+                padding: 10px;
+                background: #f0f0f0;
+                border-radius: 4px;
+            }
+            .event-description-text {
+                margin: 8px 0;
+                line-height: 1.6;
+                color: #444;
+            }
+            .event-actions {
+                margin-top: 15px;
+                padding-top: 15px;
+                border-top: 1px solid #ddd;
+            }
+            .event-link {
+                color: #E31E24;
+                text-decoration: none;
+                font-weight: bold;
+                padding: 8px 12px;
+                background: #fff;
+                border: 2px solid #E31E24;
+                border-radius: 4px;
+                display: inline-block;
+                transition: all 0.3s ease;
+            }
+            .event-link:hover {
+                background: #E31E24;
+                color: white;
+            }
+            </style>
+            '''
+            
+            # Join all content
+            full_content = css_styles + '\n'.join(content_parts)
             fe.description(full_content)
             
-            # Also add image as enclosure (this is more likely to be picked up by RSS readers)
+            # Also add image as enclosure for RSS readers that support it
             if event.get('image'):
                 try:
-                    # Standard RSS enclosure - this is the most compatible method
                     fe.enclosure(url=event['image'], type='image/jpeg', length='0')
                 except Exception as e:
                     logger.warning(f"Could not add enclosure for {event['title']}: {e}")
