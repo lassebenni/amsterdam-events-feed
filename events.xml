@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>Amsterdam Events Scraper v10.0</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 10 Jun 2025 15:51:06 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 10 Jun 2025 16:04:51 +0000</lastBuildDate>
     <item>
       <title>Verhaalpaal Noord</title>
       <link>https://www.iamsterdam.com/uit/agenda/tentoonstellingen/alle-tentoonstellingen/verhaalpaal-noord</link>
@@ -82,7 +82,7 @@
 &lt;div class="event-info-line"&gt;
 &lt;span class="event-icon"&gt;📅&lt;/span&gt;
 &lt;span class="event-label"&gt;Date:&lt;/span&gt;
-&lt;span class="event-value"&gt;Check website for dates&lt;/span&gt;
+&lt;span class="event-value"&gt;di 10 jun00:00 - 00:00&lt;/span&gt;
 &lt;/div&gt;
 &lt;div class="event-info-line"&gt;
 &lt;span class="event-icon"&gt;💰&lt;/span&gt;
@@ -105,7 +105,7 @@
 &lt;span class="event-icon"&gt;ℹ️&lt;/span&gt;
 &lt;span class="event-label"&gt;Description:&lt;/span&gt;
 &lt;/div&gt;
-&lt;p class="event-description-text"&gt;Did you know that Overhoeks is the oldest part of Amsterdam-Noord? And that just behind Eye was the gallows field of Amsterdam? Storypaal Noord is an open-air exhibition about the unknown history of Amsterdam-Noord. Within 45 minutes you walk from pole to pole and you will learn everything about this dynamic district.&lt;/p&gt;
+&lt;p class="event-description-text"&gt;[Exhibitions] (/out/agenda/exhibitions/all exhibitions)! [Story post Noord] (/_ next/image? URL = https%3A%2F%2fapp.thefeedfactory.nl%2Fapi%2Fassets%2F670F8364AA502E79DE011%2F story Pole_Noord_Keyvisual Amsterdam-Noord is? And that just behind Eye was the gallows field of Amsterdam? Storypaal Noord is an open-air exhibition about the unknown history of Amsterdam-Noord. Within 45 minutes you walk from pole to pole and you will learn everything about this dynamic district.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="event-actions"&gt;
 &lt;div class="event-info-line"&gt;
@@ -117,7 +117,7 @@
 &lt;/div&gt;</description>
       <guid isPermaLink="false">https://www.iamsterdam.com/uit/agenda/tentoonstellingen/alle-tentoonstellingen/verhaalpaal-noord</guid>
       <enclosure url="https://app.thefeedfactory.nl/api/assets/670f8364aa502822e79de011/Verhaalpaal_Noord_Keyvisual_1800x1020.png" length="0" type="image/jpeg"/>
-      <pubDate>Tue, 10 Jun 2025 15:51:06 +0000</pubDate>
+      <pubDate>Tue, 10 Jun 2025 16:04:51 +0000</pubDate>
     </item>
   </channel>
 </rss>
