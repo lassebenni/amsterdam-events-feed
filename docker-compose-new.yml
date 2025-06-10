@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  wordpress:
+    image: wordpress:6.4-php8.2-apache
+    container_name: amsterdam-events-wp
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress_password
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_DEBUG', true);
+        define('WP_DEBUG_LOG', true);
+        define('WP_DEBUG_DISPLAY', false);
+        define('WP_ALLOW_MULTISITE', true);
+    volumes:
+      - wordpress_data:/var/www/html
+      - ./wp-custom:/var/www/html/wp-content/themes/custom
+      - ./wp-uploads:/var/www/html/wp-content/uploads
+    depends_on:
+      - db
+    networks:
+      - wordpress_network
+
+  db:
+    image: mysql:8.0
+    container_name: amsterdam-events-db
+    restart: always
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress_password
+      MYSQL_ROOT_PASSWORD: root_password
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - wordpress_network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: amsterdam-events-phpmyadmin
+    restart: always
+    ports:
+      - "8082:80"
+    environment:
+      PMA_HOST: db
+      PMA_USER: wordpress
+      PMA_PASSWORD: wordpress_password
+    depends_on:
+      - db
+    networks:
+      - wordpress_network
+
+volumes:
+  wordpress_data:
+  db_data:
+
+networks:
+  wordpress_network:
+    driver: bridge 

@@ -591,7 +591,7 @@ class AmsterdamEventsScraper:
         fg.description('Curated upcoming events and activities in Amsterdam from I amsterdam official agenda')
         fg.language('en')
         fg.lastBuildDate(datetime.now(timezone.utc))
-        fg.generator('Amsterdam Events Scraper v7.0')
+        fg.generator('Amsterdam Events Scraper v9.0')
         
         # Add each event as a feed entry
         for event in self.events:
@@ -601,57 +601,49 @@ class AmsterdamEventsScraper:
             fe.link(href=event['link'])
             fe.pubDate(datetime.now(timezone.utc))
             
-            # Try a different approach for images - put them first in content and also as media content
+            # Method 1: Create minimal text content without HTML that most plugins accept
             content_parts = []
             
-            # Add image at the very beginning if available - in multiple formats to increase compatibility
-            if event.get('image'):
-                # Use the original image URL without encoding issues
-                image_url = event['image']
-                # Method 1: Simple image tag at start with proper escaping
-                content_parts.append(f'<img src="{image_url}" alt="{event["title"]}" style="max-width: 300px; height: auto; display: block; margin: 10px auto;" />')
-                # Also try setting it as media content (alternative approach)
-                try:
-                    fe.enclosure(url=image_url, type='image/jpeg', length='0')
-                except:
-                    pass
-            
-            # Add structured content with emojis
-            content_parts.append(f'<h3 style="color: #E31E24; text-align: center;">🎭 {event["title"]}</h3>')
+            # Simple title
+            content_parts.append(f"🎭 {event['title']}")
+            content_parts.append("")
             
             if event.get('tags'):
-                tags_html = ' • '.join([f'<strong>{tag}</strong>' for tag in event['tags']])
-                content_parts.append(f'<p style="text-align: center; color: #666;"><em>{tags_html}</em></p>')
+                tags_text = ' • '.join(event['tags'])
+                content_parts.append(f"🏷️ {tags_text}")
+                content_parts.append("")
             
-            content_parts.append('<hr style="border: 1px solid #E31E24; margin: 15px 0;" />')
-            content_parts.append('<h4 style="color: #E31E24;">📋 Event Information</h4>')
-            content_parts.append('<ul style="list-style-type: none; padding-left: 0;">')
-            content_parts.append('<li style="margin-bottom: 8px;"><strong>📅 Date:</strong> Check website for details</li>')
-            content_parts.append(f'<li style="margin-bottom: 8px;"><strong>📍 Location:</strong> {event.get("location", "Amsterdam")}</li>')
-            content_parts.append('<li style="margin-bottom: 8px;"><strong>🏛️ Source:</strong> Official I amsterdam</li>')
-            content_parts.append('</ul>')
+            content_parts.append("📅 Date: Check website for details")
+            content_parts.append(f"📍 Location: {event.get('location', 'Amsterdam')}")
+            content_parts.append("🏛️ Source: Official I amsterdam")
+            content_parts.append("")
             
-            content_parts.append('<hr style="border: 1px solid #ddd; margin: 15px 0;" />')
-            content_parts.append('<h4 style="color: #495057;">ℹ️ About This Event</h4>')
-            
-            # Clean and truncate description
+            # Description without HTML
             description = event.get('description', event['title'])
-            if len(description) > 300:
-                description = description[:297] + '...'
+            # Strip any HTML tags from description
+            import re
+            clean_desc = re.sub('<[^<]+?>', '', description)
+            if len(clean_desc) > 200:
+                clean_desc = clean_desc[:197] + '...'
+            content_parts.append(f"ℹ️ {clean_desc}")
+            content_parts.append("")
             
-            content_parts.append(f'<p style="color: #6c757d; line-height: 1.5;">{description}</p>')
-            content_parts.append('<hr style="border: 1px solid #ddd; margin: 15px 0;" />')
-            content_parts.append(f'<p style="text-align: center;"><a href="{event["link"]}" target="_blank" style="background: #E31E24; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">🌟 View Full Details on I amsterdam →</a></p>')
-            content_parts.append('<p style="text-align: center; color: #999; font-size: 0.9em; margin-top: 15px;"><em>✨ Official Amsterdam Event • Updated June 09, 2025 • I amsterdam Calendar</em></p>')
+            content_parts.append(f"🌟 View Details: {event['link']}")
             
-            # Join all content
+            # Add image URL at the end in plain text 
+            if event.get('image'):
+                content_parts.append("")
+                content_parts.append(f"🖼️ Event Image: {event['image']}")
+            
+            # Join content as plain text
             full_content = '\n'.join(content_parts)
             fe.description(full_content)
             
-            # Also add image as enclosure for RSS readers that support it
+            # Also add image as enclosure (this is more likely to be picked up by RSS readers)
             if event.get('image'):
                 try:
-                    fe.enclosure(url=image_url, type='image/jpeg', length='0')
+                    # Standard RSS enclosure - this is the most compatible method
+                    fe.enclosure(url=event['image'], type='image/jpeg', length='0')
                 except Exception as e:
                     logger.warning(f"Could not add enclosure for {event['title']}: {e}")
         

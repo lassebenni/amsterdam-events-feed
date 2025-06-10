@@ -1,0 +1,75 @@
+/*
+Theme Name: Amsterdam Events Theme
+Description: Custom theme for Amsterdam Events
+Version: 1.0
+*/
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+.amsterdam-events {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.event-item {
+    border: 1px solid #ddd;
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 8px;
+    background: #f9f9f9;
+}
+
+.event-title {
+    color: #E31E24;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.event-image {
+    max-width: 300px;
+    height: auto;
+    margin: 10px 0;
+    border-radius: 5px;
+    display: block;
+}
+
+.rss-item-image img {
+    max-width: 300px !important;
+    height: auto !important;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.feedzy-rss img {
+    max-width: 300px !important;
+    height: auto !important;
+    border-radius: 5px;
+}
+
+.event-description {
+    line-height: 1.6;
+    color: #555;
+    margin: 10px 0;
+}
+
+.event-link {
+    background: #E31E24;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 4px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.event-link:hover {
+    background: #c01a21;
+    color: white;
+    text-decoration: none;
+}
