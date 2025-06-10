@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>Amsterdam Events Scraper v10.0</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 10 Jun 2025 16:11:08 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 10 Jun 2025 16:11:41 +0000</lastBuildDate>
     <item>
       <title>Verhaalpaal Noord</title>
       <link>https://www.iamsterdam.com/uit/agenda/tentoonstellingen/alle-tentoonstellingen/verhaalpaal-noord</link>
@@ -82,47 +82,7 @@
 &lt;div class="event-info-line"&gt;
 &lt;span class="event-icon"&gt;📅&lt;/span&gt;
 &lt;span class="event-label"&gt;Date:&lt;/span&gt;
-&lt;span class="event-value"&gt;di 10 jun00:00 - 00:00&lt;br&gt;wo 11 jun00:00 - 00:00&lt;br&gt;do 12 jun00:00 - 00:00&lt;br&gt;| woensdag 4 juni | 00:00 - 00:00 |&lt;br&gt;| donderdag 5 juni | 00:00 - 00:00 |&lt;br&gt;| vrijdag 6 juni | 00:00 - 00:00 |&lt;br&gt;Op 27 oktober 2025 bestaat Amsterdam 750 jaar, en dat vieren we een jaar lang. Op 27 oktober 2024 start een jubileumjaar vol activiteiten voor alle Amsterdammers. Van kleine buurtactiviteiten tot aan grote culturele evenementen.&lt;br&gt;di 10 jun00:00 - 00:00&lt;br&gt;wo 11 jun00:00 - 00:00&lt;br&gt;do 12 jun00:00 - 00:00&lt;br&gt;04
-
-jun '25&lt;br&gt;31
-
-aug '25&lt;br&gt;04
-
-jun '25&lt;br&gt;21
-
-sep '25&lt;br&gt;04
-
-jun '25&lt;br&gt;27
-
-okt '25&lt;br&gt;04
-
-jun '25&lt;br&gt;27
-
-okt '25&lt;br&gt;12
-
-jul '25&lt;br&gt;10
-
-aug '25&lt;br&gt;04
-
-jun '25&lt;br&gt;07
-
-sep '25&lt;br&gt;04
-
-jun '25&lt;br&gt;20
-
-jun '25&lt;br&gt;18
-
-jun '25&lt;br&gt;27
-
-okt '25&lt;br&gt;04
-
-jun '25&lt;br&gt;31
-
-aug '25&lt;br&gt;04
-
-jun '25&lt;br&gt;07
-
-sep '25&lt;/span&gt;
+&lt;span class="event-value"&gt;di 10 jun00:00 - 00:00&lt;br&gt;wo 11 jun00:00 - 00:00&lt;br&gt;do 12 jun00:00 - 00:00&lt;/span&gt;
 &lt;/div&gt;
 &lt;div class="event-info-line"&gt;
 &lt;span class="event-icon"&gt;💰&lt;/span&gt;
@@ -157,7 +117,7 @@ sep '25&lt;/span&gt;
 &lt;/div&gt;</description>
       <guid isPermaLink="false">https://www.iamsterdam.com/uit/agenda/tentoonstellingen/alle-tentoonstellingen/verhaalpaal-noord</guid>
       <enclosure url="https://app.thefeedfactory.nl/api/assets/670f8364aa502822e79de011/Verhaalpaal_Noord_Keyvisual_1800x1020.png" length="0" type="image/jpeg"/>
-      <pubDate>Tue, 10 Jun 2025 16:11:08 +0000</pubDate>
+      <pubDate>Tue, 10 Jun 2025 16:11:41 +0000</pubDate>
     </item>
   </channel>
 </rss>
