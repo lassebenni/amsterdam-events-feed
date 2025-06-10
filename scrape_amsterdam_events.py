@@ -573,92 +573,75 @@ class AmsterdamEventsScraper:
         fg.description('Curated upcoming events and activities in Amsterdam from I amsterdam official agenda')
         fg.language('en')
         fg.lastBuildDate(datetime.now(timezone.utc))
-        fg.generator('Amsterdam Events Scraper v6.0')
+        fg.generator('Amsterdam Events Scraper v7.0')
         
         # Add each event as a feed entry
         for event in self.events:
             fe = fg.add_entry()
+            fe.id(event['link'])
             fe.title(event['title'])
             fe.link(href=event['link'])
+            fe.pubDate(datetime.now(timezone.utc))
             
-            # Create WordPress-friendly description with embedded images
-            description_parts = []
+            # Try a different approach for images - put them first in content and also as media content
+            content_parts = []
             
-            # Add image at the top if available
+            # Add image at the very beginning if available - in multiple formats to increase compatibility
             if event.get('image'):
-                description_parts.append(f'<img src="{event["image"]}" alt="{event["title"]}" width="300" height="200" style="display: block; margin: 0 auto 15px auto; border-radius: 8px;" />')
+                # Method 1: Simple image tag at start
+                content_parts.append(f'<img src="{event["image"]}" alt="{event["title"]}" style="max-width: 300px; height: auto; display: block; margin: 10px auto;" />')
+                # Also try setting it as media content (alternative approach)
+                try:
+                    fe.enclosure(url=event['image'], type='image/jpeg', length='0')
+                except:
+                    pass
             
-            # Add title and tags
-            description_parts.append(f'<h3 style="color: #E31E24; text-align: center;">🎭 {event["title"]}</h3>')
+            # Add structured content with emojis
+            content_parts.append(f'<h3 style="color: #E31E24; text-align: center;">🎭 {event["title"]}</h3>')
             
             if event.get('tags'):
                 tags_html = ' • '.join([f'<strong>{tag}</strong>' for tag in event['tags']])
-                description_parts.append(f'<p style="text-align: center; color: #666;"><em>{tags_html}</em></p>')
+                content_parts.append(f'<p style="text-align: center; color: #666;"><em>{tags_html}</em></p>')
             
-            # Add structured event information
-            description_parts.append('<hr style="border: 1px solid #E31E24; margin: 15px 0;" />')
-            description_parts.append('<h4 style="color: #E31E24;">📋 Event Information</h4>')
-            description_parts.append('<ul style="list-style-type: none; padding-left: 0;">')
+            content_parts.append('<hr style="border: 1px solid #E31E24; margin: 15px 0;" />')
+            content_parts.append('<h4 style="color: #E31E24;">📋 Event Information</h4>')
+            content_parts.append('<ul style="list-style-type: none; padding-left: 0;">')
+            content_parts.append('<li style="margin-bottom: 8px;"><strong>📅 Date:</strong> Check website for details</li>')
+            content_parts.append(f'<li style="margin-bottom: 8px;"><strong>📍 Location:</strong> {event.get("location", "Amsterdam")}</li>')
+            content_parts.append('<li style="margin-bottom: 8px;"><strong>🏛️ Source:</strong> Official I amsterdam</li>')
+            content_parts.append('</ul>')
             
-            if event.get('date'):
-                description_parts.append(f'<li style="margin-bottom: 8px;"><strong>📅 Date:</strong> {event["date"]}</li>')
-            else:
-                description_parts.append('<li style="margin-bottom: 8px;"><strong>📅 Date:</strong> Check website for details</li>')
+            content_parts.append('<hr style="border: 1px solid #ddd; margin: 15px 0;" />')
+            content_parts.append('<h4 style="color: #495057;">ℹ️ About This Event</h4>')
             
-            if event.get('time'):
-                description_parts.append(f'<li style="margin-bottom: 8px;"><strong>🕐 Time:</strong> {event["time"]}</li>')
+            # Clean and truncate description
+            description = event.get('description', event['title'])
+            if len(description) > 300:
+                description = description[:297] + '...'
             
-            if event.get('location'):
-                description_parts.append(f'<li style="margin-bottom: 8px;"><strong>📍 Location:</strong> {event["location"]}</li>')
-            else:
-                description_parts.append('<li style="margin-bottom: 8px;"><strong>📍 Location:</strong> Amsterdam</li>')
+            content_parts.append(f'<p style="color: #6c757d; line-height: 1.5;">{description}</p>')
+            content_parts.append('<hr style="border: 1px solid #ddd; margin: 15px 0;" />')
+            content_parts.append(f'<p style="text-align: center;"><a href="{event["link"]}" target="_blank" style="background: #E31E24; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">🌟 View Full Details on I amsterdam →</a></p>')
+            content_parts.append('<p style="text-align: center; color: #999; font-size: 0.9em; margin-top: 15px;"><em>✨ Official Amsterdam Event • Updated June 09, 2025 • I amsterdam Calendar</em></p>')
             
-            if event.get('price'):
-                description_parts.append(f'<li style="margin-bottom: 8px;"><strong>💰 Price:</strong> {event["price"]}</li>')
+            # Join all content
+            full_content = '\n'.join(content_parts)
+            fe.description(full_content)
             
-            description_parts.append('<li style="margin-bottom: 8px;"><strong>🏛️ Source:</strong> Official I amsterdam</li>')
-            description_parts.append('</ul>')
-            
-            # Add description if available
-            if event.get('description') and event['description'].strip():
-                # Clean up the description to remove HTML tags and take only plain text
-                clean_description = event['description']
-                if '<div class=' in clean_description:
-                    # Extract just the meaningful text, not the HTML structure
-                    import re
-                    clean_description = re.sub(r'<[^>]+>', ' ', clean_description)
-                    clean_description = re.sub(r'\s+', ' ', clean_description).strip()
-                
-                description_parts.append('<hr style="border: 1px solid #ddd; margin: 15px 0;" />')
-                description_parts.append('<h4 style="color: #495057;">ℹ️ About This Event</h4>')
-                description_parts.append(f'<p style="color: #6c757d; line-height: 1.5;">{clean_description[:300]}{"..." if len(clean_description) > 300 else ""}</p>')
-            
-            # Add call-to-action
-            description_parts.append('<hr style="border: 1px solid #ddd; margin: 15px 0;" />')
-            description_parts.append(f'<p style="text-align: center;"><a href="{event["link"]}" target="_blank" style="background: #E31E24; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">🌟 View Full Details on I amsterdam →</a></p>')
-            
-            # Add footer
-            description_parts.append(f'<p style="text-align: center; color: #999; font-size: 0.9em; margin-top: 15px;"><em>✨ Official Amsterdam Event • Updated {datetime.now().strftime("%B %d, %Y")} • I amsterdam Calendar</em></p>')
-            
-            # Join all parts
-            final_description = '\n'.join(description_parts)
-            
-            fe.description(final_description)
-            fe.pubDate(event['pub_date'])
-            
-            # Add image as enclosure if available (backup method)
+            # Also add image as enclosure for RSS readers that support it
             if event.get('image'):
-                fe.enclosure(event['image'], 0, 'image/jpeg')
+                try:
+                    fe.enclosure(url=event['image'], type='image/jpeg', length='0')
+                except Exception as e:
+                    logger.warning(f"Could not add enclosure for {event['title']}: {e}")
         
-        # Generate and save RSS feed
-        rss_content = fg.rss_str(pretty=True)
+        # Generate the RSS feed
+        rss_str = fg.rss_str(pretty=True)
+        
         with open(output_file, 'wb') as f:
-            f.write(rss_content)
-            
-        logger.info(f"RSS feed generated successfully: {output_file}")
-        logger.info(f"Feed contains {len(self.events)} events")
+            f.write(rss_str)
         
-        return output_file
+        logger.info(f"RSS feed saved to {output_file}")
 
     def save_events_json(self, output_file="events.json"):
         """Save events as JSON for debugging/alternative use"""
