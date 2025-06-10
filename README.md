@@ -2,7 +2,7 @@
 
 **Automated Python scraper that collects Amsterdam event data and generates an RSS feed for easy WordPress integration.**
 
-[![Scrape Amsterdam Events](https://github.com/USERNAME/amsterdam-events-feed/actions/workflows/scrape-events.yml/badge.svg)](https://github.com/USERNAME/amsterdam-events-feed/actions/workflows/scrape-events.yml)
+[![Scrape Amsterdam Events](https://github.com/lassebenni/amsterdam-events-feed/actions/workflows/scrape-events.yml/badge.svg)](https://github.com/lassebenni/amsterdam-events-feed/actions/workflows/scrape-events.yml)
 
 ## 🎯 What This Does
 
