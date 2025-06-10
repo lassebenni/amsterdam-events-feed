@@ -5,21 +5,109 @@
     <link>https://raw.githubusercontent.com/lassebenni/amsterdam-events-feed/master/events.xml</link>
     <description>Curated upcoming events and activities in Amsterdam from I amsterdam official agenda</description>
     <docs>http://www.rssboard.org/rss-specification</docs>
-    <generator>Amsterdam Events Scraper v9.0</generator>
+    <generator>Amsterdam Events Scraper v10.0</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 10 Jun 2025 10:51:13 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 10 Jun 2025 11:19:17 +0000</lastBuildDate>
     <item>
       <title>04jun '25-24jun '25BioBlitz Amsterdamse Bos 202506:00 - 21:30Het Amsterdamse BosTickets beschikbaar</title>
       <link>https://www.iamsterdam.com/uit/agenda/attracties-en-bezienswaardigheden/tours/bioblitz-amsterdamse-bos-2025</link>
-      <description>🎭 04jun '25-24jun '25BioBlitz Amsterdamse Bos 202506:00 - 21:30Het Amsterdamse BosTickets beschikbaar
-
-🏷️ Amsterdam 750 events • Gratis entree
-
-📅 Date: Check website for details
-📍 Location: Museum
-🏛️ Source: Official I amsterdam
-
-ℹ️ 
+      <description>
+            &lt;style&gt;
+            .amsterdam-event-card {
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+                padding: 20px;
+                margin: 15px 0;
+                background: #fafafa;
+                font-family: Arial, sans-serif;
+            }
+            .event-details {
+                margin-bottom: 15px;
+            }
+            .event-info-line {
+                display: flex;
+                align-items: center;
+                margin: 8px 0;
+                line-height: 1.5;
+            }
+            .event-icon {
+                font-size: 16px;
+                margin-right: 8px;
+                min-width: 24px;
+            }
+            .event-label {
+                font-weight: bold;
+                margin-right: 8px;
+                color: #333;
+                min-width: 80px;
+            }
+            .event-value {
+                color: #555;
+                flex: 1;
+            }
+            .event-description {
+                margin: 15px 0;
+                padding: 10px;
+                background: #f0f0f0;
+                border-radius: 4px;
+            }
+            .event-description-text {
+                margin: 8px 0;
+                line-height: 1.6;
+                color: #444;
+            }
+            .event-actions {
+                margin-top: 15px;
+                padding-top: 15px;
+                border-top: 1px solid #ddd;
+            }
+            .event-link {
+                color: #E31E24;
+                text-decoration: none;
+                font-weight: bold;
+                padding: 8px 12px;
+                background: #fff;
+                border: 2px solid #E31E24;
+                border-radius: 4px;
+                display: inline-block;
+                transition: all 0.3s ease;
+            }
+            .event-link:hover {
+                background: #E31E24;
+                color: white;
+            }
+            &lt;/style&gt;
+            &lt;div class="amsterdam-event-card"&gt;
+&lt;div class="event-details"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;📅&lt;/span&gt;
+&lt;span class="event-label"&gt;Date:&lt;/span&gt;
+&lt;span class="event-value"&gt;Check website for specific dates and times&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;📍&lt;/span&gt;
+&lt;span class="event-label"&gt;Location:&lt;/span&gt;
+&lt;span class="event-value"&gt;Museum&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🏛️&lt;/span&gt;
+&lt;span class="event-label"&gt;Source:&lt;/span&gt;
+&lt;span class="event-value"&gt;Official I amsterdam&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🏷️&lt;/span&gt;
+&lt;span class="event-label"&gt;Tags:&lt;/span&gt;
+&lt;span class="event-value"&gt;
+Amsterdam 750 events • Gratis entree
+&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="event-description"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;ℹ️&lt;/span&gt;
+&lt;span class="event-label"&gt;Description:&lt;/span&gt;
+&lt;/div&gt;
+&lt;p class="event-description-text"&gt;
 04jun '25-24jun '25BioBlitz Amsterdamse Bos 202506:00 - 21:30Het Amsterdamse BosTickets beschikbaar
 
 Amsterdam 750 events
@@ -30,54 +118,246 @@ Gratis entree
 📍 Museum
 🏛️ Official I amsterdam event
 
-Vie...
-
-🌟 View Details: https://www.iamsterdam.com/uit/agenda/attracties-en-bezienswaardigheden/tours/bioblitz-amsterdamse-bos-2025
-
-🖼️ Event Image: https://app.thefeedfactory.nl/api/assets/6821db96720e12034f6aed18/Boterbloemenveld_Tom_Zwerver__2_.JPG</description>
+View full details on I amsterdam
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="event-actions"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🌟&lt;/span&gt;
+&lt;span class="event-label"&gt;More Info:&lt;/span&gt;
+&lt;a href="https://www.iamsterdam.com/uit/agenda/attracties-en-bezienswaardigheden/tours/bioblitz-amsterdamse-bos-2025" target="_blank" rel="noopener" class="event-link"&gt;View Event Details on I amsterdam&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
       <guid isPermaLink="false">https://www.iamsterdam.com/uit/agenda/attracties-en-bezienswaardigheden/tours/bioblitz-amsterdamse-bos-2025</guid>
       <enclosure url="https://app.thefeedfactory.nl/api/assets/6821db96720e12034f6aed18/Boterbloemenveld_Tom_Zwerver__2_.JPG" length="0" type="image/jpeg"/>
-      <pubDate>Tue, 10 Jun 2025 10:51:13 +0000</pubDate>
+      <pubDate>Tue, 10 Jun 2025 11:19:17 +0000</pubDate>
     </item>
     <item>
       <title>04jun '25-30dec '25Ontdek Oosterdok: interactieve wandelroute in AmsterdamAmsterdam 750 events00:00 - 23:59Diverse locaties / Various locationsGratis entree</title>
       <link>https://www.iamsterdam.com/uit/agenda/attracties-en-bezienswaardigheden/tours/ontdek-oosterdok-interactieve-wandelroute-in-amsterdam</link>
-      <description>🎭 04jun '25-30dec '25Ontdek Oosterdok: interactieve wandelroute in AmsterdamAmsterdam 750 events00:00 - 23:59Diverse locaties / Various locationsGratis entree
-
-🏷️ Amsterdam 750 events • Gratis entree
-
-📅 Date: Check website for details
-📍 Location: Museum
-🏛️ Source: Official I amsterdam
-
-ℹ️ 
+      <description>
+            &lt;style&gt;
+            .amsterdam-event-card {
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+                padding: 20px;
+                margin: 15px 0;
+                background: #fafafa;
+                font-family: Arial, sans-serif;
+            }
+            .event-details {
+                margin-bottom: 15px;
+            }
+            .event-info-line {
+                display: flex;
+                align-items: center;
+                margin: 8px 0;
+                line-height: 1.5;
+            }
+            .event-icon {
+                font-size: 16px;
+                margin-right: 8px;
+                min-width: 24px;
+            }
+            .event-label {
+                font-weight: bold;
+                margin-right: 8px;
+                color: #333;
+                min-width: 80px;
+            }
+            .event-value {
+                color: #555;
+                flex: 1;
+            }
+            .event-description {
+                margin: 15px 0;
+                padding: 10px;
+                background: #f0f0f0;
+                border-radius: 4px;
+            }
+            .event-description-text {
+                margin: 8px 0;
+                line-height: 1.6;
+                color: #444;
+            }
+            .event-actions {
+                margin-top: 15px;
+                padding-top: 15px;
+                border-top: 1px solid #ddd;
+            }
+            .event-link {
+                color: #E31E24;
+                text-decoration: none;
+                font-weight: bold;
+                padding: 8px 12px;
+                background: #fff;
+                border: 2px solid #E31E24;
+                border-radius: 4px;
+                display: inline-block;
+                transition: all 0.3s ease;
+            }
+            .event-link:hover {
+                background: #E31E24;
+                color: white;
+            }
+            &lt;/style&gt;
+            &lt;div class="amsterdam-event-card"&gt;
+&lt;div class="event-details"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;📅&lt;/span&gt;
+&lt;span class="event-label"&gt;Date:&lt;/span&gt;
+&lt;span class="event-value"&gt;Check website for specific dates and times&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;📍&lt;/span&gt;
+&lt;span class="event-label"&gt;Location:&lt;/span&gt;
+&lt;span class="event-value"&gt;Museum&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🏛️&lt;/span&gt;
+&lt;span class="event-label"&gt;Source:&lt;/span&gt;
+&lt;span class="event-value"&gt;Official I amsterdam&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🏷️&lt;/span&gt;
+&lt;span class="event-label"&gt;Tags:&lt;/span&gt;
+&lt;span class="event-value"&gt;
+Amsterdam 750 events • Gratis entree
+&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="event-description"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;ℹ️&lt;/span&gt;
+&lt;span class="event-label"&gt;Description:&lt;/span&gt;
+&lt;/div&gt;
+&lt;p class="event-description-text"&gt;
 04jun '25-30dec '25Ontdek Oosterdok: interactieve wandelroute in AmsterdamAmsterdam 750 events00:00 - 23:59Diverse locaties / Various locationsGratis entree
 
 Amsterdam 750 events
 Gratis entree
 
 
-📅...
+📅 04 June 2025
+📍 Museum
+🏛️ Official I amsterdam event
 
-🌟 View Details: https://www.iamsterdam.com/uit/agenda/attracties-en-bezienswaardigheden/tours/ontdek-oosterdok-interactieve-wandelroute-in-amsterdam
-
-🖼️ Event Image: https://app.thefeedfactory.nl/api/assets/681b5bb1d04bf142d787f931/204893__1_.jpg</description>
+View full details on I amsterdam
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="event-actions"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🌟&lt;/span&gt;
+&lt;span class="event-label"&gt;More Info:&lt;/span&gt;
+&lt;a href="https://www.iamsterdam.com/uit/agenda/attracties-en-bezienswaardigheden/tours/ontdek-oosterdok-interactieve-wandelroute-in-amsterdam" target="_blank" rel="noopener" class="event-link"&gt;View Event Details on I amsterdam&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
       <guid isPermaLink="false">https://www.iamsterdam.com/uit/agenda/attracties-en-bezienswaardigheden/tours/ontdek-oosterdok-interactieve-wandelroute-in-amsterdam</guid>
       <enclosure url="https://app.thefeedfactory.nl/api/assets/681b5bb1d04bf142d787f931/204893__1_.jpg" length="0" type="image/jpeg"/>
-      <pubDate>Tue, 10 Jun 2025 10:51:13 +0000</pubDate>
+      <pubDate>Tue, 10 Jun 2025 11:19:17 +0000</pubDate>
     </item>
     <item>
       <title>04jun '25-27okt '25DijkreisAmsterdam 750 events00:00 - 00:00NieuwendammerdijkGratis entree</title>
       <link>https://www.iamsterdam.com/uit/agenda/tentoonstellingen/alle-tentoonstellingen/dijkreis</link>
-      <description>🎭 04jun '25-27okt '25DijkreisAmsterdam 750 events00:00 - 00:00NieuwendammerdijkGratis entree
-
-🏷️ Amsterdam 750 events • Gratis entree
-
-📅 Date: Check website for details
-📍 Location: Museum
-🏛️ Source: Official I amsterdam
-
-ℹ️ 
+      <description>
+            &lt;style&gt;
+            .amsterdam-event-card {
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+                padding: 20px;
+                margin: 15px 0;
+                background: #fafafa;
+                font-family: Arial, sans-serif;
+            }
+            .event-details {
+                margin-bottom: 15px;
+            }
+            .event-info-line {
+                display: flex;
+                align-items: center;
+                margin: 8px 0;
+                line-height: 1.5;
+            }
+            .event-icon {
+                font-size: 16px;
+                margin-right: 8px;
+                min-width: 24px;
+            }
+            .event-label {
+                font-weight: bold;
+                margin-right: 8px;
+                color: #333;
+                min-width: 80px;
+            }
+            .event-value {
+                color: #555;
+                flex: 1;
+            }
+            .event-description {
+                margin: 15px 0;
+                padding: 10px;
+                background: #f0f0f0;
+                border-radius: 4px;
+            }
+            .event-description-text {
+                margin: 8px 0;
+                line-height: 1.6;
+                color: #444;
+            }
+            .event-actions {
+                margin-top: 15px;
+                padding-top: 15px;
+                border-top: 1px solid #ddd;
+            }
+            .event-link {
+                color: #E31E24;
+                text-decoration: none;
+                font-weight: bold;
+                padding: 8px 12px;
+                background: #fff;
+                border: 2px solid #E31E24;
+                border-radius: 4px;
+                display: inline-block;
+                transition: all 0.3s ease;
+            }
+            .event-link:hover {
+                background: #E31E24;
+                color: white;
+            }
+            &lt;/style&gt;
+            &lt;div class="amsterdam-event-card"&gt;
+&lt;div class="event-details"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;📅&lt;/span&gt;
+&lt;span class="event-label"&gt;Date:&lt;/span&gt;
+&lt;span class="event-value"&gt;Check website for specific dates and times&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;📍&lt;/span&gt;
+&lt;span class="event-label"&gt;Location:&lt;/span&gt;
+&lt;span class="event-value"&gt;Museum&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🏛️&lt;/span&gt;
+&lt;span class="event-label"&gt;Source:&lt;/span&gt;
+&lt;span class="event-value"&gt;Official I amsterdam&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🏷️&lt;/span&gt;
+&lt;span class="event-label"&gt;Tags:&lt;/span&gt;
+&lt;span class="event-value"&gt;
+Amsterdam 750 events • Gratis entree
+&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="event-description"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;ℹ️&lt;/span&gt;
+&lt;span class="event-label"&gt;Description:&lt;/span&gt;
+&lt;/div&gt;
+&lt;p class="event-description-text"&gt;
 04jun '25-27okt '25DijkreisAmsterdam 750 events00:00 - 00:00NieuwendammerdijkGratis entree
 
 Amsterdam 750 events
@@ -88,27 +368,121 @@ Gratis entree
 📍 Museum
 🏛️ Official I amsterdam event
 
-View full de...
-
-🌟 View Details: https://www.iamsterdam.com/uit/agenda/tentoonstellingen/alle-tentoonstellingen/dijkreis
-
-🖼️ Event Image: https://app.thefeedfactory.nl/api/assets/672cec21f64fef7b4b38acd1/dijkwandeling.jpg</description>
+View full details on I amsterdam
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="event-actions"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🌟&lt;/span&gt;
+&lt;span class="event-label"&gt;More Info:&lt;/span&gt;
+&lt;a href="https://www.iamsterdam.com/uit/agenda/tentoonstellingen/alle-tentoonstellingen/dijkreis" target="_blank" rel="noopener" class="event-link"&gt;View Event Details on I amsterdam&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
       <guid isPermaLink="false">https://www.iamsterdam.com/uit/agenda/tentoonstellingen/alle-tentoonstellingen/dijkreis</guid>
       <enclosure url="https://app.thefeedfactory.nl/api/assets/672cec21f64fef7b4b38acd1/dijkwandeling.jpg" length="0" type="image/jpeg"/>
-      <pubDate>Tue, 10 Jun 2025 10:51:13 +0000</pubDate>
+      <pubDate>Tue, 10 Jun 2025 11:19:17 +0000</pubDate>
     </item>
     <item>
       <title>04jun '25-29jun '25Openluchttentoonstelling - Elephant Parade Amsterdam Tour 2025Amsterdam 750 events00:00 - 00:00BeurspleinGratis entree</title>
       <link>https://www.iamsterdam.com/uit/agenda/festivals/events/openluchttentoonstelling-elephant-parade-amsterdam-tour-2025</link>
-      <description>🎭 04jun '25-29jun '25Openluchttentoonstelling - Elephant Parade Amsterdam Tour 2025Amsterdam 750 events00:00 - 00:00BeurspleinGratis entree
-
-🏷️ Amsterdam 750 events • Gratis entree
-
-📅 Date: Check website for details
-📍 Location: Museum
-🏛️ Source: Official I amsterdam
-
-ℹ️ 
+      <description>
+            &lt;style&gt;
+            .amsterdam-event-card {
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+                padding: 20px;
+                margin: 15px 0;
+                background: #fafafa;
+                font-family: Arial, sans-serif;
+            }
+            .event-details {
+                margin-bottom: 15px;
+            }
+            .event-info-line {
+                display: flex;
+                align-items: center;
+                margin: 8px 0;
+                line-height: 1.5;
+            }
+            .event-icon {
+                font-size: 16px;
+                margin-right: 8px;
+                min-width: 24px;
+            }
+            .event-label {
+                font-weight: bold;
+                margin-right: 8px;
+                color: #333;
+                min-width: 80px;
+            }
+            .event-value {
+                color: #555;
+                flex: 1;
+            }
+            .event-description {
+                margin: 15px 0;
+                padding: 10px;
+                background: #f0f0f0;
+                border-radius: 4px;
+            }
+            .event-description-text {
+                margin: 8px 0;
+                line-height: 1.6;
+                color: #444;
+            }
+            .event-actions {
+                margin-top: 15px;
+                padding-top: 15px;
+                border-top: 1px solid #ddd;
+            }
+            .event-link {
+                color: #E31E24;
+                text-decoration: none;
+                font-weight: bold;
+                padding: 8px 12px;
+                background: #fff;
+                border: 2px solid #E31E24;
+                border-radius: 4px;
+                display: inline-block;
+                transition: all 0.3s ease;
+            }
+            .event-link:hover {
+                background: #E31E24;
+                color: white;
+            }
+            &lt;/style&gt;
+            &lt;div class="amsterdam-event-card"&gt;
+&lt;div class="event-details"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;📅&lt;/span&gt;
+&lt;span class="event-label"&gt;Date:&lt;/span&gt;
+&lt;span class="event-value"&gt;Check website for specific dates and times&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;📍&lt;/span&gt;
+&lt;span class="event-label"&gt;Location:&lt;/span&gt;
+&lt;span class="event-value"&gt;Museum&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🏛️&lt;/span&gt;
+&lt;span class="event-label"&gt;Source:&lt;/span&gt;
+&lt;span class="event-value"&gt;Official I amsterdam&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🏷️&lt;/span&gt;
+&lt;span class="event-label"&gt;Tags:&lt;/span&gt;
+&lt;span class="event-value"&gt;
+Amsterdam 750 events • Gratis entree
+&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="event-description"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;ℹ️&lt;/span&gt;
+&lt;span class="event-label"&gt;Description:&lt;/span&gt;
+&lt;/div&gt;
+&lt;p class="event-description-text"&gt;
 04jun '25-29jun '25Openluchttentoonstelling - Elephant Parade Amsterdam Tour 2025Amsterdam 750 events00:00 - 00:00BeurspleinGratis entree
 
 Amsterdam 750 events
@@ -116,27 +490,124 @@ Gratis entree
 
 
 📅 04 June 2025
-📍 Mus...
+📍 Museum
+🏛️ Official I amsterdam event
 
-🌟 View Details: https://www.iamsterdam.com/uit/agenda/festivals/events/openluchttentoonstelling-elephant-parade-amsterdam-tour-2025
-
-🖼️ Event Image: https://app.thefeedfactory.nl/api/assets/67fd152a06e08d518c27b60f/EP-Amsterdam-Tour-1920x1080.jpg</description>
+View full details on I amsterdam
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="event-actions"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🌟&lt;/span&gt;
+&lt;span class="event-label"&gt;More Info:&lt;/span&gt;
+&lt;a href="https://www.iamsterdam.com/uit/agenda/festivals/events/openluchttentoonstelling-elephant-parade-amsterdam-tour-2025" target="_blank" rel="noopener" class="event-link"&gt;View Event Details on I amsterdam&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
       <guid isPermaLink="false">https://www.iamsterdam.com/uit/agenda/festivals/events/openluchttentoonstelling-elephant-parade-amsterdam-tour-2025</guid>
       <enclosure url="https://app.thefeedfactory.nl/api/assets/67fd152a06e08d518c27b60f/EP-Amsterdam-Tour-1920x1080.jpg" length="0" type="image/jpeg"/>
-      <pubDate>Tue, 10 Jun 2025 10:51:13 +0000</pubDate>
+      <pubDate>Tue, 10 Jun 2025 11:19:17 +0000</pubDate>
     </item>
     <item>
       <title>04jun '25-20mrt '26Verhaalpaal NoordAmsterdam 750 events00:00 - 00:00Diverse Locaties / Various locationsGratis entree</title>
       <link>https://www.iamsterdam.com/uit/agenda/tentoonstellingen/alle-tentoonstellingen/verhaalpaal-noord</link>
-      <description>🎭 04jun '25-20mrt '26Verhaalpaal NoordAmsterdam 750 events00:00 - 00:00Diverse Locaties / Various locationsGratis entree
-
-🏷️ Amsterdam 750 events • Gratis entree
-
-📅 Date: Check website for details
-📍 Location: Museum
-🏛️ Source: Official I amsterdam
-
-ℹ️ 
+      <description>
+            &lt;style&gt;
+            .amsterdam-event-card {
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+                padding: 20px;
+                margin: 15px 0;
+                background: #fafafa;
+                font-family: Arial, sans-serif;
+            }
+            .event-details {
+                margin-bottom: 15px;
+            }
+            .event-info-line {
+                display: flex;
+                align-items: center;
+                margin: 8px 0;
+                line-height: 1.5;
+            }
+            .event-icon {
+                font-size: 16px;
+                margin-right: 8px;
+                min-width: 24px;
+            }
+            .event-label {
+                font-weight: bold;
+                margin-right: 8px;
+                color: #333;
+                min-width: 80px;
+            }
+            .event-value {
+                color: #555;
+                flex: 1;
+            }
+            .event-description {
+                margin: 15px 0;
+                padding: 10px;
+                background: #f0f0f0;
+                border-radius: 4px;
+            }
+            .event-description-text {
+                margin: 8px 0;
+                line-height: 1.6;
+                color: #444;
+            }
+            .event-actions {
+                margin-top: 15px;
+                padding-top: 15px;
+                border-top: 1px solid #ddd;
+            }
+            .event-link {
+                color: #E31E24;
+                text-decoration: none;
+                font-weight: bold;
+                padding: 8px 12px;
+                background: #fff;
+                border: 2px solid #E31E24;
+                border-radius: 4px;
+                display: inline-block;
+                transition: all 0.3s ease;
+            }
+            .event-link:hover {
+                background: #E31E24;
+                color: white;
+            }
+            &lt;/style&gt;
+            &lt;div class="amsterdam-event-card"&gt;
+&lt;div class="event-details"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;📅&lt;/span&gt;
+&lt;span class="event-label"&gt;Date:&lt;/span&gt;
+&lt;span class="event-value"&gt;Check website for specific dates and times&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;📍&lt;/span&gt;
+&lt;span class="event-label"&gt;Location:&lt;/span&gt;
+&lt;span class="event-value"&gt;Museum&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🏛️&lt;/span&gt;
+&lt;span class="event-label"&gt;Source:&lt;/span&gt;
+&lt;span class="event-value"&gt;Official I amsterdam&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🏷️&lt;/span&gt;
+&lt;span class="event-label"&gt;Tags:&lt;/span&gt;
+&lt;span class="event-value"&gt;
+Amsterdam 750 events • Gratis entree
+&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="event-description"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;ℹ️&lt;/span&gt;
+&lt;span class="event-label"&gt;Description:&lt;/span&gt;
+&lt;/div&gt;
+&lt;p class="event-description-text"&gt;
 04jun '25-20mrt '26Verhaalpaal NoordAmsterdam 750 events00:00 - 00:00Diverse Locaties / Various locationsGratis entree
 
 Amsterdam 750 events
@@ -145,264 +616,1152 @@ Gratis entree
 
 📅 04 June 2025
 📍 Museum
-🏛️ Official I a...
+🏛️ Official I amsterdam event
 
-🌟 View Details: https://www.iamsterdam.com/uit/agenda/tentoonstellingen/alle-tentoonstellingen/verhaalpaal-noord
-
-🖼️ Event Image: https://app.thefeedfactory.nl/api/assets/670f8364aa502822e79de011/Verhaalpaal_Noord_Keyvisual_1800x1020.png</description>
+View full details on I amsterdam
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="event-actions"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🌟&lt;/span&gt;
+&lt;span class="event-label"&gt;More Info:&lt;/span&gt;
+&lt;a href="https://www.iamsterdam.com/uit/agenda/tentoonstellingen/alle-tentoonstellingen/verhaalpaal-noord" target="_blank" rel="noopener" class="event-link"&gt;View Event Details on I amsterdam&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
       <guid isPermaLink="false">https://www.iamsterdam.com/uit/agenda/tentoonstellingen/alle-tentoonstellingen/verhaalpaal-noord</guid>
       <enclosure url="https://app.thefeedfactory.nl/api/assets/670f8364aa502822e79de011/Verhaalpaal_Noord_Keyvisual_1800x1020.png" length="0" type="image/jpeg"/>
-      <pubDate>Tue, 10 Jun 2025 10:51:13 +0000</pubDate>
+      <pubDate>Tue, 10 Jun 2025 11:19:17 +0000</pubDate>
     </item>
     <item>
       <title>Winkelen en markten</title>
       <link>https://www.iamsterdam.com/uit/agenda/winkelen</link>
-      <description>🎭 Winkelen en markten
-
-📅 Date: Check website for details
-📍 Location: 
-🏛️ Source: Official I amsterdam
-
-ℹ️ 
+      <description>
+            &lt;style&gt;
+            .amsterdam-event-card {
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+                padding: 20px;
+                margin: 15px 0;
+                background: #fafafa;
+                font-family: Arial, sans-serif;
+            }
+            .event-details {
+                margin-bottom: 15px;
+            }
+            .event-info-line {
+                display: flex;
+                align-items: center;
+                margin: 8px 0;
+                line-height: 1.5;
+            }
+            .event-icon {
+                font-size: 16px;
+                margin-right: 8px;
+                min-width: 24px;
+            }
+            .event-label {
+                font-weight: bold;
+                margin-right: 8px;
+                color: #333;
+                min-width: 80px;
+            }
+            .event-value {
+                color: #555;
+                flex: 1;
+            }
+            .event-description {
+                margin: 15px 0;
+                padding: 10px;
+                background: #f0f0f0;
+                border-radius: 4px;
+            }
+            .event-description-text {
+                margin: 8px 0;
+                line-height: 1.6;
+                color: #444;
+            }
+            .event-actions {
+                margin-top: 15px;
+                padding-top: 15px;
+                border-top: 1px solid #ddd;
+            }
+            .event-link {
+                color: #E31E24;
+                text-decoration: none;
+                font-weight: bold;
+                padding: 8px 12px;
+                background: #fff;
+                border: 2px solid #E31E24;
+                border-radius: 4px;
+                display: inline-block;
+                transition: all 0.3s ease;
+            }
+            .event-link:hover {
+                background: #E31E24;
+                color: white;
+            }
+            &lt;/style&gt;
+            &lt;div class="amsterdam-event-card"&gt;
+&lt;div class="event-details"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;📅&lt;/span&gt;
+&lt;span class="event-label"&gt;Date:&lt;/span&gt;
+&lt;span class="event-value"&gt;Check website for specific dates and times&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;📍&lt;/span&gt;
+&lt;span class="event-label"&gt;Location:&lt;/span&gt;
+&lt;span class="event-value"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🏛️&lt;/span&gt;
+&lt;span class="event-label"&gt;Source:&lt;/span&gt;
+&lt;span class="event-value"&gt;Official I amsterdam&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="event-description"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;ℹ️&lt;/span&gt;
+&lt;span class="event-label"&gt;Description:&lt;/span&gt;
+&lt;/div&gt;
+&lt;p class="event-description-text"&gt;
 Winkelen en markten
 
 📅 Check website for dates and times
 🏛️ Official I amsterdam event
 
 View full details on I amsterdam
-
-
-🌟 View Details: https://www.iamsterdam.com/uit/agenda/winkelen
-
-🖼️ Event Image: https://app.thefeedfactory.nl/api/assets/68114ea690323362d0126072/conducting-mahler-riccardo-chailly-3-cinema-amstelveen-jpeg-center-0-30441822503723542-0_01967f13-f173-7cb6-8b06-0aefde9998ca.jpg</description>
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="event-actions"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🌟&lt;/span&gt;
+&lt;span class="event-label"&gt;More Info:&lt;/span&gt;
+&lt;a href="https://www.iamsterdam.com/uit/agenda/winkelen" target="_blank" rel="noopener" class="event-link"&gt;View Event Details on I amsterdam&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
       <guid isPermaLink="false">https://www.iamsterdam.com/uit/agenda/winkelen</guid>
       <enclosure url="https://app.thefeedfactory.nl/api/assets/68114ea690323362d0126072/conducting-mahler-riccardo-chailly-3-cinema-amstelveen-jpeg-center-0-30441822503723542-0_01967f13-f173-7cb6-8b06-0aefde9998ca.jpg" length="0" type="image/jpeg"/>
-      <pubDate>Tue, 10 Jun 2025 10:51:13 +0000</pubDate>
+      <pubDate>Tue, 10 Jun 2025 11:19:17 +0000</pubDate>
     </item>
     <item>
       <title>Voorstellingen</title>
       <link>https://www.iamsterdam.com/uit/agenda/voorstellingen</link>
-      <description>🎭 Voorstellingen
-
-📅 Date: Check website for details
-📍 Location: 
-🏛️ Source: Official I amsterdam
-
-ℹ️ 
+      <description>
+            &lt;style&gt;
+            .amsterdam-event-card {
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+                padding: 20px;
+                margin: 15px 0;
+                background: #fafafa;
+                font-family: Arial, sans-serif;
+            }
+            .event-details {
+                margin-bottom: 15px;
+            }
+            .event-info-line {
+                display: flex;
+                align-items: center;
+                margin: 8px 0;
+                line-height: 1.5;
+            }
+            .event-icon {
+                font-size: 16px;
+                margin-right: 8px;
+                min-width: 24px;
+            }
+            .event-label {
+                font-weight: bold;
+                margin-right: 8px;
+                color: #333;
+                min-width: 80px;
+            }
+            .event-value {
+                color: #555;
+                flex: 1;
+            }
+            .event-description {
+                margin: 15px 0;
+                padding: 10px;
+                background: #f0f0f0;
+                border-radius: 4px;
+            }
+            .event-description-text {
+                margin: 8px 0;
+                line-height: 1.6;
+                color: #444;
+            }
+            .event-actions {
+                margin-top: 15px;
+                padding-top: 15px;
+                border-top: 1px solid #ddd;
+            }
+            .event-link {
+                color: #E31E24;
+                text-decoration: none;
+                font-weight: bold;
+                padding: 8px 12px;
+                background: #fff;
+                border: 2px solid #E31E24;
+                border-radius: 4px;
+                display: inline-block;
+                transition: all 0.3s ease;
+            }
+            .event-link:hover {
+                background: #E31E24;
+                color: white;
+            }
+            &lt;/style&gt;
+            &lt;div class="amsterdam-event-card"&gt;
+&lt;div class="event-details"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;📅&lt;/span&gt;
+&lt;span class="event-label"&gt;Date:&lt;/span&gt;
+&lt;span class="event-value"&gt;Check website for specific dates and times&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;📍&lt;/span&gt;
+&lt;span class="event-label"&gt;Location:&lt;/span&gt;
+&lt;span class="event-value"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🏛️&lt;/span&gt;
+&lt;span class="event-label"&gt;Source:&lt;/span&gt;
+&lt;span class="event-value"&gt;Official I amsterdam&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="event-description"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;ℹ️&lt;/span&gt;
+&lt;span class="event-label"&gt;Description:&lt;/span&gt;
+&lt;/div&gt;
+&lt;p class="event-description-text"&gt;
 Voorstellingen
 
 📅 Check website for dates and times
 🏛️ Official I amsterdam event
 
 View full details on I amsterdam
-
-
-🌟 View Details: https://www.iamsterdam.com/uit/agenda/voorstellingen
-
-🖼️ Event Image: https://app.thefeedfactory.nl/api/assets/67d43351f653b54a9ab07828/schermafbeelding-2024-01-05-om-12-31-21_893100046.png</description>
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="event-actions"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🌟&lt;/span&gt;
+&lt;span class="event-label"&gt;More Info:&lt;/span&gt;
+&lt;a href="https://www.iamsterdam.com/uit/agenda/voorstellingen" target="_blank" rel="noopener" class="event-link"&gt;View Event Details on I amsterdam&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
       <guid isPermaLink="false">https://www.iamsterdam.com/uit/agenda/voorstellingen</guid>
       <enclosure url="https://app.thefeedfactory.nl/api/assets/67d43351f653b54a9ab07828/schermafbeelding-2024-01-05-om-12-31-21_893100046.png" length="0" type="image/jpeg"/>
-      <pubDate>Tue, 10 Jun 2025 10:51:13 +0000</pubDate>
+      <pubDate>Tue, 10 Jun 2025 11:19:17 +0000</pubDate>
     </item>
     <item>
       <title>Tentoonstellingen</title>
       <link>https://www.iamsterdam.com/uit/agenda/tentoonstellingen</link>
-      <description>🎭 Tentoonstellingen
-
-📅 Date: Check website for details
-📍 Location: 
-🏛️ Source: Official I amsterdam
-
-ℹ️ 
+      <description>
+            &lt;style&gt;
+            .amsterdam-event-card {
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+                padding: 20px;
+                margin: 15px 0;
+                background: #fafafa;
+                font-family: Arial, sans-serif;
+            }
+            .event-details {
+                margin-bottom: 15px;
+            }
+            .event-info-line {
+                display: flex;
+                align-items: center;
+                margin: 8px 0;
+                line-height: 1.5;
+            }
+            .event-icon {
+                font-size: 16px;
+                margin-right: 8px;
+                min-width: 24px;
+            }
+            .event-label {
+                font-weight: bold;
+                margin-right: 8px;
+                color: #333;
+                min-width: 80px;
+            }
+            .event-value {
+                color: #555;
+                flex: 1;
+            }
+            .event-description {
+                margin: 15px 0;
+                padding: 10px;
+                background: #f0f0f0;
+                border-radius: 4px;
+            }
+            .event-description-text {
+                margin: 8px 0;
+                line-height: 1.6;
+                color: #444;
+            }
+            .event-actions {
+                margin-top: 15px;
+                padding-top: 15px;
+                border-top: 1px solid #ddd;
+            }
+            .event-link {
+                color: #E31E24;
+                text-decoration: none;
+                font-weight: bold;
+                padding: 8px 12px;
+                background: #fff;
+                border: 2px solid #E31E24;
+                border-radius: 4px;
+                display: inline-block;
+                transition: all 0.3s ease;
+            }
+            .event-link:hover {
+                background: #E31E24;
+                color: white;
+            }
+            &lt;/style&gt;
+            &lt;div class="amsterdam-event-card"&gt;
+&lt;div class="event-details"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;📅&lt;/span&gt;
+&lt;span class="event-label"&gt;Date:&lt;/span&gt;
+&lt;span class="event-value"&gt;Check website for specific dates and times&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;📍&lt;/span&gt;
+&lt;span class="event-label"&gt;Location:&lt;/span&gt;
+&lt;span class="event-value"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🏛️&lt;/span&gt;
+&lt;span class="event-label"&gt;Source:&lt;/span&gt;
+&lt;span class="event-value"&gt;Official I amsterdam&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="event-description"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;ℹ️&lt;/span&gt;
+&lt;span class="event-label"&gt;Description:&lt;/span&gt;
+&lt;/div&gt;
+&lt;p class="event-description-text"&gt;
 Tentoonstellingen
 
 📅 Check website for dates and times
 🏛️ Official I amsterdam event
 
 View full details on I amsterdam
-
-
-🌟 View Details: https://www.iamsterdam.com/uit/agenda/tentoonstellingen
-
-🖼️ Event Image: https://app.thefeedfactory.nl/api/assets/670f8364aa502822e79de011/Verhaalpaal_Noord_Keyvisual_1800x1020.png</description>
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="event-actions"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🌟&lt;/span&gt;
+&lt;span class="event-label"&gt;More Info:&lt;/span&gt;
+&lt;a href="https://www.iamsterdam.com/uit/agenda/tentoonstellingen" target="_blank" rel="noopener" class="event-link"&gt;View Event Details on I amsterdam&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
       <guid isPermaLink="false">https://www.iamsterdam.com/uit/agenda/tentoonstellingen</guid>
       <enclosure url="https://app.thefeedfactory.nl/api/assets/670f8364aa502822e79de011/Verhaalpaal_Noord_Keyvisual_1800x1020.png" length="0" type="image/jpeg"/>
-      <pubDate>Tue, 10 Jun 2025 10:51:13 +0000</pubDate>
+      <pubDate>Tue, 10 Jun 2025 11:19:17 +0000</pubDate>
     </item>
     <item>
       <title>Overnachten</title>
       <link>https://www.iamsterdam.com/uit/agenda/overnachten</link>
-      <description>🎭 Overnachten
-
-📅 Date: Check website for details
-📍 Location: 
-🏛️ Source: Official I amsterdam
-
-ℹ️ 
+      <description>
+            &lt;style&gt;
+            .amsterdam-event-card {
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+                padding: 20px;
+                margin: 15px 0;
+                background: #fafafa;
+                font-family: Arial, sans-serif;
+            }
+            .event-details {
+                margin-bottom: 15px;
+            }
+            .event-info-line {
+                display: flex;
+                align-items: center;
+                margin: 8px 0;
+                line-height: 1.5;
+            }
+            .event-icon {
+                font-size: 16px;
+                margin-right: 8px;
+                min-width: 24px;
+            }
+            .event-label {
+                font-weight: bold;
+                margin-right: 8px;
+                color: #333;
+                min-width: 80px;
+            }
+            .event-value {
+                color: #555;
+                flex: 1;
+            }
+            .event-description {
+                margin: 15px 0;
+                padding: 10px;
+                background: #f0f0f0;
+                border-radius: 4px;
+            }
+            .event-description-text {
+                margin: 8px 0;
+                line-height: 1.6;
+                color: #444;
+            }
+            .event-actions {
+                margin-top: 15px;
+                padding-top: 15px;
+                border-top: 1px solid #ddd;
+            }
+            .event-link {
+                color: #E31E24;
+                text-decoration: none;
+                font-weight: bold;
+                padding: 8px 12px;
+                background: #fff;
+                border: 2px solid #E31E24;
+                border-radius: 4px;
+                display: inline-block;
+                transition: all 0.3s ease;
+            }
+            .event-link:hover {
+                background: #E31E24;
+                color: white;
+            }
+            &lt;/style&gt;
+            &lt;div class="amsterdam-event-card"&gt;
+&lt;div class="event-details"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;📅&lt;/span&gt;
+&lt;span class="event-label"&gt;Date:&lt;/span&gt;
+&lt;span class="event-value"&gt;Check website for specific dates and times&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;📍&lt;/span&gt;
+&lt;span class="event-label"&gt;Location:&lt;/span&gt;
+&lt;span class="event-value"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🏛️&lt;/span&gt;
+&lt;span class="event-label"&gt;Source:&lt;/span&gt;
+&lt;span class="event-value"&gt;Official I amsterdam&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="event-description"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;ℹ️&lt;/span&gt;
+&lt;span class="event-label"&gt;Description:&lt;/span&gt;
+&lt;/div&gt;
+&lt;p class="event-description-text"&gt;
 Overnachten
 
 📅 Check website for dates and times
 🏛️ Official I amsterdam event
 
 View full details on I amsterdam
-
-
-🌟 View Details: https://www.iamsterdam.com/uit/agenda/overnachten
-
-🖼️ Event Image: https://app.thefeedfactory.nl/api/assets/5ff8ae29de7e8633a4abb4eb/013eeb03-e116-47b2-9a23-bf85b430dd0d.jpg</description>
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="event-actions"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🌟&lt;/span&gt;
+&lt;span class="event-label"&gt;More Info:&lt;/span&gt;
+&lt;a href="https://www.iamsterdam.com/uit/agenda/overnachten" target="_blank" rel="noopener" class="event-link"&gt;View Event Details on I amsterdam&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
       <guid isPermaLink="false">https://www.iamsterdam.com/uit/agenda/overnachten</guid>
       <enclosure url="https://app.thefeedfactory.nl/api/assets/5ff8ae29de7e8633a4abb4eb/013eeb03-e116-47b2-9a23-bf85b430dd0d.jpg" length="0" type="image/jpeg"/>
-      <pubDate>Tue, 10 Jun 2025 10:51:13 +0000</pubDate>
+      <pubDate>Tue, 10 Jun 2025 11:19:17 +0000</pubDate>
     </item>
     <item>
       <title>Nachtleven</title>
       <link>https://www.iamsterdam.com/uit/agenda/nachtleven</link>
-      <description>🎭 Nachtleven
-
-📅 Date: Check website for details
-📍 Location: 
-🏛️ Source: Official I amsterdam
-
-ℹ️ 
+      <description>
+            &lt;style&gt;
+            .amsterdam-event-card {
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+                padding: 20px;
+                margin: 15px 0;
+                background: #fafafa;
+                font-family: Arial, sans-serif;
+            }
+            .event-details {
+                margin-bottom: 15px;
+            }
+            .event-info-line {
+                display: flex;
+                align-items: center;
+                margin: 8px 0;
+                line-height: 1.5;
+            }
+            .event-icon {
+                font-size: 16px;
+                margin-right: 8px;
+                min-width: 24px;
+            }
+            .event-label {
+                font-weight: bold;
+                margin-right: 8px;
+                color: #333;
+                min-width: 80px;
+            }
+            .event-value {
+                color: #555;
+                flex: 1;
+            }
+            .event-description {
+                margin: 15px 0;
+                padding: 10px;
+                background: #f0f0f0;
+                border-radius: 4px;
+            }
+            .event-description-text {
+                margin: 8px 0;
+                line-height: 1.6;
+                color: #444;
+            }
+            .event-actions {
+                margin-top: 15px;
+                padding-top: 15px;
+                border-top: 1px solid #ddd;
+            }
+            .event-link {
+                color: #E31E24;
+                text-decoration: none;
+                font-weight: bold;
+                padding: 8px 12px;
+                background: #fff;
+                border: 2px solid #E31E24;
+                border-radius: 4px;
+                display: inline-block;
+                transition: all 0.3s ease;
+            }
+            .event-link:hover {
+                background: #E31E24;
+                color: white;
+            }
+            &lt;/style&gt;
+            &lt;div class="amsterdam-event-card"&gt;
+&lt;div class="event-details"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;📅&lt;/span&gt;
+&lt;span class="event-label"&gt;Date:&lt;/span&gt;
+&lt;span class="event-value"&gt;Check website for specific dates and times&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;📍&lt;/span&gt;
+&lt;span class="event-label"&gt;Location:&lt;/span&gt;
+&lt;span class="event-value"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🏛️&lt;/span&gt;
+&lt;span class="event-label"&gt;Source:&lt;/span&gt;
+&lt;span class="event-value"&gt;Official I amsterdam&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="event-description"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;ℹ️&lt;/span&gt;
+&lt;span class="event-label"&gt;Description:&lt;/span&gt;
+&lt;/div&gt;
+&lt;p class="event-description-text"&gt;
 Nachtleven
 
 📅 Check website for dates and times
 🏛️ Official I amsterdam event
 
 View full details on I amsterdam
-
-
-🌟 View Details: https://www.iamsterdam.com/uit/agenda/nachtleven
-
-🖼️ Event Image: https://app.thefeedfactory.nl/api/assets/678a54f0690a7c3b220ab1b4/wowo_uitagenda.webp</description>
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="event-actions"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🌟&lt;/span&gt;
+&lt;span class="event-label"&gt;More Info:&lt;/span&gt;
+&lt;a href="https://www.iamsterdam.com/uit/agenda/nachtleven" target="_blank" rel="noopener" class="event-link"&gt;View Event Details on I amsterdam&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
       <guid isPermaLink="false">https://www.iamsterdam.com/uit/agenda/nachtleven</guid>
       <enclosure url="https://app.thefeedfactory.nl/api/assets/678a54f0690a7c3b220ab1b4/wowo_uitagenda.webp" length="0" type="image/jpeg"/>
-      <pubDate>Tue, 10 Jun 2025 10:51:13 +0000</pubDate>
+      <pubDate>Tue, 10 Jun 2025 11:19:17 +0000</pubDate>
     </item>
     <item>
       <title>Musea en galeries</title>
       <link>https://www.iamsterdam.com/uit/agenda/musea-en-galeries</link>
-      <description>🎭 Musea en galeries
-
-📅 Date: Check website for details
-📍 Location: 
-🏛️ Source: Official I amsterdam
-
-ℹ️ 
+      <description>
+            &lt;style&gt;
+            .amsterdam-event-card {
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+                padding: 20px;
+                margin: 15px 0;
+                background: #fafafa;
+                font-family: Arial, sans-serif;
+            }
+            .event-details {
+                margin-bottom: 15px;
+            }
+            .event-info-line {
+                display: flex;
+                align-items: center;
+                margin: 8px 0;
+                line-height: 1.5;
+            }
+            .event-icon {
+                font-size: 16px;
+                margin-right: 8px;
+                min-width: 24px;
+            }
+            .event-label {
+                font-weight: bold;
+                margin-right: 8px;
+                color: #333;
+                min-width: 80px;
+            }
+            .event-value {
+                color: #555;
+                flex: 1;
+            }
+            .event-description {
+                margin: 15px 0;
+                padding: 10px;
+                background: #f0f0f0;
+                border-radius: 4px;
+            }
+            .event-description-text {
+                margin: 8px 0;
+                line-height: 1.6;
+                color: #444;
+            }
+            .event-actions {
+                margin-top: 15px;
+                padding-top: 15px;
+                border-top: 1px solid #ddd;
+            }
+            .event-link {
+                color: #E31E24;
+                text-decoration: none;
+                font-weight: bold;
+                padding: 8px 12px;
+                background: #fff;
+                border: 2px solid #E31E24;
+                border-radius: 4px;
+                display: inline-block;
+                transition: all 0.3s ease;
+            }
+            .event-link:hover {
+                background: #E31E24;
+                color: white;
+            }
+            &lt;/style&gt;
+            &lt;div class="amsterdam-event-card"&gt;
+&lt;div class="event-details"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;📅&lt;/span&gt;
+&lt;span class="event-label"&gt;Date:&lt;/span&gt;
+&lt;span class="event-value"&gt;Check website for specific dates and times&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;📍&lt;/span&gt;
+&lt;span class="event-label"&gt;Location:&lt;/span&gt;
+&lt;span class="event-value"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🏛️&lt;/span&gt;
+&lt;span class="event-label"&gt;Source:&lt;/span&gt;
+&lt;span class="event-value"&gt;Official I amsterdam&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="event-description"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;ℹ️&lt;/span&gt;
+&lt;span class="event-label"&gt;Description:&lt;/span&gt;
+&lt;/div&gt;
+&lt;p class="event-description-text"&gt;
 Musea en galeries
 
 📅 Check website for dates and times
 🏛️ Official I amsterdam event
 
 View full details on I amsterdam
-
-
-🌟 View Details: https://www.iamsterdam.com/uit/agenda/musea-en-galeries
-
-🖼️ Event Image: https://app.thefeedfactory.nl/api/assets/6671517a7a8a6741a55ff892/NAO.png</description>
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="event-actions"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🌟&lt;/span&gt;
+&lt;span class="event-label"&gt;More Info:&lt;/span&gt;
+&lt;a href="https://www.iamsterdam.com/uit/agenda/musea-en-galeries" target="_blank" rel="noopener" class="event-link"&gt;View Event Details on I amsterdam&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
       <guid isPermaLink="false">https://www.iamsterdam.com/uit/agenda/musea-en-galeries</guid>
       <enclosure url="https://app.thefeedfactory.nl/api/assets/6671517a7a8a6741a55ff892/NAO.png" length="0" type="image/jpeg"/>
-      <pubDate>Tue, 10 Jun 2025 10:51:13 +0000</pubDate>
+      <pubDate>Tue, 10 Jun 2025 11:19:17 +0000</pubDate>
     </item>
     <item>
       <title>Festivals en events</title>
       <link>https://www.iamsterdam.com/uit/agenda/festivals</link>
-      <description>🎭 Festivals en events
-
-📅 Date: Check website for details
-📍 Location: 
-🏛️ Source: Official I amsterdam
-
-ℹ️ 
+      <description>
+            &lt;style&gt;
+            .amsterdam-event-card {
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+                padding: 20px;
+                margin: 15px 0;
+                background: #fafafa;
+                font-family: Arial, sans-serif;
+            }
+            .event-details {
+                margin-bottom: 15px;
+            }
+            .event-info-line {
+                display: flex;
+                align-items: center;
+                margin: 8px 0;
+                line-height: 1.5;
+            }
+            .event-icon {
+                font-size: 16px;
+                margin-right: 8px;
+                min-width: 24px;
+            }
+            .event-label {
+                font-weight: bold;
+                margin-right: 8px;
+                color: #333;
+                min-width: 80px;
+            }
+            .event-value {
+                color: #555;
+                flex: 1;
+            }
+            .event-description {
+                margin: 15px 0;
+                padding: 10px;
+                background: #f0f0f0;
+                border-radius: 4px;
+            }
+            .event-description-text {
+                margin: 8px 0;
+                line-height: 1.6;
+                color: #444;
+            }
+            .event-actions {
+                margin-top: 15px;
+                padding-top: 15px;
+                border-top: 1px solid #ddd;
+            }
+            .event-link {
+                color: #E31E24;
+                text-decoration: none;
+                font-weight: bold;
+                padding: 8px 12px;
+                background: #fff;
+                border: 2px solid #E31E24;
+                border-radius: 4px;
+                display: inline-block;
+                transition: all 0.3s ease;
+            }
+            .event-link:hover {
+                background: #E31E24;
+                color: white;
+            }
+            &lt;/style&gt;
+            &lt;div class="amsterdam-event-card"&gt;
+&lt;div class="event-details"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;📅&lt;/span&gt;
+&lt;span class="event-label"&gt;Date:&lt;/span&gt;
+&lt;span class="event-value"&gt;Check website for specific dates and times&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;📍&lt;/span&gt;
+&lt;span class="event-label"&gt;Location:&lt;/span&gt;
+&lt;span class="event-value"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🏛️&lt;/span&gt;
+&lt;span class="event-label"&gt;Source:&lt;/span&gt;
+&lt;span class="event-value"&gt;Official I amsterdam&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="event-description"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;ℹ️&lt;/span&gt;
+&lt;span class="event-label"&gt;Description:&lt;/span&gt;
+&lt;/div&gt;
+&lt;p class="event-description-text"&gt;
 Festivals en events
 
 📅 Check website for dates and times
 🏛️ Official I amsterdam event
 
 View full details on I amsterdam
-
-
-🌟 View Details: https://www.iamsterdam.com/uit/agenda/festivals
-
-🖼️ Event Image: https://app.thefeedfactory.nl/api/assets/67fd152a06e08d518c27b60f/EP-Amsterdam-Tour-1920x1080.jpg</description>
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="event-actions"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🌟&lt;/span&gt;
+&lt;span class="event-label"&gt;More Info:&lt;/span&gt;
+&lt;a href="https://www.iamsterdam.com/uit/agenda/festivals" target="_blank" rel="noopener" class="event-link"&gt;View Event Details on I amsterdam&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
       <guid isPermaLink="false">https://www.iamsterdam.com/uit/agenda/festivals</guid>
       <enclosure url="https://app.thefeedfactory.nl/api/assets/67fd152a06e08d518c27b60f/EP-Amsterdam-Tour-1920x1080.jpg" length="0" type="image/jpeg"/>
-      <pubDate>Tue, 10 Jun 2025 10:51:13 +0000</pubDate>
+      <pubDate>Tue, 10 Jun 2025 11:19:17 +0000</pubDate>
     </item>
     <item>
       <title>Eten en drinken</title>
       <link>https://www.iamsterdam.com/uit/agenda/eten-en-drinken</link>
-      <description>🎭 Eten en drinken
-
-📅 Date: Check website for details
-📍 Location: 
-🏛️ Source: Official I amsterdam
-
-ℹ️ 
+      <description>
+            &lt;style&gt;
+            .amsterdam-event-card {
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+                padding: 20px;
+                margin: 15px 0;
+                background: #fafafa;
+                font-family: Arial, sans-serif;
+            }
+            .event-details {
+                margin-bottom: 15px;
+            }
+            .event-info-line {
+                display: flex;
+                align-items: center;
+                margin: 8px 0;
+                line-height: 1.5;
+            }
+            .event-icon {
+                font-size: 16px;
+                margin-right: 8px;
+                min-width: 24px;
+            }
+            .event-label {
+                font-weight: bold;
+                margin-right: 8px;
+                color: #333;
+                min-width: 80px;
+            }
+            .event-value {
+                color: #555;
+                flex: 1;
+            }
+            .event-description {
+                margin: 15px 0;
+                padding: 10px;
+                background: #f0f0f0;
+                border-radius: 4px;
+            }
+            .event-description-text {
+                margin: 8px 0;
+                line-height: 1.6;
+                color: #444;
+            }
+            .event-actions {
+                margin-top: 15px;
+                padding-top: 15px;
+                border-top: 1px solid #ddd;
+            }
+            .event-link {
+                color: #E31E24;
+                text-decoration: none;
+                font-weight: bold;
+                padding: 8px 12px;
+                background: #fff;
+                border: 2px solid #E31E24;
+                border-radius: 4px;
+                display: inline-block;
+                transition: all 0.3s ease;
+            }
+            .event-link:hover {
+                background: #E31E24;
+                color: white;
+            }
+            &lt;/style&gt;
+            &lt;div class="amsterdam-event-card"&gt;
+&lt;div class="event-details"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;📅&lt;/span&gt;
+&lt;span class="event-label"&gt;Date:&lt;/span&gt;
+&lt;span class="event-value"&gt;Check website for specific dates and times&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;📍&lt;/span&gt;
+&lt;span class="event-label"&gt;Location:&lt;/span&gt;
+&lt;span class="event-value"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🏛️&lt;/span&gt;
+&lt;span class="event-label"&gt;Source:&lt;/span&gt;
+&lt;span class="event-value"&gt;Official I amsterdam&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="event-description"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;ℹ️&lt;/span&gt;
+&lt;span class="event-label"&gt;Description:&lt;/span&gt;
+&lt;/div&gt;
+&lt;p class="event-description-text"&gt;
 Eten en drinken
 
 📅 Check website for dates and times
 🏛️ Official I amsterdam event
 
 View full details on I amsterdam
-
-
-🌟 View Details: https://www.iamsterdam.com/uit/agenda/eten-en-drinken
-
-🖼️ Event Image: https://app.thefeedfactory.nl/api/assets/66e44290f7f86c19278b5f26/Boothuis_nieuw-west.jpg</description>
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="event-actions"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🌟&lt;/span&gt;
+&lt;span class="event-label"&gt;More Info:&lt;/span&gt;
+&lt;a href="https://www.iamsterdam.com/uit/agenda/eten-en-drinken" target="_blank" rel="noopener" class="event-link"&gt;View Event Details on I amsterdam&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
       <guid isPermaLink="false">https://www.iamsterdam.com/uit/agenda/eten-en-drinken</guid>
       <enclosure url="https://app.thefeedfactory.nl/api/assets/66e44290f7f86c19278b5f26/Boothuis_nieuw-west.jpg" length="0" type="image/jpeg"/>
-      <pubDate>Tue, 10 Jun 2025 10:51:13 +0000</pubDate>
+      <pubDate>Tue, 10 Jun 2025 11:19:17 +0000</pubDate>
     </item>
     <item>
       <title>Concerten en muziek</title>
       <link>https://www.iamsterdam.com/uit/agenda/concerten-en-muziek</link>
-      <description>🎭 Concerten en muziek
-
-📅 Date: Check website for details
-📍 Location: 
-🏛️ Source: Official I amsterdam
-
-ℹ️ 
+      <description>
+            &lt;style&gt;
+            .amsterdam-event-card {
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+                padding: 20px;
+                margin: 15px 0;
+                background: #fafafa;
+                font-family: Arial, sans-serif;
+            }
+            .event-details {
+                margin-bottom: 15px;
+            }
+            .event-info-line {
+                display: flex;
+                align-items: center;
+                margin: 8px 0;
+                line-height: 1.5;
+            }
+            .event-icon {
+                font-size: 16px;
+                margin-right: 8px;
+                min-width: 24px;
+            }
+            .event-label {
+                font-weight: bold;
+                margin-right: 8px;
+                color: #333;
+                min-width: 80px;
+            }
+            .event-value {
+                color: #555;
+                flex: 1;
+            }
+            .event-description {
+                margin: 15px 0;
+                padding: 10px;
+                background: #f0f0f0;
+                border-radius: 4px;
+            }
+            .event-description-text {
+                margin: 8px 0;
+                line-height: 1.6;
+                color: #444;
+            }
+            .event-actions {
+                margin-top: 15px;
+                padding-top: 15px;
+                border-top: 1px solid #ddd;
+            }
+            .event-link {
+                color: #E31E24;
+                text-decoration: none;
+                font-weight: bold;
+                padding: 8px 12px;
+                background: #fff;
+                border: 2px solid #E31E24;
+                border-radius: 4px;
+                display: inline-block;
+                transition: all 0.3s ease;
+            }
+            .event-link:hover {
+                background: #E31E24;
+                color: white;
+            }
+            &lt;/style&gt;
+            &lt;div class="amsterdam-event-card"&gt;
+&lt;div class="event-details"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;📅&lt;/span&gt;
+&lt;span class="event-label"&gt;Date:&lt;/span&gt;
+&lt;span class="event-value"&gt;Check website for specific dates and times&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;📍&lt;/span&gt;
+&lt;span class="event-label"&gt;Location:&lt;/span&gt;
+&lt;span class="event-value"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🏛️&lt;/span&gt;
+&lt;span class="event-label"&gt;Source:&lt;/span&gt;
+&lt;span class="event-value"&gt;Official I amsterdam&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="event-description"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;ℹ️&lt;/span&gt;
+&lt;span class="event-label"&gt;Description:&lt;/span&gt;
+&lt;/div&gt;
+&lt;p class="event-description-text"&gt;
 Concerten en muziek
 
 📅 Check website for dates and times
 🏛️ Official I amsterdam event
 
 View full details on I amsterdam
-
-
-🌟 View Details: https://www.iamsterdam.com/uit/agenda/concerten-en-muziek
-
-🖼️ Event Image: https://app.thefeedfactory.nl/api/assets/5fd3ad45e0b17044ef20daee/kleine-zaal-hans-roggen-1903-660-2.jpg</description>
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="event-actions"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🌟&lt;/span&gt;
+&lt;span class="event-label"&gt;More Info:&lt;/span&gt;
+&lt;a href="https://www.iamsterdam.com/uit/agenda/concerten-en-muziek" target="_blank" rel="noopener" class="event-link"&gt;View Event Details on I amsterdam&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
       <guid isPermaLink="false">https://www.iamsterdam.com/uit/agenda/concerten-en-muziek</guid>
       <enclosure url="https://app.thefeedfactory.nl/api/assets/5fd3ad45e0b17044ef20daee/kleine-zaal-hans-roggen-1903-660-2.jpg" length="0" type="image/jpeg"/>
-      <pubDate>Tue, 10 Jun 2025 10:51:13 +0000</pubDate>
+      <pubDate>Tue, 10 Jun 2025 11:19:17 +0000</pubDate>
     </item>
     <item>
       <title>Attracties en bezienswaardigheden</title>
       <link>https://www.iamsterdam.com/uit/agenda/attracties-en-bezienswaardigheden</link>
-      <description>🎭 Attracties en bezienswaardigheden
-
-📅 Date: Check website for details
-📍 Location: 
-🏛️ Source: Official I amsterdam
-
-ℹ️ 
+      <description>
+            &lt;style&gt;
+            .amsterdam-event-card {
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+                padding: 20px;
+                margin: 15px 0;
+                background: #fafafa;
+                font-family: Arial, sans-serif;
+            }
+            .event-details {
+                margin-bottom: 15px;
+            }
+            .event-info-line {
+                display: flex;
+                align-items: center;
+                margin: 8px 0;
+                line-height: 1.5;
+            }
+            .event-icon {
+                font-size: 16px;
+                margin-right: 8px;
+                min-width: 24px;
+            }
+            .event-label {
+                font-weight: bold;
+                margin-right: 8px;
+                color: #333;
+                min-width: 80px;
+            }
+            .event-value {
+                color: #555;
+                flex: 1;
+            }
+            .event-description {
+                margin: 15px 0;
+                padding: 10px;
+                background: #f0f0f0;
+                border-radius: 4px;
+            }
+            .event-description-text {
+                margin: 8px 0;
+                line-height: 1.6;
+                color: #444;
+            }
+            .event-actions {
+                margin-top: 15px;
+                padding-top: 15px;
+                border-top: 1px solid #ddd;
+            }
+            .event-link {
+                color: #E31E24;
+                text-decoration: none;
+                font-weight: bold;
+                padding: 8px 12px;
+                background: #fff;
+                border: 2px solid #E31E24;
+                border-radius: 4px;
+                display: inline-block;
+                transition: all 0.3s ease;
+            }
+            .event-link:hover {
+                background: #E31E24;
+                color: white;
+            }
+            &lt;/style&gt;
+            &lt;div class="amsterdam-event-card"&gt;
+&lt;div class="event-details"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;📅&lt;/span&gt;
+&lt;span class="event-label"&gt;Date:&lt;/span&gt;
+&lt;span class="event-value"&gt;Check website for specific dates and times&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;📍&lt;/span&gt;
+&lt;span class="event-label"&gt;Location:&lt;/span&gt;
+&lt;span class="event-value"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🏛️&lt;/span&gt;
+&lt;span class="event-label"&gt;Source:&lt;/span&gt;
+&lt;span class="event-value"&gt;Official I amsterdam&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="event-description"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;ℹ️&lt;/span&gt;
+&lt;span class="event-label"&gt;Description:&lt;/span&gt;
+&lt;/div&gt;
+&lt;p class="event-description-text"&gt;
 Attracties en bezienswaardigheden
 
 📅 Check website for dates and times
 🏛️ Official I amsterdam event
 
 View full details on I amsterdam
-
-
-🌟 View Details: https://www.iamsterdam.com/uit/agenda/attracties-en-bezienswaardigheden
-
-🖼️ Event Image: https://app.thefeedfactory.nl/api/assets/681b5bb1d04bf142d787f931/204893__1_.jpg</description>
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="event-actions"&gt;
+&lt;div class="event-info-line"&gt;
+&lt;span class="event-icon"&gt;🌟&lt;/span&gt;
+&lt;span class="event-label"&gt;More Info:&lt;/span&gt;
+&lt;a href="https://www.iamsterdam.com/uit/agenda/attracties-en-bezienswaardigheden" target="_blank" rel="noopener" class="event-link"&gt;View Event Details on I amsterdam&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
       <guid isPermaLink="false">https://www.iamsterdam.com/uit/agenda/attracties-en-bezienswaardigheden</guid>
       <enclosure url="https://app.thefeedfactory.nl/api/assets/681b5bb1d04bf142d787f931/204893__1_.jpg" length="0" type="image/jpeg"/>
-      <pubDate>Tue, 10 Jun 2025 10:51:13 +0000</pubDate>
+      <pubDate>Tue, 10 Jun 2025 11:19:17 +0000</pubDate>
     </item>
   </channel>
 </rss>
