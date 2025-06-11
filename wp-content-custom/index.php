@@ -14,11 +14,17 @@
         </header>
         <main>
             <?php
-            if (have_posts()) :
-                while (have_posts()) : the_post();
-                    the_content();
-                endwhile;
-            endif;
+            if (is_front_page()) {
+    echo '<p><a href="' . esc_url( site_url('?page_id=10&preview=true') ) . '">View the events demo page</a></p>';
+
+                // Shortcode removed; replaced with link above
+            } else {
+                if (have_posts()) :
+                    while (have_posts()) : the_post();
+                        the_content();
+                    endwhile;
+                endif;
+            }
             ?>
         </main>
     </div>

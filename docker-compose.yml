@@ -1,7 +1,12 @@
+version: '3.8'
+
 services:
   wordpress:
-    image: wordpress:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: amsterdam-events-wp
+    restart: always
     ports:
       - "8080:80"
     environment:
@@ -19,11 +24,11 @@ services:
       - ./php.ini:/usr/local/etc/php/conf.d/uploads.ini
     depends_on:
       - db
-    restart: unless-stopped
 
   db:
     image: mysql:8.0
     container_name: amsterdam-events-db
+    restart: always
     environment:
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
@@ -31,12 +36,11 @@ services:
       MYSQL_ROOT_PASSWORD: root_password
     volumes:
       - db_data:/var/lib/mysql
-    restart: unless-stopped
-    command: --default-authentication-plugin=mysql_native_password
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
     container_name: amsterdam-events-phpmyadmin
+    restart: always
     ports:
       - "8081:80"
     environment:
@@ -45,7 +49,6 @@ services:
       PMA_PASSWORD: wordpress_password
     depends_on:
       - db
-    restart: unless-stopped
 
 volumes:
   wordpress_data:
