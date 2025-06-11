@@ -10,19 +10,19 @@ import json
 import re
 from datetime import datetime, timezone, timedelta
 from bs4 import BeautifulSoup
-from feedgen.feed import FeedGenerator
+from feedgen.feed import FeedGenerator  # type: ignore
 from urllib.parse import urljoin, urlparse
 import logging
 import asyncio
 from playwright.async_api import async_playwright
-import translators as ts
+import translators as ts  # type: ignore
 import subprocess
 import argparse
 from markitdown import MarkItDown
 from models import Event
 import io
 from email.utils import format_datetime
-import markdown
+import markdown  # type: ignore
 import xml.etree.ElementTree as ET
 
 # Configure logging
@@ -31,6 +31,8 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+ET.register_namespace('atom', 'http://www.w3.org/2005/Atom')
+ET.register_namespace('content', 'http://purl.org/rss/1.0/modules/content/')
 
 def translate_dutch_date_to_english(date_list: list[str]) -> list[str]:
     """Translates a list of Dutch date strings to English."""
@@ -131,77 +133,8 @@ def _build_html_content(event: Event) -> str:
     
     content_parts.append('</div>')  # Close amsterdam-event-card
     
-    # Add CSS for better styling
-    css_styles = '''
-    <style>
-    .amsterdam-event-card {
-        border: 1px solid #e0e0e0;
-        border-radius: 8px;
-        padding: 20px;
-        margin: 15px 0;
-        background: #fafafa;
-        font-family: Arial, sans-serif;
-    }
-    .event-details {
-        margin-bottom: 15px;
-    }
-    .event-info-line {
-        display: flex;
-        align-items: center;
-        margin: 8px 0;
-        line-height: 1.5;
-    }
-    .event-icon {
-        font-size: 16px;
-        margin-right: 8px;
-        min-width: 24px;
-    }
-    .event-label {
-        font-weight: bold;
-        margin-right: 8px;
-        color: #333;
-        min-width: 80px;
-    }
-    .event-value {
-        color: #555;
-        flex: 1;
-    }
-    .event-description {
-        margin: 15px 0;
-        padding: 10px;
-        background: #f0f0f0;
-        border-radius: 4px;
-    }
-    .event-description-text {
-        margin: 8px 0;
-        line-height: 1.6;
-        color: #444;
-    }
-    .event-actions {
-        margin-top: 15px;
-        padding-top: 15px;
-        border-top: 1px solid #ddd;
-    }
-    .event-link {
-        color: #E31E24;
-        text-decoration: none;
-        font-weight: bold;
-        padding: 8px 12px;
-        background: #fff;
-        border: 2px solid #E31E24;
-        border-radius: 4px;
-        display: inline-block;
-        transition: all 0.3s ease;
-    }
-    .event-link:hover {
-        background: #E31E24;
-        color: white;
-    }
-    </style>
-    '''
-    
-    # Join all content
-    html_content = css_styles + '\n'.join(content_parts)
+    # Join all content without inline styles
+    html_content = ''.join(content_parts)
     return html_content
 
 class AmsterdamEventsScraper:
@@ -474,66 +407,52 @@ class AmsterdamEventsScraper:
         """Generate RSS feed from collected events"""
         logger.info(f"Generating RSS feed with {len(self.events)} events...")
         
-        rss = ET.Element("rss", version="2.0", attrib={"xmlns:content": "http://purl.org/rss/1.0/modules/content/"})
+        # Create RSS root element with registered namespaces
+        rss = ET.Element("rss", version="2.0")
         channel = ET.SubElement(rss, "channel")
 
-        title = ET.SubElement(channel, "title")
-        title.text = "Amsterdam Events Feed"
-        
-        link = ET.SubElement(channel, "link")
-        link.text = "https://raw.githubusercontent.com/lassebenni/amsterdam-events-feed/master/events.xml"
-
-        ET.SubElement(channel, "link", attrib={"rel": "self", "type": "application/rss+xml", "href": "https://raw.githubusercontent.com/lassebenni/amsterdam-events-feed/master/events.xml"})
-        
-        description = ET.SubElement(channel, "description")
-        description.text = "Curated upcoming events and activities in Amsterdam from I amsterdam official agenda"
-        
-        language = ET.SubElement(channel, "language")
-        language.text = "en"
-        
-        lastBuildDate = ET.SubElement(channel, "lastBuildDate")
-        lastBuildDate.text = format_datetime(datetime.now(timezone.utc))
-        
-        generator = ET.SubElement(channel, "generator")
-        generator.text = "Amsterdam Events Scraper v10.0"
+        ET.SubElement(channel, "title").text = "Amsterdam Events Feed"
+        # Main link to the RSS feed
+        ET.SubElement(channel, "link").text = "https://raw.githubusercontent.com/lassebenni/amsterdam-events-feed/master/events.xml"
+        # Atom self-link for interoperability
+        ET.SubElement(
+            channel,
+            "{http://www.w3.org/2005/Atom}link",
+            attrib={
+                "rel": "self",
+                "href": "https://raw.githubusercontent.com/lassebenni/amsterdam-events-feed/master/events.xml",
+                "type": "application/rss+xml",
+            },
+        )
+        ET.SubElement(channel, "description").text = "Curated upcoming events and activities in Amsterdam from I amsterdam official agenda"
+        ET.SubElement(channel, "language").text = "en"
+        ET.SubElement(channel, "lastBuildDate").text = format_datetime(datetime.now(timezone.utc))
+        ET.SubElement(channel, "generator").text = "Amsterdam Events Scraper v10.0"
 
         for event in self.events:
             item = ET.SubElement(channel, "item")
+            ET.SubElement(item, "title").text = event.title
+            ET.SubElement(item, "link").text = str(event.link)
+            ET.SubElement(item, "pubDate").text = format_datetime(event.pub_date)
+            ET.SubElement(item, "guid", isPermaLink="false").text = str(event.link)
+            ET.SubElement(item, "description").text = event.description
             
-            item_title = ET.SubElement(item, "title")
-            item_title.text = event.title
-            
-            item_link = ET.SubElement(item, "link")
-            item_link.text = str(event.link)
-            
-            item_pubDate = ET.SubElement(item, "pubDate")
-            item_pubDate.text = format_datetime(event.pub_date)
-
-            item_guid = ET.SubElement(item, "guid", isPermaLink="false")
-            item_guid.text = str(event.link)
-
-            item_description = ET.SubElement(item, "description")
-            item_description.text = event.description
-
-            content_encoded = ET.SubElement(item, "content:encoded")
+            content_encoded = ET.SubElement(item, "{http://purl.org/rss/1.0/modules/content/}encoded")
             content_encoded.text = f"__CDATA_PLACEHOLDER_{event.link}__"
             
             # Also add image as enclosure for RSS readers that support it
             if event.image:
-                try:
-                    ET.SubElement(item, "enclosure", url=str(event.image), type='image/jpeg', length='0')
-                except Exception as e:
-                    logger.warning(f"Could not add enclosure for {event.title}: {e}")
-        
-        # Generate the RSS feed
+                ET.SubElement(item, "enclosure", url=str(event.image), type="image/jpeg", length="0")
+
         xml_str = ET.tostring(rss, encoding='unicode')
-        
+
+        # Replace placeholders with actual CDATA content
         for event in self.events:
             html_content = _build_html_content(event)
             cdata_placeholder = f"__CDATA_PLACEHOLDER_{event.link}__"
             xml_str = xml_str.replace(cdata_placeholder, f"<![CDATA[{html_content}]]>")
 
-        with open(output_file, 'w') as f:
+        with open(output_file, 'w', encoding='utf-8') as f:
             f.write(xml_str)
 
     def save_events_json(self, output_file="events.json"):
