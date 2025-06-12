@@ -347,6 +347,15 @@ class AmsterdamEventsScraper:
                             except Exception as e:
                                 logger.warning(f"Could not translate description for {title}: {e}")
 
+                            # Translate title to English
+                            try:
+                                if title:
+                                    translated_title = ts.translate_text(title, translator='google', to_language='en')
+                                    title = translated_title
+                                    logger.info(f"Successfully translated title for event: {title}")
+                            except Exception as e:
+                                logger.warning(f"Could not translate title for {title}: {e}")
+
                             event_image = await self.extract_event_image_playwright(page, url)
                             
                             event_data = Event(

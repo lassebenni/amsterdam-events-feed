@@ -31,10 +31,11 @@ add_action('init', function () {
  * Usage: [amsterdam_events max="12" feed_url="..."]
  */
 function ae_render_events_list($atts) {
+    // Use the local static feed file in the theme directory for immediate updates
     $atts = shortcode_atts(
         array(
             'max' => 12,
-            'feed_url' => 'https://raw.githubusercontent.com/lassebenni/amsterdam-events-feed/main/events.xml',
+            'feed_url' => get_stylesheet_directory_uri() . '/events.xml',
         ),
         $atts,
         'amsterdam_events'
@@ -43,6 +44,8 @@ function ae_render_events_list($atts) {
     if (!function_exists('fetch_feed')) {
         include_once(ABSPATH . WPINC . '/feed.php');
     }
+    // Clear cached feed to always fetch the latest version
+    delete_transient('feed_' . md5($atts['feed_url']));
     $rss = fetch_feed($atts['feed_url']);
     if (is_wp_error($rss)) {
         return '<p class="text-red-600">Unable to fetch events at this time.</p>';
