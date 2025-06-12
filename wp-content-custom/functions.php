@@ -54,18 +54,40 @@ function ae_render_events_list($atts) {
     }
     $output = '<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">';
     foreach ($items as $item) {
-        $title = esc_html($item->get_title());
-        $permalink = esc_url($item->get_permalink());
-        $date = esc_html($item->get_date('j F Y, H:i'));
-        $description = wp_trim_words($item->get_description(), 20, '...');
-
-        $output .= '<div class="bg-white rounded-lg shadow-lg overflow-hidden">';
-        $output .= '<div class="p-4">';
-        $output .= "<h2 class=\"text-xl font-semibold mb-2\"><a href=\"{$permalink}\" class=\"text-blue-600 hover:underline\">{$title}</a></h2>";
-        $output .= "<p class=\"text-gray-600 text-sm mb-2\">{$date}</p>";
-        $output .= "<p class=\"text-gray-700\">{$description}</p>";
-        $output .= '</div>';
-        $output .= '</div>';
+        // Extract full content of feed item
+        $content = $item->get_content();
+        // Get first image URL (use enclosure if available, otherwise fallback to content)
+        $enclosure = $item->get_enclosure();
+        if ($enclosure) {
+            $img_url = esc_url($enclosure->get_link());
+        } else {
+            preg_match('/<img[^>]+src="([^"]+)"/', $content, $m);
+            $img_url = isset($m[1]) ? esc_url($m[1]) : '';
+        }
+        // Get first event date from content block
+        if (preg_match('/<span class="event-value">[\s\S]*?<p>(.*?)<\/p>/', $content, $d)) {
+            $first_date = esc_html($d[1]);
+        } else {
+            $first_date = esc_html($item->get_date('j F Y, H:i'));
+        }
+        // Get description inside event-description-text
+        if (preg_match('/<p class="event-description-text">([\s\S]*?)<\/p>/', $content, $md)) {
+            $raw_desc = $md[1];
+        } else {
+            $raw_desc = $item->get_description();
+        }
+        $desc = wp_trim_words(strip_tags($raw_desc), 15, '...');
+        // Compact card output
+        $output .= '<div class="bg-white rounded-lg shadow-md overflow-hidden">';
+        if ($img_url) {
+            $output .= '<img class="w-full h-32 object-cover" src="' . $img_url . '" alt="' . esc_attr($item->get_title()) . '">';
+        }
+        $output .= '<div class="p-3">';
+        $output .= '<h3 class="text-base font-semibold mb-1">' . esc_html($item->get_title()) . '</h3>';
+        $output .= '<div class="text-gray-600 text-xs mb-2">' . $first_date . '</div>';
+        $output .= '<p class="text-gray-700 text-sm mb-3">' . $desc . '</p>';
+        $output .= '<a class="text-blue-600 hover:underline text-xs" href="' . esc_url($item->get_permalink()) . '">View Details</a>';
+        $output .= '</div></div>';
     }
     $output .= '</div>';
     return $output;
