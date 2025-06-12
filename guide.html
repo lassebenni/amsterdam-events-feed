@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>WORDPRESS_ADMIN_GUIDE</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h1 id="wordpress-admin-guide-amsterdam-events-feed">WordPress Admin
+Guide: Amsterdam Events Feed</h1>
+<p>This guide shows you how to set up the Amsterdam Events RSS feed on
+your WordPress site using the <strong>Feedzy RSS Feeds</strong>
+plugin.</p>
+<h2 id="prerequisites">📋 Prerequisites</h2>
+<ul>
+<li>A running WordPress instance at
+<code>http://localhost:8080</code></li>
+<li>Admin access to your WordPress site</li>
+<li>The <code>events.xml</code> feed file accessible via a URL (e.g.,
+hosted under your theme at
+<code>/wp-content/themes/custom/events.xml</code>)</li>
+</ul>
+<h2 id="overview">🎯 Overview</h2>
+<ol type="1">
+<li>Log into WordPress</li>
+<li>Install and activate the Feedzy RSS Feeds plugin</li>
+<li>Create an “Events” page and insert the Feedzy shortcode</li>
+<li>Set the Events page as the static front page</li>
+<li>View the live events feed</li>
+<li>Refresh the feed when needed</li>
+</ol>
+<hr />
+<h3 id="log-into-wordpress">1. Log into WordPress</h3>
+<p>Open your browser and go to
+<code>http://localhost:8080/wp-admin</code>.</p>
+<figure>
+<img src="screenshots/01-wp-dashboard.png" alt="WP Dashboard" />
+<figcaption aria-hidden="true">WP Dashboard</figcaption>
+</figure>
+<hr />
+<h3 id="install-and-activate-the-feedzy-plugin">2. Install and Activate
+the Feedzy Plugin</h3>
+<ol type="1">
+<li>Navigate to <strong>Plugins &gt; Add New</strong>.</li>
+<li>Search for <strong>Feedzy RSS Feeds</strong>.</li>
+</ol>
+<figure>
+<img src="screenshots/02-plugin-search.png" alt="Search Plugin" />
+<figcaption aria-hidden="true">Search Plugin</figcaption>
+</figure>
+<ol start="3" type="1">
+<li>Click <strong>Install Now</strong> on the Feedzy RSS Feeds
+card.</li>
+</ol>
+<figure>
+<img src="screenshots/03-feedzy-install.png" alt="Install Plugin" />
+<figcaption aria-hidden="true">Install Plugin</figcaption>
+</figure>
+<ol start="4" type="1">
+<li>After installation, click <strong>Activate</strong>.</li>
+</ol>
+<figure>
+<img src="screenshots/04-feedzy-activate.png" alt="Activate Plugin" />
+<figcaption aria-hidden="true">Activate Plugin</figcaption>
+</figure>
+<hr />
+<h3 id="create-the-events-page">3. Create the Events Page</h3>
+<ol type="1">
+<li>Go to <strong>Pages &gt; Add New</strong>.</li>
+</ol>
+<figure>
+<img src="screenshots/05-pages-screen.png" alt="Pages List" />
+<figcaption aria-hidden="true">Pages List</figcaption>
+</figure>
+<ol start="2" type="1">
+<li>Click <strong>Add New</strong>.</li>
+</ol>
+<figure>
+<img src="screenshots/06-add-new-page.png" alt="Add New Page" />
+<figcaption aria-hidden="true">Add New Page</figcaption>
+</figure>
+<ol start="3" type="1">
+<li><p>Enter <strong>Events</strong> as the page title.</p></li>
+<li><p>In the content editor, paste the Feedzy shortcode:</p>
+<pre><code>[feedzy-rss feeds=&quot;http://localhost:8080/wp-content/themes/custom/events.xml&quot; max=&quot;12&quot;]</code></pre></li>
+</ol>
+<figure>
+<img src="screenshots/07-page-with-shortcode.png" alt="Add Shortcode" />
+<figcaption aria-hidden="true">Add Shortcode</figcaption>
+</figure>
+<ol start="5" type="1">
+<li>Click <strong>Publish</strong>.</li>
+</ol>
+<figure>
+<img src="screenshots/08-page-published.png" alt="Publish Page" />
+<figcaption aria-hidden="true">Publish Page</figcaption>
+</figure>
+<hr />
+<h3 id="set-as-static-front-page">4. Set as Static Front Page</h3>
+<ol type="1">
+<li>Navigate to <strong>Settings &gt; Reading</strong>.</li>
+<li>Under <strong>Your homepage displays</strong>, select <strong>A
+static page</strong>.</li>
+<li>Choose <strong>Events</strong> for the
+<strong>Homepage</strong>.</li>
+<li>Click <strong>Save Changes</strong>.</li>
+</ol>
+<hr />
+<h3 id="view-the-live-events-feed">5. View the Live Events Feed</h3>
+<p>Open <code>http://localhost:8080</code> in your browser to see the
+events grid.</p>
+<figure>
+<img src="screenshots/09-final-page.png" alt="Events Feed" />
+<figcaption aria-hidden="true">Events Feed</figcaption>
+</figure>
+<hr />
+<h2 id="updating-the-feed">🔄 Updating the Feed</h2>
+<p>When you need to refresh the events:</p>
+<ol type="1">
+<li>Regenerate your <code>events.xml</code> feed (e.g., run
+<code>make scrape</code>).</li>
+<li>Ensure <code>events.xml</code> is served from
+<code>/wp-content/themes/custom/events.xml</code>.</li>
+<li>Reload your homepage to see the latest events.</li>
+</ol>
+<hr />
+<p><strong>Congratulations!</strong> You’ve successfully integrated the
+Amsterdam Events feed into your WordPress site using Feedzy. 🎉</p>
+</body>
+</html>
